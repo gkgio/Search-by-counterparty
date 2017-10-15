@@ -6,4 +6,5 @@ package com.gig.gio.search_by_counterparty.common;
  */
 
 public class Config {
+    public static final String apiURL = "https://dadata.ru";
 }

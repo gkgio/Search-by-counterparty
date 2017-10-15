@@ -5,5 +5,5 @@ package com.gig.gio.search_by_counterparty.network;
  * Gig
  */
 
-public class REST {
+public interface REST {
 }
