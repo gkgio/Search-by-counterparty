@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
@@ -44,6 +45,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
@@ -74,4 +76,7 @@ dependencies {
     compile 'com.arello-mobile:moxy:1.5.3'
     compile 'com.arello-mobile:moxy-android:1.5.3'
     compile 'com.arello-mobile:moxy-app-compat:1.5.3'
+
+    // gson
+    compile 'com.google.code.gson:gson:2.8.0'
 }
