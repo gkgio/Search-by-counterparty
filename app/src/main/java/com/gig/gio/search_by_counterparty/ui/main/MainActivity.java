@@ -1,4 +1,4 @@
-package com.gig.gio.search_by_counterparty.ui;
+package com.gig.gio.search_by_counterparty.ui.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
