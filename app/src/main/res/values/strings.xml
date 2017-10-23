@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Search-by-counterparty</string>
+    <string name="app_name">Suggestions</string>
+
+    <string name="image_splash">Splash image</string>
+
+    //navigation menu
+    <string name="drawer_menu_home">Home</string>
+    <string name="drawer_menu_email">Write the author</string>
+    <string name="drawer_menu_exit">Exit</string>
+    <string name="drawer_menu_info">About app</string>
+
 </resources>
