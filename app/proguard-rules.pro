@@ -163,9 +163,4 @@
 -dontnote android.support.**
 
 
-###################
-# SecuredPreferences
-###################
--keep class com.tozny.crypto.android.AesCbcWithIntegrity$PrngFixes$* { *; }
-
 

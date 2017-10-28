@@ -3,12 +3,9 @@ package com.gig.gio.search_by_counterparty.app;
 import android.app.Application;
 import android.content.Context;
 
-import com.crashlytics.android.Crashlytics;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.components.DaggerCounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.modules.CounterpartyAppModule;
-
-import io.fabric.sdk.android.Fabric;
 
 /**
  * Created by georgy on 15.10.2017.
@@ -19,8 +16,8 @@ public class CounterpartyApp extends Application {
 
     private CounterpartyAppComponent counterpartyAppComponent;
 
-    public static CounterpartyAppComponent getComponent(Context context) {
-        return ((CounterpartyApp) context.getApplicationContext()).counterpartyAppComponent;
+    public static CounterpartyApp get(Context context) {
+        return (CounterpartyApp) context.getApplicationContext();
     }
 
     @Override
@@ -34,5 +31,9 @@ public class CounterpartyApp extends Application {
         counterpartyAppComponent = DaggerCounterpartyAppComponent.builder()
                 .counterpartyAppModule(new CounterpartyAppModule(this))
                 .build();
+    }
+
+    public CounterpartyAppComponent getAppComponent() {
+        return counterpartyAppComponent;
     }
 }

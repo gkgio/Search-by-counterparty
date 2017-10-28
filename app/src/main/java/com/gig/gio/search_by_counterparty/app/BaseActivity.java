@@ -1,5 +1,6 @@
 package com.gig.gio.search_by_counterparty.app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,7 +8,13 @@ import android.widget.Toast;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
+import com.gig.gio.search_by_counterparty.network.NetworkService;
+import com.google.gson.Gson;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Created by georgy on 15.10.2017.
@@ -16,10 +23,21 @@ import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent
 
 public abstract class BaseActivity  extends AppCompatActivity {
 
+    @Inject
+    public Gson gson;
+    @Inject
+    public SharedPreferences preferences;
+    @Inject
+    public Bus bus;
+    @Inject @Named("cached")
+    public NetworkService cachedNetworkService;
+    @Inject @Named("no_cached")
+    public NetworkService networkService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setupComponent(CounterpartyApp.get(this).getAppComponent());
+        setupComponent(CounterpartyApp.get(this).getAppComponent());
     }
 
     public void showToast(int message, @ToastType int type) {

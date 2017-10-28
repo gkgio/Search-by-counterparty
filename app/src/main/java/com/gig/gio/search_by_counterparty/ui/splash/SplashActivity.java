@@ -2,44 +2,36 @@ package com.gig.gio.search_by_counterparty.ui.splash;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
-import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseActivity;
-import com.gig.gio.search_by_counterparty.app.CounterpartyApp;
+import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
+import com.gig.gio.search_by_counterparty.di.components.DaggerSplashComponent;
+import com.gig.gio.search_by_counterparty.di.components.SplashComponent;
+import com.gig.gio.search_by_counterparty.di.modules.SplashModule;
 import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
 
-/**
- * Created by georgy on 15.10.2017.
- * Gig
- */
+import javax.inject.Inject;
 
-public class SplashActivity extends MvpAppCompatActivity implements SplashView{
 
-    @InjectPresenter
-    SplashPresenter splashPresenter;
+public class SplashActivity extends BaseActivity implements HasComponent<SplashComponent>, SplashView {
 
-    @ProvidePresenter
-    SplashPresenter providePresenter() {
-        return CounterpartyApp.getComponent(this).createSplashPresenter();
-    }
+    @Inject
+    public SplashPresenterImpl presenter;
+
+    private SplashComponent component;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_splash);
 
-        splashPresenter.startWithDelay();
-
+        presenter.onCreate();
     }
 
-
     //=======--------- SplashView impelement metod START ---------=========
+
 
     @Override
     public void startMain() {
@@ -51,9 +43,24 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView{
     public void finishActivity() {
         finish();
         // включаем анимацию при закрытии заставки - исчезновение
-        //overridePendingTransition(android.R.anim.fade_out, android.R.anim.fade_in);
         overridePendingTransition(R.anim.fade_in_activity, R.anim.fade_out_activity);
     }
 
     //=======--------- SplashView impelement metod END ---------=========
+
+    // BaseActivity extended method =========
+    @Override
+    protected void setupComponent(CounterpartyAppComponent appComponent) {
+        component = DaggerSplashComponent.builder()
+                .counterpartyAppComponent(appComponent)
+                .splashModule(new SplashModule(this))
+                .build();
+        component.inject(this);
+    }
+
+    // HasComponent implement method =========
+    @Override
+    public SplashComponent getComponent() {
+        return component;
+    }
 }

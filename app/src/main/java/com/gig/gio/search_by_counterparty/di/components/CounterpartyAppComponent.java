@@ -1,31 +1,40 @@
 package com.gig.gio.search_by_counterparty.di.components;
 
+import android.app.Application;
 import android.content.SharedPreferences;
 
 import com.gig.gio.search_by_counterparty.app.CounterpartyApp;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
-import com.gig.gio.search_by_counterparty.di.ActivityScope;
-import com.gig.gio.search_by_counterparty.di.modules.CounterpartyAppModule;
-import com.gig.gio.search_by_counterparty.ui.splash.SplashPresenter;
 
+import com.gig.gio.search_by_counterparty.di.modules.CounterpartyAppModule;
+import com.gig.gio.search_by_counterparty.network.NetworkService;
+import com.google.gson.Gson;
+
+import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import okhttp3.Cache;
 
 /**
  * Created by georgy on 15.10.2017.
  * Gig
  */
 
-@ActivityScope
+@Singleton
 @Component(modules = {CounterpartyAppModule.class})
 public interface CounterpartyAppComponent {
 
-    Bus eventBus();
+    void inject(CounterpartyApp counterpartyApp);
+
+    Application app();
 
     SharedPreferences sharedPreferences();
-
-    SplashPresenter createSplashPresenter();
-
-    void inject(CounterpartyApp counterpartyApp);
+    Bus eventBus();
+    Gson gson();
+    Cache cache();
+    @Named("cached")
+    NetworkService mobukCachedService();
+    @Named("no_cached")
+    NetworkService mobukNoCachedService();
 }
