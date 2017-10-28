@@ -1,6 +1,8 @@
 package com.gig.gio.search_by_counterparty.ui.splash;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -21,10 +23,20 @@ public class SplashActivity extends MvpAppCompatActivity implements SplashView{
     @InjectPresenter
     SplashPresenter splashPresenter;
 
-   /* @ProvidePresenter
+    @ProvidePresenter
     SplashPresenter providePresenter() {
-        return CounterpartyApp.get(this).createSplashPresenter();
-    }*/
+        return CounterpartyApp.getComponent(this).createSplashPresenter();
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        setContentView(R.layout.activity_splash);
+
+        splashPresenter.startWithDelay();
+
+    }
 
 
     //=======--------- SplashView impelement metod START ---------=========

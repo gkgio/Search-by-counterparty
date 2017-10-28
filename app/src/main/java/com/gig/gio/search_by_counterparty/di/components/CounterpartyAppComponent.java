@@ -4,7 +4,9 @@ import android.content.SharedPreferences;
 
 import com.gig.gio.search_by_counterparty.app.CounterpartyApp;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
+import com.gig.gio.search_by_counterparty.di.ActivityScope;
 import com.gig.gio.search_by_counterparty.di.modules.CounterpartyAppModule;
+import com.gig.gio.search_by_counterparty.ui.splash.SplashPresenter;
 
 import javax.inject.Singleton;
 
@@ -15,12 +17,15 @@ import dagger.Component;
  * Gig
  */
 
-@Singleton
+@ActivityScope
 @Component(modules = {CounterpartyAppModule.class})
 public interface CounterpartyAppComponent {
 
-    void inject(CounterpartyApp counterpartyApp);
+    Bus eventBus();
 
     SharedPreferences sharedPreferences();
-    Bus eventBus();
+
+    SplashPresenter createSplashPresenter();
+
+    void inject(CounterpartyApp counterpartyApp);
 }

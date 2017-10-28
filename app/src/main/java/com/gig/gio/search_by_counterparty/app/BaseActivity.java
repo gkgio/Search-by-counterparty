@@ -19,7 +19,7 @@ public abstract class BaseActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setupComponent(CounterpartyApp.get(this).getAppComponent());
+        //setupComponent(CounterpartyApp.get(this).getAppComponent());
     }
 
     public void showToast(int message, @ToastType int type) {

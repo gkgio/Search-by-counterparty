@@ -6,6 +6,8 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.gig.gio.search_by_counterparty.common.Config;
 
+import javax.inject.Inject;
+
 /**
  * Created by georgy on 15.10.2017.
  * Gig
@@ -15,14 +17,16 @@ import com.gig.gio.search_by_counterparty.common.Config;
 public class SplashPresenter extends MvpPresenter<SplashView> {
 
 
+    @Inject
+    SplashPresenter() {
+
+    }
+
     void startWithDelay() {
         // запускаем соответствующую активити после задержки
-        new Handler().postDelayed((new Runnable() {
-            @Override
-            public void run() {
-                getViewState().startMain();
-                getViewState().finishActivity();
-            }
+        new Handler().postDelayed((() -> {
+            getViewState().startMain();
+            getViewState().finishActivity();
         }), Config.SHOW_SPLASH_DELAY_MILLIS);
     }
 }
