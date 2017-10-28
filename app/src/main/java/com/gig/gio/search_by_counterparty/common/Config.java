@@ -17,4 +17,6 @@ public class Config {
     public static final int CACHE_TIME = 1;
     // размер файла для кжша
     public static final long CACHE_FILE_SIZE = 10 * 1024 * 1024; // 10 Mb
+
+    public static final String AUTHOR_EMAIL = "eeyyon@gmail.com";
 }

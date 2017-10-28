@@ -9,4 +9,14 @@
     <string name="drawer_menu_exit">Exit</string>
     <string name="drawer_menu_info">About app</string>
 
+    <string name="image_description">nav_app_icon</string>
+
+    //MainActivity
+    <string name="send_email_chooser_title">Send Email</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    //SearchFragment
+    <string name="input_suggestions">Input Suggestions</string>
+
 </resources>
