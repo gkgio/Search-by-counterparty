@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Suggestions</string>
 
+    <string name="toast_error">Ошибка подключения к серверу. Проверьте настройки сети или повторите попытку позже.</string>
     <string name="image_splash">Splash image</string>
 
     //navigation menu
@@ -18,5 +19,6 @@
 
     //SearchFragment
     <string name="input_suggestions">Input Suggestions</string>
+    <string name="name_or_inn">Наименование/ИНН</string>
 
 </resources>

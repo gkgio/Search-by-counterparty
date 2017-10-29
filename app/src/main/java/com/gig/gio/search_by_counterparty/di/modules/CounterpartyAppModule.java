@@ -37,7 +37,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -115,8 +115,6 @@ public class CounterpartyAppModule {
                 .create();
     }
 
-
-
     @Provides
     @Singleton
     Cache provideOkHttpCache() {
@@ -125,9 +123,21 @@ public class CounterpartyAppModule {
     }
 
     @Provides
+    @Singleton
+    OkHttpClient provideHttpClient() {
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        // logging для http клиента TODO закомментировать в продакшен
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        builder.interceptors().add(interceptor);
+
+        return builder.build();
+    }
+
+    @Provides
     @Named("cached")
     @Singleton
-    NetworkService provideCachedMobukService(Cache cache,Gson gson) {
+    NetworkService provideCachedMobukService(Cache cache, Gson gson) {
 
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
 
@@ -153,9 +163,9 @@ public class CounterpartyAppModule {
         builder.cache(cache);
 
         Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(Config.apiURL)
+                .baseUrl(Config.API_URL)
                 .client(builder.build())
                 .build();
 
@@ -165,20 +175,13 @@ public class CounterpartyAppModule {
     @Provides
     @Named("no_cached")
     @Singleton
-    NetworkService provideMobukService(Gson gson) {
-
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
-        // logging для http клиента TODO закомментировать в продакшен
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        builder.interceptors().add(interceptor);
+    NetworkService provideMobukService(Gson gson, OkHttpClient client) {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(Config.apiURL)
-                .client(builder.build())
+                .baseUrl(Config.API_URL)
+                .client(client)
                 .build();
 
         return retrofit.create(NetworkService.class);

@@ -3,7 +3,11 @@ package com.gig.gio.search_by_counterparty.app;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gig.gio.search_by_counterparty.R;
@@ -41,9 +45,22 @@ public abstract class BaseActivity  extends AppCompatActivity {
     }
 
     public void showToast(int message, @ToastType int type) {
-        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
-        View toastView = toast.getView();
-        toastView.setBackgroundResource(type == ToastType.ERROR ? R.drawable.toast_error_bg : R.drawable.toast_info_bg);
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        View toastView = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toast_layout_root));
+        toastView.setBackgroundResource(type == ToastType .ERROR ?
+                R.drawable.toast_error_bg : R.drawable.toast_info_bg);
+
+        TextView tvToast = (TextView) toastView.findViewById(R.id.tvToast);
+        tvToast.setText(message);
+        tvToast.setCompoundDrawablesWithIntrinsicBounds( type == ToastType.ERROR ?
+                R.drawable.ic_report_problem_white : R.drawable.ic_info_outline_white, 0, 0, 0);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.BOTTOM, 0, 64);
+        toast.setDuration(Toast.LENGTH_LONG);
+        toast.setView(toastView);
         toast.show();
     }
 

@@ -7,6 +7,9 @@ import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent
 import com.gig.gio.search_by_counterparty.di.components.DaggerCounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.modules.CounterpartyAppModule;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 /**
  * Created by georgy on 15.10.2017.
  * Gig
@@ -25,6 +28,12 @@ public class CounterpartyApp extends Application {
         super.onCreate();
         buildObjectGraphAndInject();
        // Fabric.with(this, new Crashlytics());
+
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(config);
     }
 
     public void buildObjectGraphAndInject() {
