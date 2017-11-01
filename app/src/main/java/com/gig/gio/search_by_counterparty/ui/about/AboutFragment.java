@@ -17,7 +17,7 @@ import javax.inject.Inject;
  * Gig
  */
 
-public class AboutFragment  extends BaseFragment implements AboutFragmentView {
+public class AboutFragment extends BaseFragment implements AboutFragmentView {
 
     @Inject
     AboutFragmentPresenter presenter;

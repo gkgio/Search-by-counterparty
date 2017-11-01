@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.gig.gio.search_by_counterparty.BuildConfig;
 import com.gig.gio.search_by_counterparty.app.CounterpartyApp;
 import com.gig.gio.search_by_counterparty.common.Config;
 import com.gig.gio.search_by_counterparty.common.LongWrapper;
@@ -27,6 +28,7 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import java.lang.reflect.Type;
+
 import dagger.Module;
 import dagger.Provides;
 import io.realm.RealmList;
@@ -76,7 +78,8 @@ public class CounterpartyAppModule {
     @Provides
     @Singleton
     Gson provideGson() {
-        Type token = new TypeToken<RealmList<LongWrapper>>(){}.getType();
+        Type token = new TypeToken<RealmList<LongWrapper>>() {
+        }.getType();
         return new GsonBuilder()
                 .setExclusionStrategies(new ExclusionStrategy() {
                     @Override
@@ -94,7 +97,7 @@ public class CounterpartyAppModule {
                     @Override
                     public void write(JsonWriter out, RealmList<LongWrapper> value) throws IOException {
                         out.beginArray();
-                        for(LongWrapper longWrapper : value) {
+                        for (LongWrapper longWrapper : value) {
                             out.value(longWrapper.getValue());
                         }
                         out.endArray();

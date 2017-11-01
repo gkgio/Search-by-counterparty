@@ -6,14 +6,21 @@ import java.io.Serializable;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * Created by georgy on 29.10.2017.
  * Gig
  */
 
-
-public class SuggestResponse extends RealmObject implements Serializable{
+@Getter
+@Setter
+@ToString
+@RequiredArgsConstructor
+public class SuggestResponse extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
@@ -32,5 +39,4 @@ public class SuggestResponse extends RealmObject implements Serializable{
 
     @SerializedName("address")
     private Address address;
-
 }

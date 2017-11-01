@@ -10,7 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Created by georgy on 29.10.2017.
+ * Created by georgy on 01.11.2017.
  * Gig
  */
 
@@ -18,11 +18,13 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Address extends RealmObject implements Serializable {
+public class Management extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
     private String id;
 
-    private String unrestricted_value;
+    private String name;
+
+    private String post;
 }

@@ -2,6 +2,7 @@ package com.gig.gio.search_by_counterparty.model;
 
 import java.io.Serializable;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 import lombok.Getter;
@@ -10,7 +11,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Created by georgy on 29.10.2017.
+ * Created by georgy on 01.11.2017.
  * Gig
  */
 
@@ -18,11 +19,11 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Address extends RealmObject implements Serializable {
+public class ResponseData extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
     private String id;
 
-    private String unrestricted_value;
+    private RealmList<SuggestResponse> suggestions;
 }

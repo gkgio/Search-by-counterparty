@@ -16,7 +16,11 @@ android {
         versionName rootProject.versionName
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // DaData API Key
+        buildConfigField "String", "API_KEY", "\"56154788262bcbf5f831b8e34ec3e768888b9ed2\""
     }
+
 
     signingConfigs {
         release {
@@ -106,8 +110,9 @@ dependencies {
         transitive = true;
     }*/
 
-    // MaterialProgressBar
-    compile "me.zhanghai.android.materialprogressbar:library:${rootProject.progressBarVersion}"
+    //lombok
+    provided "org.projectlombok:lombok:1.16.18"
+    apt "org.projectlombok:lombok:1.16.18"
 
     // rxPermission
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'

@@ -5,10 +5,10 @@
     <string name="image_splash">Splash image</string>
 
     //navigation menu
-    <string name="drawer_menu_home">Home</string>
-    <string name="drawer_menu_email">Write the author</string>
-    <string name="drawer_menu_exit">Exit</string>
-    <string name="drawer_menu_info">About app</string>
+    <string name="drawer_menu_home">Главная</string>
+    <string name="drawer_menu_email">Написать разработчику</string>
+    <string name="drawer_menu_exit">Выход</string>
+    <string name="drawer_menu_info">О приложении</string>
 
     <string name="image_description">nav_app_icon</string>
 
@@ -18,7 +18,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     //SearchFragment
-    <string name="input_suggestions">Input Suggestions</string>
+    <string name="input_suggestions">Введите контрагент</string>
     <string name="name_or_inn">Наименование/ИНН</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 </resources>

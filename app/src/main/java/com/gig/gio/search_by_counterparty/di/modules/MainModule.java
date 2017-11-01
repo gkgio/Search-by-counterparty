@@ -6,8 +6,6 @@ import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
 import com.gig.gio.search_by_counterparty.ui.main.MainPresenter;
 import com.gig.gio.search_by_counterparty.ui.main.MainPresenterImpl;
 import com.gig.gio.search_by_counterparty.ui.main.MainView;
-import com.gig.gio.search_by_counterparty.ui.search.SearchFragmentPresenter;
-import com.gig.gio.search_by_counterparty.ui.search.SearchFragmentPresenterImpl;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import dagger.Module;
@@ -43,12 +41,6 @@ public class MainModule {
     @Provides
     AboutFragmentPresenter provideAboutFragmentPresenterImpl() {
         return new AboutFragmentPresenterImpl();
-    }
-
-    /** Provide SearchFragmentPresenter */
-    @Provides
-    SearchFragmentPresenter provideSearchFragmentPresenterImpl() {
-        return new SearchFragmentPresenterImpl();
     }
 
     @Provides

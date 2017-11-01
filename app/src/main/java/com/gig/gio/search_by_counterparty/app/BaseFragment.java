@@ -27,7 +27,6 @@ import javax.inject.Named;
 
 public class BaseFragment extends Fragment {
 
-
     @Inject
     public Gson gson;
     @Inject
