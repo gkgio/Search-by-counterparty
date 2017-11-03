@@ -11,6 +11,8 @@ public class Config {
     // задержка при показе сплэш экрана в миллисекундах
     public static final int SHOW_SPLASH_DELAY_MILLIS = 1000;
 
+    public static final float MAP_ZOOM = 13.0f; // величина зума камеры на экране с картой
+
     // имя файла для http кэша
     public static final String CACHE_FILE_NAME = "responseCache";
     // время хранения кэша в минутах

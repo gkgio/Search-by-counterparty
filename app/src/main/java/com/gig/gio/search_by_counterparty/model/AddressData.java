@@ -1,7 +1,5 @@
 package com.gig.gio.search_by_counterparty.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
 import io.realm.RealmObject;
@@ -12,7 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Created by georgy on 29.10.2017.
+ * Created by georgy on 03.11.2017.
  * Gig
  */
 
@@ -20,15 +18,13 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Data extends RealmObject implements Serializable{
+public class AddressData extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
     private long id;
 
-    private String kpp;
+    private double geo_lat;
 
-    @SerializedName("management")
-    private Management management;
-
+    private double geo_lon;
 }

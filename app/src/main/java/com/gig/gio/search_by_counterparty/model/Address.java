@@ -1,5 +1,7 @@
 package com.gig.gio.search_by_counterparty.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 import io.realm.RealmObject;
@@ -22,7 +24,10 @@ public class Address extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
-    private String id;
+    private long id;
 
     private String unrestricted_value;
+
+    @SerializedName("data")
+    private AddressData AddressData;
 }

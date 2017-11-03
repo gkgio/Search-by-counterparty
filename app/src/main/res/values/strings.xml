@@ -32,4 +32,7 @@
     <string name="delete_recent">Удалить из недавних</string>
     <string name="open_map">На карте</string>
 
+    //MapActivty
+    <string name="map_activty_title">Карта</string>
+
 </resources>

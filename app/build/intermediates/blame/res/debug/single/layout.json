@@ -72,6 +72,10 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\layout\\abc_action_bar_up_container.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\layout\\map_info_window.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\layout\\map_info_window.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\layout\\abc_select_dialog_material.xml"
     },

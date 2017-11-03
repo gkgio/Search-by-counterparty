@@ -23,7 +23,7 @@ public class ResponseData extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
-    private String id;
+    private long id;
 
     private RealmList<SuggestResponse> suggestions;
 }

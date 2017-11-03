@@ -97,13 +97,13 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
 
     @Override
     @SuppressWarnings("cast")
-    public String realmGet$id() {
+    public long realmGet$id() {
         proxyState.getRealm$realm().checkIfValid();
-        return (java.lang.String) proxyState.getRow$realm().getString(columnInfo.idIndex);
+        return (long) proxyState.getRow$realm().getLong(columnInfo.idIndex);
     }
 
     @Override
-    public void realmSet$id(String value) {
+    public void realmSet$id(long value) {
         if (proxyState.isUnderConstruction()) {
             // default value of the primary key is always ignored.
             return;
@@ -145,7 +145,7 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
 
     private static OsObjectSchemaInfo createExpectedObjectSchemaInfo() {
         OsObjectSchemaInfo.Builder builder = new OsObjectSchemaInfo.Builder("Address");
-        builder.addPersistedProperty("id", RealmFieldType.STRING, Property.PRIMARY_KEY, Property.INDEXED, !Property.REQUIRED);
+        builder.addPersistedProperty("id", RealmFieldType.INTEGER, Property.PRIMARY_KEY, Property.INDEXED, Property.REQUIRED);
         builder.addPersistedProperty("unrestricted_value", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
         return builder.build();
     }
@@ -175,10 +175,8 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
             Table table = realm.getTable(com.gig.gio.search_by_counterparty.model.Address.class);
             long pkColumnIndex = table.getPrimaryKey();
             long rowIndex = Table.NO_MATCH;
-            if (json.isNull("id")) {
-                rowIndex = table.findFirstNull(pkColumnIndex);
-            } else {
-                rowIndex = table.findFirstString(pkColumnIndex, json.getString("id"));
+            if (!json.isNull("id")) {
+                rowIndex = table.findFirstLong(pkColumnIndex, json.getLong("id"));
             }
             if (rowIndex != Table.NO_MATCH) {
                 final BaseRealm.RealmObjectContext objectContext = BaseRealm.objectContext.get();
@@ -195,7 +193,7 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
                 if (json.isNull("id")) {
                     obj = (io.realm.AddressRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.Address.class, null, true, excludeFields);
                 } else {
-                    obj = (io.realm.AddressRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.Address.class, json.getString("id"), true, excludeFields);
+                    obj = (io.realm.AddressRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.Address.class, json.getLong("id"), true, excludeFields);
                 }
             } else {
                 throw new IllegalArgumentException("JSON object doesn't have the primary key field 'id'.");
@@ -226,10 +224,10 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
             if (false) {
             } else if (name.equals("id")) {
                 if (reader.peek() != JsonToken.NULL) {
-                    objProxy.realmSet$id((String) reader.nextString());
+                    objProxy.realmSet$id((long) reader.nextLong());
                 } else {
                     reader.skipValue();
-                    objProxy.realmSet$id(null);
+                    throw new IllegalArgumentException("Trying to set non-nullable field 'id' to null.");
                 }
                 jsonHasPrimaryKey = true;
             } else if (name.equals("unrestricted_value")) {
@@ -271,13 +269,7 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         if (canUpdate) {
             Table table = realm.getTable(com.gig.gio.search_by_counterparty.model.Address.class);
             long pkColumnIndex = table.getPrimaryKey();
-            String value = ((AddressRealmProxyInterface) object).realmGet$id();
-            long rowIndex = Table.NO_MATCH;
-            if (value == null) {
-                rowIndex = table.findFirstNull(pkColumnIndex);
-            } else {
-                rowIndex = table.findFirstString(pkColumnIndex, value);
-            }
+            long rowIndex = table.findFirstLong(pkColumnIndex, ((AddressRealmProxyInterface) object).realmGet$id());
             if (rowIndex == Table.NO_MATCH) {
                 canUpdate = false;
             } else {
@@ -319,15 +311,13 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         long tableNativePtr = table.getNativePtr();
         AddressColumnInfo columnInfo = (AddressColumnInfo) realm.getSchema().getColumnInfo(com.gig.gio.search_by_counterparty.model.Address.class);
         long pkColumnIndex = table.getPrimaryKey();
-        String primaryKeyValue = ((AddressRealmProxyInterface) object).realmGet$id();
         long rowIndex = Table.NO_MATCH;
-        if (primaryKeyValue == null) {
-            rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
-        } else {
-            rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
+        Object primaryKeyValue = ((AddressRealmProxyInterface) object).realmGet$id();
+        if (primaryKeyValue != null) {
+            rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((AddressRealmProxyInterface) object).realmGet$id());
         }
         if (rowIndex == Table.NO_MATCH) {
-            rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
+            rowIndex = OsObject.createRowWithPrimaryKey(table, ((AddressRealmProxyInterface) object).realmGet$id());
         } else {
             Table.throwDuplicatePrimaryKeyException(primaryKeyValue);
         }
@@ -354,15 +344,13 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
                 cache.put(object, ((RealmObjectProxy) object).realmGet$proxyState().getRow$realm().getIndex());
                 continue;
             }
-            String primaryKeyValue = ((AddressRealmProxyInterface) object).realmGet$id();
             long rowIndex = Table.NO_MATCH;
-            if (primaryKeyValue == null) {
-                rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
-            } else {
-                rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
+            Object primaryKeyValue = ((AddressRealmProxyInterface) object).realmGet$id();
+            if (primaryKeyValue != null) {
+                rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((AddressRealmProxyInterface) object).realmGet$id());
             }
             if (rowIndex == Table.NO_MATCH) {
-                rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
+                rowIndex = OsObject.createRowWithPrimaryKey(table, ((AddressRealmProxyInterface) object).realmGet$id());
             } else {
                 Table.throwDuplicatePrimaryKeyException(primaryKeyValue);
             }
@@ -382,15 +370,13 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         long tableNativePtr = table.getNativePtr();
         AddressColumnInfo columnInfo = (AddressColumnInfo) realm.getSchema().getColumnInfo(com.gig.gio.search_by_counterparty.model.Address.class);
         long pkColumnIndex = table.getPrimaryKey();
-        String primaryKeyValue = ((AddressRealmProxyInterface) object).realmGet$id();
         long rowIndex = Table.NO_MATCH;
-        if (primaryKeyValue == null) {
-            rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
-        } else {
-            rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
+        Object primaryKeyValue = ((AddressRealmProxyInterface) object).realmGet$id();
+        if (primaryKeyValue != null) {
+            rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((AddressRealmProxyInterface) object).realmGet$id());
         }
         if (rowIndex == Table.NO_MATCH) {
-            rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
+            rowIndex = OsObject.createRowWithPrimaryKey(table, ((AddressRealmProxyInterface) object).realmGet$id());
         }
         cache.put(object, rowIndex);
         String realmGet$unrestricted_value = ((AddressRealmProxyInterface) object).realmGet$unrestricted_value();
@@ -417,15 +403,13 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
                 cache.put(object, ((RealmObjectProxy) object).realmGet$proxyState().getRow$realm().getIndex());
                 continue;
             }
-            String primaryKeyValue = ((AddressRealmProxyInterface) object).realmGet$id();
             long rowIndex = Table.NO_MATCH;
-            if (primaryKeyValue == null) {
-                rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
-            } else {
-                rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
+            Object primaryKeyValue = ((AddressRealmProxyInterface) object).realmGet$id();
+            if (primaryKeyValue != null) {
+                rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((AddressRealmProxyInterface) object).realmGet$id());
             }
             if (rowIndex == Table.NO_MATCH) {
-                rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
+                rowIndex = OsObject.createRowWithPrimaryKey(table, ((AddressRealmProxyInterface) object).realmGet$id());
             }
             cache.put(object, rowIndex);
             String realmGet$unrestricted_value = ((AddressRealmProxyInterface) object).realmGet$unrestricted_value();
@@ -476,7 +460,7 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         }
         StringBuilder stringBuilder = new StringBuilder("Address = proxy[");
         stringBuilder.append("{id:");
-        stringBuilder.append(realmGet$id() != null ? realmGet$id() : "null");
+        stringBuilder.append(realmGet$id());
         stringBuilder.append("}");
         stringBuilder.append(",");
         stringBuilder.append("{unrestricted_value:");
