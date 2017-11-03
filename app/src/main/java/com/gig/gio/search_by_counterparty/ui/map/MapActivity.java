@@ -29,7 +29,6 @@ import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterManager;
-import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.List;
 
@@ -59,6 +58,8 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
     private Realm realm;
 
+    private Location currentMarkerLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +81,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
         presenter.onCreateView(bus, networkService);
 
+        currentMarkerLocation = gson.fromJson(getIntent().getStringExtra("LocationObject"), Location.class);
     }
 
     @Override
@@ -93,6 +95,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         presenter.onAttachView();
         presenter.initMap(map != null);
         presenter.getCounterPartyFromRealm(bus, realm);
+        setCurrentMarkerPosition(currentMarkerLocation);
         super.onResume();
     }
 
@@ -116,6 +119,11 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setCurrentMarkerPosition(Location location) {
+        final LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
+        if (map != null) map.animateCamera(CameraUpdateFactory.newLatLng(position));
     }
 
     @Override
@@ -153,12 +161,6 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     @Override
     public void showMessage(int message, @ToastType int type) {
         showToast(message, type);
-    }
-
-    @Override
-    public void setCurrentPosition(Location location) {
-        final LatLng position = new LatLng(location.getLatitude(), location.getLongitude());
-        if (map != null) map.animateCamera(CameraUpdateFactory.newLatLng(position));
     }
 
     @Override

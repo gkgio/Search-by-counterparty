@@ -1,6 +1,5 @@
 package com.gig.gio.search_by_counterparty.ui.map;
 
-import android.content.SharedPreferences;
 
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.network.NetworkService;
