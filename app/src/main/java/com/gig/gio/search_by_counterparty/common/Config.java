@@ -7,7 +7,7 @@ package com.gig.gio.search_by_counterparty.common;
 
 public class Config {
     public static final String API_URL = "https://dadata.ru";
-    
+
     // задержка при показе сплэш экрана в миллисекундах
     public static final int SHOW_SPLASH_DELAY_MILLIS = 1000;
 

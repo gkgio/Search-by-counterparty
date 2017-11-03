@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "609200130267",
+    "project_id": "counterparty-1509654306798"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609200130267:android:fa1b783ca928910c",
+        "android_client_info": {
+          "package_name": "com.gig.gio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609200130267-hc6ha1v2bg94n69edvbca38rhjj7bf1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNG1E2DzlB_kIEpo-ox-4WoukAPt1YgnY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-109180016-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609200130267:android:2ce393b9bffae2f5",
+        "android_client_info": {
+          "package_name": "com.gig.gio.search_by_counterparty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609200130267-hc6ha1v2bg94n69edvbca38rhjj7bf1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNG1E2DzlB_kIEpo-ox-4WoukAPt1YgnY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-109180016-2"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

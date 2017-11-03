@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_info.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_info.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_folder.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_folder.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_dehaze.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_dehaze.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_block.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_block.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_email.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_email.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_report_problem_white.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_report_problem_white.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_info_outline_white.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_info_outline_white.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_navigator.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_navigator.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_map.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_map.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_exit.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_exit.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi\\ic_home.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_home.png"
+    }
+]

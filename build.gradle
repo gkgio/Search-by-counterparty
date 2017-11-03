@@ -12,6 +12,7 @@ buildscript {
         classpath "io.realm:realm-gradle-plugin:3.7.2"
        // classpath 'io.fabric.tools:gradle:1.21.6'
         classpath "me.tatarka:gradle-retrolambda:3.7.0"
+        classpath 'com.google.gms:google-services:3.1.1'
     }
 }
 
@@ -19,6 +20,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
+        maven { url "https://maven.google.com" }
     }
 }
 
@@ -38,6 +40,4 @@ ext {
 
     // App dependencies
     daggerVersion = '2.12'
-    moxyVersion = '1.5.3'
-    progressBarVersion = '1.4.1'
 }
