@@ -1,6 +1,6 @@
 package com.gig.gio.search_by_counterparty.di.modules;
 
-import com.gig.gio.search_by_counterparty.ui.about.AboutFragmentPresenter;
+import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragmentPresenter;
 import dagger.internal.Factory;
 import dagger.internal.Preconditions;
 import javax.annotation.Generated;

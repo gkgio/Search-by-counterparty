@@ -1,11 +1,13 @@
 package com.gig.gio.search_by_counterparty.di.modules;
 
-import com.gig.gio.search_by_counterparty.ui.about.AboutFragmentPresenter;
-import com.gig.gio.search_by_counterparty.ui.about.AboutFragmentPresenterImpl;
+import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragmentPresenter;
+import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragmentPresenterImpl;
 import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
 import com.gig.gio.search_by_counterparty.ui.main.MainPresenter;
 import com.gig.gio.search_by_counterparty.ui.main.MainPresenterImpl;
 import com.gig.gio.search_by_counterparty.ui.main.MainView;
+import com.gig.gio.search_by_counterparty.ui.main.search.SearchFragmentPresenter;
+import com.gig.gio.search_by_counterparty.ui.main.search.SearchFragmentPresenterImpl;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import dagger.Module;
@@ -41,6 +43,12 @@ public class MainModule {
     @Provides
     AboutFragmentPresenter provideAboutFragmentPresenterImpl() {
         return new AboutFragmentPresenterImpl();
+    }
+
+    /** Provide SearchFragmentPresenter */
+    @Provides
+    SearchFragmentPresenter provideSearchFragmentPresenterImpl() {
+        return new SearchFragmentPresenterImpl();
     }
 
     @Provides

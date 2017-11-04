@@ -29,11 +29,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.main.MainActivity" />
 
-        <activity android:name=".ui.detail.DetailActivity"/>
+        <activity android:name=".ui.detail.DetailActivity" />
 
-        <activity android:name=".ui.map.MapActivity"/>
+        <activity android:name=".ui.map.MapActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

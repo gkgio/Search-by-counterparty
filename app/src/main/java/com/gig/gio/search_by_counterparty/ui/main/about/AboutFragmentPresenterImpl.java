@@ -1,4 +1,4 @@
-package com.gig.gio.search_by_counterparty.ui.about;
+package com.gig.gio.search_by_counterparty.ui.main.about;
 
 import javax.inject.Inject;
 

@@ -32,7 +32,11 @@
     <string name="delete_recent">Удалить из недавних</string>
     <string name="open_map">На карте</string>
 
-    //MapActivty
-    <string name="map_activty_title">Карта</string>
+    //MapActivity
+    <string name="map_activity_title">Карта</string>
 
+    //AboutFragment
+    <string name="about_app_text">Приложение предназначено для быстрого пойска контрагента,
+        нахождение его местоположения и сохранения для быстрого нахождения в последующем</string>
+    <string name="author_email">По всем вопросам пишите на: eeyyon@gmail.com</string>
 </resources>

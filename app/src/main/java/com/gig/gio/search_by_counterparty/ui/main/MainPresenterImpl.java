@@ -38,9 +38,6 @@ public class MainPresenterImpl implements MainPresenter {
 
     private MainView view;
 
-    private final static int COUNT_RESPONSE_OBJECT = 10;
-
-    private NetworkService networkService;
     private Bus bus;
     private CompositeDisposable disposables;
 
@@ -52,15 +49,14 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void logout(SharedPreferences preferences, Realm realm) {
         realm.executeTransaction(transaction -> transaction.deleteAll());
-       /* preferences.edit()
-                .remove(Config.PREF_ACCOUNT_TYPE)
-                .apply();*/
+        preferences.edit()
+                .remove(Config.IS_FIRST_START)
+                .apply();
     }
 
     @Override
-    public void onCreateView(Bus bus, NetworkService networkService) {
+    public void onCreateView(Bus bus) {
         this.bus = bus;
-        this.networkService = networkService;
     }
 
     @Override
@@ -78,10 +74,7 @@ public class MainPresenterImpl implements MainPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(event -> {
                     view.hideProgress();
-                    if (event instanceof ResponseDataEvent) {
-                        final ResponseData responseData = ((ResponseDataEvent) event).getResponseData();
-                        prepareSuggestsList(responseData);
-                    } else if (event instanceof HttpErrorEvent) {
+                    if (event instanceof HttpErrorEvent) {
                         view.showMessage(R.string.toast_error, ToastType.ERROR);
                     } else if (event instanceof ThrowableEvent) {
                         view.showMessage(R.string.toast_error, ToastType.ERROR);
@@ -89,48 +82,13 @@ public class MainPresenterImpl implements MainPresenter {
                 });
     }
 
-
     @Override
-    public void requestSuggestions(String query) {
-        String queryFromUser = query.replaceAll("\\s+", " ").trim();
-
-        if (!queryFromUser.isEmpty()) {
-            view.showProgress();
-
-            final RequestData requestData = new RequestData();
-            requestData.setCount(COUNT_RESPONSE_OBJECT);
-            requestData.setQuery(queryFromUser);
-
-            Observable<Response<ResponseData>> responseObservable =
-                    networkService.getSuggestion("Token ".concat(BuildConfig.API_KEY), requestData);
-            responseObservable.compose(RxUtil.applySchedulersAndRetry())
-                    .subscribe(response -> {
-                        final int responseCode = response.code();
-                        switch (responseCode) {
-                            case HttpURLConnection.HTTP_OK:
-                                bus.send(new ResponseDataEvent(response.body()));
-                                break;
-                            default:
-                                bus.send(new HttpErrorEvent(responseCode));
-                                break;
-                        }
-                    }, throwable -> {
-                        throwable.printStackTrace();
-                        bus.send(new ThrowableEvent(throwable));
-                    });
-        }
+    public boolean isFirstStart(SharedPreferences preferences){
+        return preferences.getBoolean(Config.IS_FIRST_START, true);
     }
 
-    private void prepareSuggestsList(ResponseData responseData) {
-        final List<SuggestResponse> suggestions = responseData.getSuggestions();
-
-        final int listSize = suggestions.size();
-
-        final List<String> helperValuesList = new ArrayList<>();
-        for (int i = 0; i < listSize; i++) {
-            helperValuesList.add(suggestions.get(i).getValue());
-        }
-
-        view.onSuggestionsReady(helperValuesList);
+    @Override
+    public void setIsFirstStart(SharedPreferences preferences){
+         preferences.edit().putBoolean(Config.IS_FIRST_START, false).apply();
     }
 }

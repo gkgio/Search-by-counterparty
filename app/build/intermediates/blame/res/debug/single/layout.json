@@ -28,10 +28,6 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\layout\\select_dialog_multichoice_material.xml"
     },
     {
-        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_main.xml",
-        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\layout\\content_main.xml"
-    },
-    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_bottom_sheet_dialog.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\51f3588df95bc8c0c7964a2ebced60c7d9294c13\\output\\res\\layout\\design_bottom_sheet_dialog.xml"
     },
