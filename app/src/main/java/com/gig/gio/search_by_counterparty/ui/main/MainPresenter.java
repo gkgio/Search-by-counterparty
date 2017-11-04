@@ -13,9 +13,10 @@ import io.realm.Realm;
  */
 
 public interface MainPresenter {
-    void onCreateView(Bus bus, NetworkService networkService);
+    void onCreateView(Bus bus);
     void logout(SharedPreferences preferences, Realm realm);
     void onAttachView();
     void onDetachView();
-    void requestSuggestions(String text);
+    boolean isFirstStart(SharedPreferences preferences);
+    void setIsFirstStart(SharedPreferences preferences);
 }

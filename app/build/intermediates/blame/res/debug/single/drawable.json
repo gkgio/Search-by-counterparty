@@ -28,12 +28,12 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\a17faa2ede2dc42439d65846f21b48d501e94f0d\\output\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
     },
     {
-        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
-        "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\notification_tile_bg.xml"
-    },
-    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark_focused.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\a17faa2ede2dc42439d65846f21b48d501e94f0d\\output\\res\\drawable\\common_google_signin_btn_icon_dark_focused.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
+        "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\notification_tile_bg.xml"
     },
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",

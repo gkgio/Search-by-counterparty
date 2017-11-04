@@ -17,5 +17,4 @@ public interface MainView {
     void showProgress();
     void hideProgress();
     void showMessage(int message, @ToastType int type);
-    void onSuggestionsReady(List<String> suggestions);
 }

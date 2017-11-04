@@ -1,8 +1,10 @@
 package com.gig.gio.search_by_counterparty.ui.main;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -29,7 +31,8 @@ import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent
 import com.gig.gio.search_by_counterparty.di.components.DaggerMainComponent;
 import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.di.modules.MainModule;
-import com.gig.gio.search_by_counterparty.ui.about.AboutFragment;
+import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragment;
+import com.gig.gio.search_by_counterparty.ui.main.search.SearchFragment;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.ArrayList;
@@ -43,6 +46,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         NavigationView.OnNavigationItemSelectedListener {
 
     private static final String ABOUT_FRAGMENT_TAG = "ABOUT_FRAGMENT";
+    private static final String SEARCH_FRAGMENT_TAG = "SEARCH_FRAGMENT";
 
     @Inject
     public MainPresenterImpl presenter;
@@ -56,14 +60,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     private NavigationView navigationView;
     private ProgressBar progressBar;
 
-    private FrameLayout fragmentContainer;
-    private LinearLayout contentMain;
-
     private Realm realm;
-
-    private AutoCompleteTextView tvSuggests;
-    private static final List<String> EMPTY = new ArrayList<>();
-    private DaDataArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,32 +96,11 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
-        presenter.onCreateView(bus, networkService);
+        presenter.onCreateView(bus);
 
-        tvSuggests = (AutoCompleteTextView) findViewById(R.id.tvAutoComplete);
-        adapter = new DaDataArrayAdapter<>(this, android.R.layout.simple_list_item_1, EMPTY);
+        if (getLastActiveFragmentTag() == null)
+            addSearchFragment();
 
-        tvSuggests.setAdapter(adapter);
-
-        tvSuggests.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                presenter.requestSuggestions(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        fragmentContainer = (FrameLayout)findViewById(R.id.fragment_container);
-        contentMain = (LinearLayout)findViewById(R.id.contentMain);
     }
 
     @Override
@@ -140,16 +116,18 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_item_home:
-                removeAboutFragment();
+                removeFragmentsStack();
+                addSearchFragment();
                 item.setChecked(true);
                 break;
             case R.id.navigation_item_email:
                 Intent intent = Utils.buildEmailIntent(Config.AUTHOR_EMAIL);
                 startActivity(Intent.createChooser(intent, getResources().getString(R.string.send_email_chooser_title)));
-                item.setChecked(true);
+                //item.setChecked(true);
                 break;
             case R.id.navigation_item_info:
-                replaceOnAboutFragment();
+                removeFragmentsStack();
+                addAboutFragment();
                 item.setChecked(true);
                 break;
             case R.id.navigation_item_logout:
@@ -175,10 +153,34 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         super.onPause();
     }
 
+    private void addSearchFragment() {
+        // Добавляем фрагмент - search
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        SearchFragment searchFragment = (SearchFragment) fragmentManager.findFragmentByTag(SEARCH_FRAGMENT_TAG);
+        if (searchFragment == null) {
+            searchFragment = new SearchFragment();
+            fragmentManager.beginTransaction()
+                    .add(R.id.fragment_container, searchFragment, SEARCH_FRAGMENT_TAG)
+                    .addToBackStack(SEARCH_FRAGMENT_TAG)
+                    .commit();
+        }
+    }
+
+    private void addAboutFragment() {
+        // Добавляем фрагмент - about
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        AboutFragment aboutFragment = (AboutFragment) fragmentManager.findFragmentByTag(ABOUT_FRAGMENT_TAG);
+        if (aboutFragment == null) {
+            aboutFragment = new AboutFragment();
+            fragmentManager.beginTransaction()
+                    .add(R.id.fragment_container, aboutFragment, ABOUT_FRAGMENT_TAG)
+                    .addToBackStack(ABOUT_FRAGMENT_TAG)
+                    .commit();
+        }
+    }
+
     private void replaceOnAboutFragment() {
-        fragmentContainer.setVisibility(View.VISIBLE);
-        contentMain.setVisibility(View.GONE);
-        // Заменяем на фрагмент - about контейнер
+        // Заменяем на фрагмент - about
         FragmentManager fragmentManager = getSupportFragmentManager();
         AboutFragment aboutFragment = (AboutFragment) fragmentManager.findFragmentByTag(ABOUT_FRAGMENT_TAG);
         if (aboutFragment == null) {
@@ -189,15 +191,17 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         }
     }
 
-    private void removeAboutFragment(){
-        fragmentContainer.setVisibility(View.GONE);
-        contentMain.setVisibility(View.VISIBLE);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        AboutFragment aboutFragment = (AboutFragment) fragmentManager.findFragmentByTag(ABOUT_FRAGMENT_TAG);
-        if(aboutFragment != null)
-            fragmentManager.beginTransaction().remove(aboutFragment).commit();
+    public String getLastActiveFragmentTag() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            return null;
+        }
+        return getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
+
     }
 
+    private void removeFragmentsStack() {
+        getSupportFragmentManager().popBackStack();
+    }
 
 
     //=======--------- MainView impelement metod START ---------=========
@@ -226,14 +230,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     public void showMessage(int message, @ToastType int type) {
         showToast(message, type);
     }
-
-    @Override
-    public synchronized void onSuggestionsReady(List<String> suggestions) {
-        adapter.clear();
-        adapter.addAll(suggestions);
-        adapter.notifyDataSetChanged();
-    }
-
     //=======--------- MainView impelement metod END -----------=========
 
     // BaseActivity extended method =========

@@ -19,6 +19,7 @@ import com.gig.gio.search_by_counterparty.common.map.MapItem;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.components.DaggerMapComponent;
+import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.di.components.MapComponent;
 import com.gig.gio.search_by_counterparty.di.modules.MapModule;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -84,10 +85,12 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         currentMarkerLocation = gson.fromJson(getIntent().getStringExtra("LocationObject"), Location.class);
     }
 
+
+
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        toolbar.setTitle(getResources().getString(R.string.map_activty_title));
+        toolbar.setTitle(getResources().getString(R.string.map_activity_title));
     }
 
     @Override
