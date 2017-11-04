@@ -1,23 +1,29 @@
 package com.gig.gio.search_by_counterparty.ui.main.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseFragment;
+import com.gig.gio.search_by_counterparty.common.Config;
 import com.gig.gio.search_by_counterparty.common.adapters.DaDataArrayAdapter;
 import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.di.components.MainComponent;
-import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragmentPresenter;
-import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragmentView;
+import com.gig.gio.search_by_counterparty.model.ResponseData;
+import com.gig.gio.search_by_counterparty.ui.detail.DetailActivity;
+import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
+import com.gig.gio.search_by_counterparty.ui.main.detail.DetailFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +50,8 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     private static final List<String> EMPTY = new ArrayList<>();
     private DaDataArrayAdapter<String> adapter;
 
+    private ResponseData responseData;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -53,7 +61,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        progressBar = (ProgressBar)  getActivity().findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) getActivity().findViewById(R.id.progressBar);
 
         tvSuggests = (AutoCompleteTextView) view.findViewById(R.id.tvAutoComplete);
         adapter = new DaDataArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, EMPTY);
@@ -76,6 +84,10 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
 
             }
         });
+
+        tvSuggests.setOnItemClickListener((p, v, pos, id) -> {
+            presenter.saveSelectedSuggest(responseData, tvSuggests.getText().toString(), realm);
+        });
     }
 
     @Override
@@ -86,6 +98,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
 
     @Override
     public void onResume() {
+        realm = Realm.getDefaultInstance();
         presenter.init(this);
         presenter.onAttachView(bus, networkService);
 
@@ -94,7 +107,9 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
 
     @Override
     public void onPause() {
+        if (realm != null) realm.close();
         presenter.onDetachView();
+
         super.onPause();
     }
 
@@ -116,12 +131,22 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     }
 
     @Override
-    public synchronized void onSuggestionsReady(List<String> suggestions) {
+    public synchronized void onSuggestionsReady(List<String> suggestions, ResponseData responseData) {
+        this.responseData = responseData;
         adapter.clear();
         adapter.addAll(suggestions);
         adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void startDetailFragment(String jsonSuggestResponseString) {
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
+        startActivity(intent);
+
+        tvSuggests.getText().clear();
+        hideProgress();
+    }
     //=======--------- SearchView impelement metod END -----------=========
 
 }

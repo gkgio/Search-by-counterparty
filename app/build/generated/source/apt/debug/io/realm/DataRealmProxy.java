@@ -39,13 +39,23 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         long idIndex;
         long kppIndex;
         long managementIndex;
+        long innIndex;
+        long ogrnIndex;
+        long opfIndex;
+        long stateIndex;
+        long addressIndex;
 
         DataColumnInfo(OsSchemaInfo schemaInfo) {
-            super(3);
+            super(8);
             OsObjectSchemaInfo objectSchemaInfo = schemaInfo.getObjectSchemaInfo("Data");
             this.idIndex = addColumnDetails("id", objectSchemaInfo);
             this.kppIndex = addColumnDetails("kpp", objectSchemaInfo);
             this.managementIndex = addColumnDetails("management", objectSchemaInfo);
+            this.innIndex = addColumnDetails("inn", objectSchemaInfo);
+            this.ogrnIndex = addColumnDetails("ogrn", objectSchemaInfo);
+            this.opfIndex = addColumnDetails("opf", objectSchemaInfo);
+            this.stateIndex = addColumnDetails("state", objectSchemaInfo);
+            this.addressIndex = addColumnDetails("address", objectSchemaInfo);
         }
 
         DataColumnInfo(ColumnInfo src, boolean mutable) {
@@ -65,6 +75,11 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
             dst.idIndex = src.idIndex;
             dst.kppIndex = src.kppIndex;
             dst.managementIndex = src.managementIndex;
+            dst.innIndex = src.innIndex;
+            dst.ogrnIndex = src.ogrnIndex;
+            dst.opfIndex = src.opfIndex;
+            dst.stateIndex = src.stateIndex;
+            dst.addressIndex = src.addressIndex;
         }
     }
 
@@ -75,6 +90,11 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         fieldNames.add("id");
         fieldNames.add("kpp");
         fieldNames.add("management");
+        fieldNames.add("inn");
+        fieldNames.add("ogrn");
+        fieldNames.add("opf");
+        fieldNames.add("state");
+        fieldNames.add("address");
         FIELD_NAMES = Collections.unmodifiableList(fieldNames);
     }
 
@@ -101,13 +121,13 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
 
     @Override
     @SuppressWarnings("cast")
-    public long realmGet$id() {
+    public String realmGet$id() {
         proxyState.getRealm$realm().checkIfValid();
-        return (long) proxyState.getRow$realm().getLong(columnInfo.idIndex);
+        return (java.lang.String) proxyState.getRow$realm().getString(columnInfo.idIndex);
     }
 
     @Override
-    public void realmSet$id(long value) {
+    public void realmSet$id(String value) {
         if (proxyState.isUnderConstruction()) {
             // default value of the primary key is always ignored.
             return;
@@ -198,11 +218,229 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         proxyState.getRow$realm().setLink(columnInfo.managementIndex, ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex());
     }
 
+    @Override
+    @SuppressWarnings("cast")
+    public String realmGet$inn() {
+        proxyState.getRealm$realm().checkIfValid();
+        return (java.lang.String) proxyState.getRow$realm().getString(columnInfo.innIndex);
+    }
+
+    @Override
+    public void realmSet$inn(String value) {
+        if (proxyState.isUnderConstruction()) {
+            if (!proxyState.getAcceptDefaultValue$realm()) {
+                return;
+            }
+            final Row row = proxyState.getRow$realm();
+            if (value == null) {
+                row.getTable().setNull(columnInfo.innIndex, row.getIndex(), true);
+                return;
+            }
+            row.getTable().setString(columnInfo.innIndex, row.getIndex(), value, true);
+            return;
+        }
+
+        proxyState.getRealm$realm().checkIfValid();
+        if (value == null) {
+            proxyState.getRow$realm().setNull(columnInfo.innIndex);
+            return;
+        }
+        proxyState.getRow$realm().setString(columnInfo.innIndex, value);
+    }
+
+    @Override
+    @SuppressWarnings("cast")
+    public String realmGet$ogrn() {
+        proxyState.getRealm$realm().checkIfValid();
+        return (java.lang.String) proxyState.getRow$realm().getString(columnInfo.ogrnIndex);
+    }
+
+    @Override
+    public void realmSet$ogrn(String value) {
+        if (proxyState.isUnderConstruction()) {
+            if (!proxyState.getAcceptDefaultValue$realm()) {
+                return;
+            }
+            final Row row = proxyState.getRow$realm();
+            if (value == null) {
+                row.getTable().setNull(columnInfo.ogrnIndex, row.getIndex(), true);
+                return;
+            }
+            row.getTable().setString(columnInfo.ogrnIndex, row.getIndex(), value, true);
+            return;
+        }
+
+        proxyState.getRealm$realm().checkIfValid();
+        if (value == null) {
+            proxyState.getRow$realm().setNull(columnInfo.ogrnIndex);
+            return;
+        }
+        proxyState.getRow$realm().setString(columnInfo.ogrnIndex, value);
+    }
+
+    @Override
+    public com.gig.gio.search_by_counterparty.model.Opf realmGet$opf() {
+        proxyState.getRealm$realm().checkIfValid();
+        if (proxyState.getRow$realm().isNullLink(columnInfo.opfIndex)) {
+            return null;
+        }
+        return proxyState.getRealm$realm().get(com.gig.gio.search_by_counterparty.model.Opf.class, proxyState.getRow$realm().getLink(columnInfo.opfIndex), false, Collections.<String>emptyList());
+    }
+
+    @Override
+    public void realmSet$opf(com.gig.gio.search_by_counterparty.model.Opf value) {
+        if (proxyState.isUnderConstruction()) {
+            if (!proxyState.getAcceptDefaultValue$realm()) {
+                return;
+            }
+            if (proxyState.getExcludeFields$realm().contains("opf")) {
+                return;
+            }
+            if (value != null && !RealmObject.isManaged(value)) {
+                value = ((Realm) proxyState.getRealm$realm()).copyToRealm(value);
+            }
+            final Row row = proxyState.getRow$realm();
+            if (value == null) {
+                // Table#nullifyLink() does not support default value. Just using Row.
+                row.nullifyLink(columnInfo.opfIndex);
+                return;
+            }
+            if (!RealmObject.isValid(value)) {
+                throw new IllegalArgumentException("'value' is not a valid managed object.");
+            }
+            if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
+                throw new IllegalArgumentException("'value' belongs to a different Realm.");
+            }
+            row.getTable().setLink(columnInfo.opfIndex, row.getIndex(), ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex(), true);
+            return;
+        }
+
+        proxyState.getRealm$realm().checkIfValid();
+        if (value == null) {
+            proxyState.getRow$realm().nullifyLink(columnInfo.opfIndex);
+            return;
+        }
+        if (!(RealmObject.isManaged(value) && RealmObject.isValid(value))) {
+            throw new IllegalArgumentException("'value' is not a valid managed object.");
+        }
+        if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
+            throw new IllegalArgumentException("'value' belongs to a different Realm.");
+        }
+        proxyState.getRow$realm().setLink(columnInfo.opfIndex, ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex());
+    }
+
+    @Override
+    public com.gig.gio.search_by_counterparty.model.State realmGet$state() {
+        proxyState.getRealm$realm().checkIfValid();
+        if (proxyState.getRow$realm().isNullLink(columnInfo.stateIndex)) {
+            return null;
+        }
+        return proxyState.getRealm$realm().get(com.gig.gio.search_by_counterparty.model.State.class, proxyState.getRow$realm().getLink(columnInfo.stateIndex), false, Collections.<String>emptyList());
+    }
+
+    @Override
+    public void realmSet$state(com.gig.gio.search_by_counterparty.model.State value) {
+        if (proxyState.isUnderConstruction()) {
+            if (!proxyState.getAcceptDefaultValue$realm()) {
+                return;
+            }
+            if (proxyState.getExcludeFields$realm().contains("state")) {
+                return;
+            }
+            if (value != null && !RealmObject.isManaged(value)) {
+                value = ((Realm) proxyState.getRealm$realm()).copyToRealm(value);
+            }
+            final Row row = proxyState.getRow$realm();
+            if (value == null) {
+                // Table#nullifyLink() does not support default value. Just using Row.
+                row.nullifyLink(columnInfo.stateIndex);
+                return;
+            }
+            if (!RealmObject.isValid(value)) {
+                throw new IllegalArgumentException("'value' is not a valid managed object.");
+            }
+            if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
+                throw new IllegalArgumentException("'value' belongs to a different Realm.");
+            }
+            row.getTable().setLink(columnInfo.stateIndex, row.getIndex(), ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex(), true);
+            return;
+        }
+
+        proxyState.getRealm$realm().checkIfValid();
+        if (value == null) {
+            proxyState.getRow$realm().nullifyLink(columnInfo.stateIndex);
+            return;
+        }
+        if (!(RealmObject.isManaged(value) && RealmObject.isValid(value))) {
+            throw new IllegalArgumentException("'value' is not a valid managed object.");
+        }
+        if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
+            throw new IllegalArgumentException("'value' belongs to a different Realm.");
+        }
+        proxyState.getRow$realm().setLink(columnInfo.stateIndex, ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex());
+    }
+
+    @Override
+    public com.gig.gio.search_by_counterparty.model.Address realmGet$address() {
+        proxyState.getRealm$realm().checkIfValid();
+        if (proxyState.getRow$realm().isNullLink(columnInfo.addressIndex)) {
+            return null;
+        }
+        return proxyState.getRealm$realm().get(com.gig.gio.search_by_counterparty.model.Address.class, proxyState.getRow$realm().getLink(columnInfo.addressIndex), false, Collections.<String>emptyList());
+    }
+
+    @Override
+    public void realmSet$address(com.gig.gio.search_by_counterparty.model.Address value) {
+        if (proxyState.isUnderConstruction()) {
+            if (!proxyState.getAcceptDefaultValue$realm()) {
+                return;
+            }
+            if (proxyState.getExcludeFields$realm().contains("address")) {
+                return;
+            }
+            if (value != null && !RealmObject.isManaged(value)) {
+                value = ((Realm) proxyState.getRealm$realm()).copyToRealm(value);
+            }
+            final Row row = proxyState.getRow$realm();
+            if (value == null) {
+                // Table#nullifyLink() does not support default value. Just using Row.
+                row.nullifyLink(columnInfo.addressIndex);
+                return;
+            }
+            if (!RealmObject.isValid(value)) {
+                throw new IllegalArgumentException("'value' is not a valid managed object.");
+            }
+            if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
+                throw new IllegalArgumentException("'value' belongs to a different Realm.");
+            }
+            row.getTable().setLink(columnInfo.addressIndex, row.getIndex(), ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex(), true);
+            return;
+        }
+
+        proxyState.getRealm$realm().checkIfValid();
+        if (value == null) {
+            proxyState.getRow$realm().nullifyLink(columnInfo.addressIndex);
+            return;
+        }
+        if (!(RealmObject.isManaged(value) && RealmObject.isValid(value))) {
+            throw new IllegalArgumentException("'value' is not a valid managed object.");
+        }
+        if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
+            throw new IllegalArgumentException("'value' belongs to a different Realm.");
+        }
+        proxyState.getRow$realm().setLink(columnInfo.addressIndex, ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex());
+    }
+
     private static OsObjectSchemaInfo createExpectedObjectSchemaInfo() {
         OsObjectSchemaInfo.Builder builder = new OsObjectSchemaInfo.Builder("Data");
-        builder.addPersistedProperty("id", RealmFieldType.INTEGER, Property.PRIMARY_KEY, Property.INDEXED, Property.REQUIRED);
+        builder.addPersistedProperty("id", RealmFieldType.STRING, Property.PRIMARY_KEY, Property.INDEXED, !Property.REQUIRED);
         builder.addPersistedProperty("kpp", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
         builder.addPersistedLinkProperty("management", RealmFieldType.OBJECT, "Management");
+        builder.addPersistedProperty("inn", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
+        builder.addPersistedProperty("ogrn", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
+        builder.addPersistedLinkProperty("opf", RealmFieldType.OBJECT, "Opf");
+        builder.addPersistedLinkProperty("state", RealmFieldType.OBJECT, "State");
+        builder.addPersistedLinkProperty("address", RealmFieldType.OBJECT, "Address");
         return builder.build();
     }
 
@@ -225,14 +463,16 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
     @SuppressWarnings("cast")
     public static com.gig.gio.search_by_counterparty.model.Data createOrUpdateUsingJsonObject(Realm realm, JSONObject json, boolean update)
         throws JSONException {
-        final List<String> excludeFields = new ArrayList<String>(1);
+        final List<String> excludeFields = new ArrayList<String>(4);
         com.gig.gio.search_by_counterparty.model.Data obj = null;
         if (update) {
             Table table = realm.getTable(com.gig.gio.search_by_counterparty.model.Data.class);
             long pkColumnIndex = table.getPrimaryKey();
             long rowIndex = Table.NO_MATCH;
-            if (!json.isNull("id")) {
-                rowIndex = table.findFirstLong(pkColumnIndex, json.getLong("id"));
+            if (json.isNull("id")) {
+                rowIndex = table.findFirstNull(pkColumnIndex);
+            } else {
+                rowIndex = table.findFirstString(pkColumnIndex, json.getString("id"));
             }
             if (rowIndex != Table.NO_MATCH) {
                 final BaseRealm.RealmObjectContext objectContext = BaseRealm.objectContext.get();
@@ -248,11 +488,20 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
             if (json.has("management")) {
                 excludeFields.add("management");
             }
+            if (json.has("opf")) {
+                excludeFields.add("opf");
+            }
+            if (json.has("state")) {
+                excludeFields.add("state");
+            }
+            if (json.has("address")) {
+                excludeFields.add("address");
+            }
             if (json.has("id")) {
                 if (json.isNull("id")) {
                     obj = (io.realm.DataRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.Data.class, null, true, excludeFields);
                 } else {
-                    obj = (io.realm.DataRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.Data.class, json.getLong("id"), true, excludeFields);
+                    obj = (io.realm.DataRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.Data.class, json.getString("id"), true, excludeFields);
                 }
             } else {
                 throw new IllegalArgumentException("JSON object doesn't have the primary key field 'id'.");
@@ -275,6 +524,44 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 objProxy.realmSet$management(managementObj);
             }
         }
+        if (json.has("inn")) {
+            if (json.isNull("inn")) {
+                objProxy.realmSet$inn(null);
+            } else {
+                objProxy.realmSet$inn((String) json.getString("inn"));
+            }
+        }
+        if (json.has("ogrn")) {
+            if (json.isNull("ogrn")) {
+                objProxy.realmSet$ogrn(null);
+            } else {
+                objProxy.realmSet$ogrn((String) json.getString("ogrn"));
+            }
+        }
+        if (json.has("opf")) {
+            if (json.isNull("opf")) {
+                objProxy.realmSet$opf(null);
+            } else {
+                com.gig.gio.search_by_counterparty.model.Opf opfObj = OpfRealmProxy.createOrUpdateUsingJsonObject(realm, json.getJSONObject("opf"), update);
+                objProxy.realmSet$opf(opfObj);
+            }
+        }
+        if (json.has("state")) {
+            if (json.isNull("state")) {
+                objProxy.realmSet$state(null);
+            } else {
+                com.gig.gio.search_by_counterparty.model.State stateObj = StateRealmProxy.createOrUpdateUsingJsonObject(realm, json.getJSONObject("state"), update);
+                objProxy.realmSet$state(stateObj);
+            }
+        }
+        if (json.has("address")) {
+            if (json.isNull("address")) {
+                objProxy.realmSet$address(null);
+            } else {
+                com.gig.gio.search_by_counterparty.model.Address addressObj = AddressRealmProxy.createOrUpdateUsingJsonObject(realm, json.getJSONObject("address"), update);
+                objProxy.realmSet$address(addressObj);
+            }
+        }
         return obj;
     }
 
@@ -291,10 +578,10 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
             if (false) {
             } else if (name.equals("id")) {
                 if (reader.peek() != JsonToken.NULL) {
-                    objProxy.realmSet$id((long) reader.nextLong());
+                    objProxy.realmSet$id((String) reader.nextString());
                 } else {
                     reader.skipValue();
-                    throw new IllegalArgumentException("Trying to set non-nullable field 'id' to null.");
+                    objProxy.realmSet$id(null);
                 }
                 jsonHasPrimaryKey = true;
             } else if (name.equals("kpp")) {
@@ -311,6 +598,44 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 } else {
                     com.gig.gio.search_by_counterparty.model.Management managementObj = ManagementRealmProxy.createUsingJsonStream(realm, reader);
                     objProxy.realmSet$management(managementObj);
+                }
+            } else if (name.equals("inn")) {
+                if (reader.peek() != JsonToken.NULL) {
+                    objProxy.realmSet$inn((String) reader.nextString());
+                } else {
+                    reader.skipValue();
+                    objProxy.realmSet$inn(null);
+                }
+            } else if (name.equals("ogrn")) {
+                if (reader.peek() != JsonToken.NULL) {
+                    objProxy.realmSet$ogrn((String) reader.nextString());
+                } else {
+                    reader.skipValue();
+                    objProxy.realmSet$ogrn(null);
+                }
+            } else if (name.equals("opf")) {
+                if (reader.peek() == JsonToken.NULL) {
+                    reader.skipValue();
+                    objProxy.realmSet$opf(null);
+                } else {
+                    com.gig.gio.search_by_counterparty.model.Opf opfObj = OpfRealmProxy.createUsingJsonStream(realm, reader);
+                    objProxy.realmSet$opf(opfObj);
+                }
+            } else if (name.equals("state")) {
+                if (reader.peek() == JsonToken.NULL) {
+                    reader.skipValue();
+                    objProxy.realmSet$state(null);
+                } else {
+                    com.gig.gio.search_by_counterparty.model.State stateObj = StateRealmProxy.createUsingJsonStream(realm, reader);
+                    objProxy.realmSet$state(stateObj);
+                }
+            } else if (name.equals("address")) {
+                if (reader.peek() == JsonToken.NULL) {
+                    reader.skipValue();
+                    objProxy.realmSet$address(null);
+                } else {
+                    com.gig.gio.search_by_counterparty.model.Address addressObj = AddressRealmProxy.createUsingJsonStream(realm, reader);
+                    objProxy.realmSet$address(addressObj);
                 }
             } else {
                 reader.skipValue();
@@ -344,7 +669,13 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         if (canUpdate) {
             Table table = realm.getTable(com.gig.gio.search_by_counterparty.model.Data.class);
             long pkColumnIndex = table.getPrimaryKey();
-            long rowIndex = table.findFirstLong(pkColumnIndex, ((DataRealmProxyInterface) object).realmGet$id());
+            String value = ((DataRealmProxyInterface) object).realmGet$id();
+            long rowIndex = Table.NO_MATCH;
+            if (value == null) {
+                rowIndex = table.findFirstNull(pkColumnIndex);
+            } else {
+                rowIndex = table.findFirstString(pkColumnIndex, value);
+            }
             if (rowIndex == Table.NO_MATCH) {
                 canUpdate = false;
             } else {
@@ -387,6 +718,44 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 realmObjectCopy.realmSet$management(ManagementRealmProxy.copyOrUpdate(realm, managementObj, update, cache));
             }
         }
+        realmObjectCopy.realmSet$inn(realmObjectSource.realmGet$inn());
+        realmObjectCopy.realmSet$ogrn(realmObjectSource.realmGet$ogrn());
+
+        com.gig.gio.search_by_counterparty.model.Opf opfObj = realmObjectSource.realmGet$opf();
+        if (opfObj == null) {
+            realmObjectCopy.realmSet$opf(null);
+        } else {
+            com.gig.gio.search_by_counterparty.model.Opf cacheopf = (com.gig.gio.search_by_counterparty.model.Opf) cache.get(opfObj);
+            if (cacheopf != null) {
+                realmObjectCopy.realmSet$opf(cacheopf);
+            } else {
+                realmObjectCopy.realmSet$opf(OpfRealmProxy.copyOrUpdate(realm, opfObj, update, cache));
+            }
+        }
+
+        com.gig.gio.search_by_counterparty.model.State stateObj = realmObjectSource.realmGet$state();
+        if (stateObj == null) {
+            realmObjectCopy.realmSet$state(null);
+        } else {
+            com.gig.gio.search_by_counterparty.model.State cachestate = (com.gig.gio.search_by_counterparty.model.State) cache.get(stateObj);
+            if (cachestate != null) {
+                realmObjectCopy.realmSet$state(cachestate);
+            } else {
+                realmObjectCopy.realmSet$state(StateRealmProxy.copyOrUpdate(realm, stateObj, update, cache));
+            }
+        }
+
+        com.gig.gio.search_by_counterparty.model.Address addressObj = realmObjectSource.realmGet$address();
+        if (addressObj == null) {
+            realmObjectCopy.realmSet$address(null);
+        } else {
+            com.gig.gio.search_by_counterparty.model.Address cacheaddress = (com.gig.gio.search_by_counterparty.model.Address) cache.get(addressObj);
+            if (cacheaddress != null) {
+                realmObjectCopy.realmSet$address(cacheaddress);
+            } else {
+                realmObjectCopy.realmSet$address(AddressRealmProxy.copyOrUpdate(realm, addressObj, update, cache));
+            }
+        }
         return realmObject;
     }
 
@@ -398,13 +767,15 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         long tableNativePtr = table.getNativePtr();
         DataColumnInfo columnInfo = (DataColumnInfo) realm.getSchema().getColumnInfo(com.gig.gio.search_by_counterparty.model.Data.class);
         long pkColumnIndex = table.getPrimaryKey();
+        String primaryKeyValue = ((DataRealmProxyInterface) object).realmGet$id();
         long rowIndex = Table.NO_MATCH;
-        Object primaryKeyValue = ((DataRealmProxyInterface) object).realmGet$id();
-        if (primaryKeyValue != null) {
-            rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((DataRealmProxyInterface) object).realmGet$id());
+        if (primaryKeyValue == null) {
+            rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
+        } else {
+            rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
         }
         if (rowIndex == Table.NO_MATCH) {
-            rowIndex = OsObject.createRowWithPrimaryKey(table, ((DataRealmProxyInterface) object).realmGet$id());
+            rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
         } else {
             Table.throwDuplicatePrimaryKeyException(primaryKeyValue);
         }
@@ -421,6 +792,41 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 cachemanagement = ManagementRealmProxy.insert(realm, managementObj, cache);
             }
             Table.nativeSetLink(tableNativePtr, columnInfo.managementIndex, rowIndex, cachemanagement, false);
+        }
+        String realmGet$inn = ((DataRealmProxyInterface) object).realmGet$inn();
+        if (realmGet$inn != null) {
+            Table.nativeSetString(tableNativePtr, columnInfo.innIndex, rowIndex, realmGet$inn, false);
+        }
+        String realmGet$ogrn = ((DataRealmProxyInterface) object).realmGet$ogrn();
+        if (realmGet$ogrn != null) {
+            Table.nativeSetString(tableNativePtr, columnInfo.ogrnIndex, rowIndex, realmGet$ogrn, false);
+        }
+
+        com.gig.gio.search_by_counterparty.model.Opf opfObj = ((DataRealmProxyInterface) object).realmGet$opf();
+        if (opfObj != null) {
+            Long cacheopf = cache.get(opfObj);
+            if (cacheopf == null) {
+                cacheopf = OpfRealmProxy.insert(realm, opfObj, cache);
+            }
+            Table.nativeSetLink(tableNativePtr, columnInfo.opfIndex, rowIndex, cacheopf, false);
+        }
+
+        com.gig.gio.search_by_counterparty.model.State stateObj = ((DataRealmProxyInterface) object).realmGet$state();
+        if (stateObj != null) {
+            Long cachestate = cache.get(stateObj);
+            if (cachestate == null) {
+                cachestate = StateRealmProxy.insert(realm, stateObj, cache);
+            }
+            Table.nativeSetLink(tableNativePtr, columnInfo.stateIndex, rowIndex, cachestate, false);
+        }
+
+        com.gig.gio.search_by_counterparty.model.Address addressObj = ((DataRealmProxyInterface) object).realmGet$address();
+        if (addressObj != null) {
+            Long cacheaddress = cache.get(addressObj);
+            if (cacheaddress == null) {
+                cacheaddress = AddressRealmProxy.insert(realm, addressObj, cache);
+            }
+            Table.nativeSetLink(tableNativePtr, columnInfo.addressIndex, rowIndex, cacheaddress, false);
         }
         return rowIndex;
     }
@@ -440,13 +846,15 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 cache.put(object, ((RealmObjectProxy) object).realmGet$proxyState().getRow$realm().getIndex());
                 continue;
             }
+            String primaryKeyValue = ((DataRealmProxyInterface) object).realmGet$id();
             long rowIndex = Table.NO_MATCH;
-            Object primaryKeyValue = ((DataRealmProxyInterface) object).realmGet$id();
-            if (primaryKeyValue != null) {
-                rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((DataRealmProxyInterface) object).realmGet$id());
+            if (primaryKeyValue == null) {
+                rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
+            } else {
+                rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
             }
             if (rowIndex == Table.NO_MATCH) {
-                rowIndex = OsObject.createRowWithPrimaryKey(table, ((DataRealmProxyInterface) object).realmGet$id());
+                rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
             } else {
                 Table.throwDuplicatePrimaryKeyException(primaryKeyValue);
             }
@@ -464,6 +872,41 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 }
                 table.setLink(columnInfo.managementIndex, rowIndex, cachemanagement, false);
             }
+            String realmGet$inn = ((DataRealmProxyInterface) object).realmGet$inn();
+            if (realmGet$inn != null) {
+                Table.nativeSetString(tableNativePtr, columnInfo.innIndex, rowIndex, realmGet$inn, false);
+            }
+            String realmGet$ogrn = ((DataRealmProxyInterface) object).realmGet$ogrn();
+            if (realmGet$ogrn != null) {
+                Table.nativeSetString(tableNativePtr, columnInfo.ogrnIndex, rowIndex, realmGet$ogrn, false);
+            }
+
+            com.gig.gio.search_by_counterparty.model.Opf opfObj = ((DataRealmProxyInterface) object).realmGet$opf();
+            if (opfObj != null) {
+                Long cacheopf = cache.get(opfObj);
+                if (cacheopf == null) {
+                    cacheopf = OpfRealmProxy.insert(realm, opfObj, cache);
+                }
+                table.setLink(columnInfo.opfIndex, rowIndex, cacheopf, false);
+            }
+
+            com.gig.gio.search_by_counterparty.model.State stateObj = ((DataRealmProxyInterface) object).realmGet$state();
+            if (stateObj != null) {
+                Long cachestate = cache.get(stateObj);
+                if (cachestate == null) {
+                    cachestate = StateRealmProxy.insert(realm, stateObj, cache);
+                }
+                table.setLink(columnInfo.stateIndex, rowIndex, cachestate, false);
+            }
+
+            com.gig.gio.search_by_counterparty.model.Address addressObj = ((DataRealmProxyInterface) object).realmGet$address();
+            if (addressObj != null) {
+                Long cacheaddress = cache.get(addressObj);
+                if (cacheaddress == null) {
+                    cacheaddress = AddressRealmProxy.insert(realm, addressObj, cache);
+                }
+                table.setLink(columnInfo.addressIndex, rowIndex, cacheaddress, false);
+            }
         }
     }
 
@@ -475,13 +918,15 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         long tableNativePtr = table.getNativePtr();
         DataColumnInfo columnInfo = (DataColumnInfo) realm.getSchema().getColumnInfo(com.gig.gio.search_by_counterparty.model.Data.class);
         long pkColumnIndex = table.getPrimaryKey();
+        String primaryKeyValue = ((DataRealmProxyInterface) object).realmGet$id();
         long rowIndex = Table.NO_MATCH;
-        Object primaryKeyValue = ((DataRealmProxyInterface) object).realmGet$id();
-        if (primaryKeyValue != null) {
-            rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((DataRealmProxyInterface) object).realmGet$id());
+        if (primaryKeyValue == null) {
+            rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
+        } else {
+            rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
         }
         if (rowIndex == Table.NO_MATCH) {
-            rowIndex = OsObject.createRowWithPrimaryKey(table, ((DataRealmProxyInterface) object).realmGet$id());
+            rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
         }
         cache.put(object, rowIndex);
         String realmGet$kpp = ((DataRealmProxyInterface) object).realmGet$kpp();
@@ -501,6 +946,51 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         } else {
             Table.nativeNullifyLink(tableNativePtr, columnInfo.managementIndex, rowIndex);
         }
+        String realmGet$inn = ((DataRealmProxyInterface) object).realmGet$inn();
+        if (realmGet$inn != null) {
+            Table.nativeSetString(tableNativePtr, columnInfo.innIndex, rowIndex, realmGet$inn, false);
+        } else {
+            Table.nativeSetNull(tableNativePtr, columnInfo.innIndex, rowIndex, false);
+        }
+        String realmGet$ogrn = ((DataRealmProxyInterface) object).realmGet$ogrn();
+        if (realmGet$ogrn != null) {
+            Table.nativeSetString(tableNativePtr, columnInfo.ogrnIndex, rowIndex, realmGet$ogrn, false);
+        } else {
+            Table.nativeSetNull(tableNativePtr, columnInfo.ogrnIndex, rowIndex, false);
+        }
+
+        com.gig.gio.search_by_counterparty.model.Opf opfObj = ((DataRealmProxyInterface) object).realmGet$opf();
+        if (opfObj != null) {
+            Long cacheopf = cache.get(opfObj);
+            if (cacheopf == null) {
+                cacheopf = OpfRealmProxy.insertOrUpdate(realm, opfObj, cache);
+            }
+            Table.nativeSetLink(tableNativePtr, columnInfo.opfIndex, rowIndex, cacheopf, false);
+        } else {
+            Table.nativeNullifyLink(tableNativePtr, columnInfo.opfIndex, rowIndex);
+        }
+
+        com.gig.gio.search_by_counterparty.model.State stateObj = ((DataRealmProxyInterface) object).realmGet$state();
+        if (stateObj != null) {
+            Long cachestate = cache.get(stateObj);
+            if (cachestate == null) {
+                cachestate = StateRealmProxy.insertOrUpdate(realm, stateObj, cache);
+            }
+            Table.nativeSetLink(tableNativePtr, columnInfo.stateIndex, rowIndex, cachestate, false);
+        } else {
+            Table.nativeNullifyLink(tableNativePtr, columnInfo.stateIndex, rowIndex);
+        }
+
+        com.gig.gio.search_by_counterparty.model.Address addressObj = ((DataRealmProxyInterface) object).realmGet$address();
+        if (addressObj != null) {
+            Long cacheaddress = cache.get(addressObj);
+            if (cacheaddress == null) {
+                cacheaddress = AddressRealmProxy.insertOrUpdate(realm, addressObj, cache);
+            }
+            Table.nativeSetLink(tableNativePtr, columnInfo.addressIndex, rowIndex, cacheaddress, false);
+        } else {
+            Table.nativeNullifyLink(tableNativePtr, columnInfo.addressIndex, rowIndex);
+        }
         return rowIndex;
     }
 
@@ -519,13 +1009,15 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 cache.put(object, ((RealmObjectProxy) object).realmGet$proxyState().getRow$realm().getIndex());
                 continue;
             }
+            String primaryKeyValue = ((DataRealmProxyInterface) object).realmGet$id();
             long rowIndex = Table.NO_MATCH;
-            Object primaryKeyValue = ((DataRealmProxyInterface) object).realmGet$id();
-            if (primaryKeyValue != null) {
-                rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((DataRealmProxyInterface) object).realmGet$id());
+            if (primaryKeyValue == null) {
+                rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
+            } else {
+                rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
             }
             if (rowIndex == Table.NO_MATCH) {
-                rowIndex = OsObject.createRowWithPrimaryKey(table, ((DataRealmProxyInterface) object).realmGet$id());
+                rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
             }
             cache.put(object, rowIndex);
             String realmGet$kpp = ((DataRealmProxyInterface) object).realmGet$kpp();
@@ -544,6 +1036,51 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 Table.nativeSetLink(tableNativePtr, columnInfo.managementIndex, rowIndex, cachemanagement, false);
             } else {
                 Table.nativeNullifyLink(tableNativePtr, columnInfo.managementIndex, rowIndex);
+            }
+            String realmGet$inn = ((DataRealmProxyInterface) object).realmGet$inn();
+            if (realmGet$inn != null) {
+                Table.nativeSetString(tableNativePtr, columnInfo.innIndex, rowIndex, realmGet$inn, false);
+            } else {
+                Table.nativeSetNull(tableNativePtr, columnInfo.innIndex, rowIndex, false);
+            }
+            String realmGet$ogrn = ((DataRealmProxyInterface) object).realmGet$ogrn();
+            if (realmGet$ogrn != null) {
+                Table.nativeSetString(tableNativePtr, columnInfo.ogrnIndex, rowIndex, realmGet$ogrn, false);
+            } else {
+                Table.nativeSetNull(tableNativePtr, columnInfo.ogrnIndex, rowIndex, false);
+            }
+
+            com.gig.gio.search_by_counterparty.model.Opf opfObj = ((DataRealmProxyInterface) object).realmGet$opf();
+            if (opfObj != null) {
+                Long cacheopf = cache.get(opfObj);
+                if (cacheopf == null) {
+                    cacheopf = OpfRealmProxy.insertOrUpdate(realm, opfObj, cache);
+                }
+                Table.nativeSetLink(tableNativePtr, columnInfo.opfIndex, rowIndex, cacheopf, false);
+            } else {
+                Table.nativeNullifyLink(tableNativePtr, columnInfo.opfIndex, rowIndex);
+            }
+
+            com.gig.gio.search_by_counterparty.model.State stateObj = ((DataRealmProxyInterface) object).realmGet$state();
+            if (stateObj != null) {
+                Long cachestate = cache.get(stateObj);
+                if (cachestate == null) {
+                    cachestate = StateRealmProxy.insertOrUpdate(realm, stateObj, cache);
+                }
+                Table.nativeSetLink(tableNativePtr, columnInfo.stateIndex, rowIndex, cachestate, false);
+            } else {
+                Table.nativeNullifyLink(tableNativePtr, columnInfo.stateIndex, rowIndex);
+            }
+
+            com.gig.gio.search_by_counterparty.model.Address addressObj = ((DataRealmProxyInterface) object).realmGet$address();
+            if (addressObj != null) {
+                Long cacheaddress = cache.get(addressObj);
+                if (cacheaddress == null) {
+                    cacheaddress = AddressRealmProxy.insertOrUpdate(realm, addressObj, cache);
+                }
+                Table.nativeSetLink(tableNativePtr, columnInfo.addressIndex, rowIndex, cacheaddress, false);
+            } else {
+                Table.nativeNullifyLink(tableNativePtr, columnInfo.addressIndex, rowIndex);
             }
         }
     }
@@ -572,6 +1109,17 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
 
         // Deep copy of management
         unmanagedCopy.realmSet$management(ManagementRealmProxy.createDetachedCopy(realmSource.realmGet$management(), currentDepth + 1, maxDepth, cache));
+        unmanagedCopy.realmSet$inn(realmSource.realmGet$inn());
+        unmanagedCopy.realmSet$ogrn(realmSource.realmGet$ogrn());
+
+        // Deep copy of opf
+        unmanagedCopy.realmSet$opf(OpfRealmProxy.createDetachedCopy(realmSource.realmGet$opf(), currentDepth + 1, maxDepth, cache));
+
+        // Deep copy of state
+        unmanagedCopy.realmSet$state(StateRealmProxy.createDetachedCopy(realmSource.realmGet$state(), currentDepth + 1, maxDepth, cache));
+
+        // Deep copy of address
+        unmanagedCopy.realmSet$address(AddressRealmProxy.createDetachedCopy(realmSource.realmGet$address(), currentDepth + 1, maxDepth, cache));
         return unmanagedObject;
     }
 
@@ -590,6 +1138,41 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
                 realmObjectTarget.realmSet$management(ManagementRealmProxy.copyOrUpdate(realm, managementObj, true, cache));
             }
         }
+        realmObjectTarget.realmSet$inn(realmObjectSource.realmGet$inn());
+        realmObjectTarget.realmSet$ogrn(realmObjectSource.realmGet$ogrn());
+        com.gig.gio.search_by_counterparty.model.Opf opfObj = realmObjectSource.realmGet$opf();
+        if (opfObj == null) {
+            realmObjectTarget.realmSet$opf(null);
+        } else {
+            com.gig.gio.search_by_counterparty.model.Opf cacheopf = (com.gig.gio.search_by_counterparty.model.Opf) cache.get(opfObj);
+            if (cacheopf != null) {
+                realmObjectTarget.realmSet$opf(cacheopf);
+            } else {
+                realmObjectTarget.realmSet$opf(OpfRealmProxy.copyOrUpdate(realm, opfObj, true, cache));
+            }
+        }
+        com.gig.gio.search_by_counterparty.model.State stateObj = realmObjectSource.realmGet$state();
+        if (stateObj == null) {
+            realmObjectTarget.realmSet$state(null);
+        } else {
+            com.gig.gio.search_by_counterparty.model.State cachestate = (com.gig.gio.search_by_counterparty.model.State) cache.get(stateObj);
+            if (cachestate != null) {
+                realmObjectTarget.realmSet$state(cachestate);
+            } else {
+                realmObjectTarget.realmSet$state(StateRealmProxy.copyOrUpdate(realm, stateObj, true, cache));
+            }
+        }
+        com.gig.gio.search_by_counterparty.model.Address addressObj = realmObjectSource.realmGet$address();
+        if (addressObj == null) {
+            realmObjectTarget.realmSet$address(null);
+        } else {
+            com.gig.gio.search_by_counterparty.model.Address cacheaddress = (com.gig.gio.search_by_counterparty.model.Address) cache.get(addressObj);
+            if (cacheaddress != null) {
+                realmObjectTarget.realmSet$address(cacheaddress);
+            } else {
+                realmObjectTarget.realmSet$address(AddressRealmProxy.copyOrUpdate(realm, addressObj, true, cache));
+            }
+        }
         return realmObject;
     }
 
@@ -601,7 +1184,7 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         }
         StringBuilder stringBuilder = new StringBuilder("Data = proxy[");
         stringBuilder.append("{id:");
-        stringBuilder.append(realmGet$id());
+        stringBuilder.append(realmGet$id() != null ? realmGet$id() : "null");
         stringBuilder.append("}");
         stringBuilder.append(",");
         stringBuilder.append("{kpp:");
@@ -610,6 +1193,26 @@ public class DataRealmProxy extends com.gig.gio.search_by_counterparty.model.Dat
         stringBuilder.append(",");
         stringBuilder.append("{management:");
         stringBuilder.append(realmGet$management() != null ? "Management" : "null");
+        stringBuilder.append("}");
+        stringBuilder.append(",");
+        stringBuilder.append("{inn:");
+        stringBuilder.append(realmGet$inn() != null ? realmGet$inn() : "null");
+        stringBuilder.append("}");
+        stringBuilder.append(",");
+        stringBuilder.append("{ogrn:");
+        stringBuilder.append(realmGet$ogrn() != null ? realmGet$ogrn() : "null");
+        stringBuilder.append("}");
+        stringBuilder.append(",");
+        stringBuilder.append("{opf:");
+        stringBuilder.append(realmGet$opf() != null ? "Opf" : "null");
+        stringBuilder.append("}");
+        stringBuilder.append(",");
+        stringBuilder.append("{state:");
+        stringBuilder.append(realmGet$state() != null ? "State" : "null");
+        stringBuilder.append("}");
+        stringBuilder.append(",");
+        stringBuilder.append("{address:");
+        stringBuilder.append(realmGet$address() != null ? "Address" : "null");
         stringBuilder.append("}");
         stringBuilder.append("]");
         return stringBuilder.toString();

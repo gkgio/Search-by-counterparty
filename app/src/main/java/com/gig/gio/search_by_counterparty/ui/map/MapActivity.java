@@ -61,6 +61,8 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
     private Location currentMarkerLocation;
 
+    public static final String BUNDLE_LOCATION = "BUNDLE_LOCATION";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,10 +84,8 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
         presenter.onCreateView(bus, networkService);
 
-        currentMarkerLocation = gson.fromJson(getIntent().getStringExtra("LocationObject"), Location.class);
+        currentMarkerLocation = gson.fromJson(getIntent().getStringExtra(BUNDLE_LOCATION), Location.class);
     }
-
-
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
@@ -95,6 +95,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
     @Override
     public void onResume() {
+        realm = Realm.getDefaultInstance();
         presenter.onAttachView();
         presenter.initMap(map != null);
         presenter.getCounterPartyFromRealm(bus, realm);
