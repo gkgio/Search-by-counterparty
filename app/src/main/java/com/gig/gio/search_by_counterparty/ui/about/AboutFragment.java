@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseFragment;
+import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 
 import javax.inject.Inject;
 
@@ -33,5 +34,11 @@ public class AboutFragment extends BaseFragment implements AboutFragmentView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        this.getComponent(MainComponent.class).inject(this);
     }
 }

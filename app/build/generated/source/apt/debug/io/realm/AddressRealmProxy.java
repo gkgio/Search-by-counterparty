@@ -38,12 +38,14 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
     static final class AddressColumnInfo extends ColumnInfo {
         long idIndex;
         long unrestricted_valueIndex;
+        long AddressDataIndex;
 
         AddressColumnInfo(OsSchemaInfo schemaInfo) {
-            super(2);
+            super(3);
             OsObjectSchemaInfo objectSchemaInfo = schemaInfo.getObjectSchemaInfo("Address");
             this.idIndex = addColumnDetails("id", objectSchemaInfo);
             this.unrestricted_valueIndex = addColumnDetails("unrestricted_value", objectSchemaInfo);
+            this.AddressDataIndex = addColumnDetails("AddressData", objectSchemaInfo);
         }
 
         AddressColumnInfo(ColumnInfo src, boolean mutable) {
@@ -62,6 +64,7 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
             final AddressColumnInfo dst = (AddressColumnInfo) rawDst;
             dst.idIndex = src.idIndex;
             dst.unrestricted_valueIndex = src.unrestricted_valueIndex;
+            dst.AddressDataIndex = src.AddressDataIndex;
         }
     }
 
@@ -71,6 +74,7 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         List<String> fieldNames = new ArrayList<String>();
         fieldNames.add("id");
         fieldNames.add("unrestricted_value");
+        fieldNames.add("AddressData");
         FIELD_NAMES = Collections.unmodifiableList(fieldNames);
     }
 
@@ -143,10 +147,62 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         proxyState.getRow$realm().setString(columnInfo.unrestricted_valueIndex, value);
     }
 
+    @Override
+    public com.gig.gio.search_by_counterparty.model.AddressData realmGet$AddressData() {
+        proxyState.getRealm$realm().checkIfValid();
+        if (proxyState.getRow$realm().isNullLink(columnInfo.AddressDataIndex)) {
+            return null;
+        }
+        return proxyState.getRealm$realm().get(com.gig.gio.search_by_counterparty.model.AddressData.class, proxyState.getRow$realm().getLink(columnInfo.AddressDataIndex), false, Collections.<String>emptyList());
+    }
+
+    @Override
+    public void realmSet$AddressData(com.gig.gio.search_by_counterparty.model.AddressData value) {
+        if (proxyState.isUnderConstruction()) {
+            if (!proxyState.getAcceptDefaultValue$realm()) {
+                return;
+            }
+            if (proxyState.getExcludeFields$realm().contains("AddressData")) {
+                return;
+            }
+            if (value != null && !RealmObject.isManaged(value)) {
+                value = ((Realm) proxyState.getRealm$realm()).copyToRealm(value);
+            }
+            final Row row = proxyState.getRow$realm();
+            if (value == null) {
+                // Table#nullifyLink() does not support default value. Just using Row.
+                row.nullifyLink(columnInfo.AddressDataIndex);
+                return;
+            }
+            if (!RealmObject.isValid(value)) {
+                throw new IllegalArgumentException("'value' is not a valid managed object.");
+            }
+            if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
+                throw new IllegalArgumentException("'value' belongs to a different Realm.");
+            }
+            row.getTable().setLink(columnInfo.AddressDataIndex, row.getIndex(), ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex(), true);
+            return;
+        }
+
+        proxyState.getRealm$realm().checkIfValid();
+        if (value == null) {
+            proxyState.getRow$realm().nullifyLink(columnInfo.AddressDataIndex);
+            return;
+        }
+        if (!(RealmObject.isManaged(value) && RealmObject.isValid(value))) {
+            throw new IllegalArgumentException("'value' is not a valid managed object.");
+        }
+        if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
+            throw new IllegalArgumentException("'value' belongs to a different Realm.");
+        }
+        proxyState.getRow$realm().setLink(columnInfo.AddressDataIndex, ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex());
+    }
+
     private static OsObjectSchemaInfo createExpectedObjectSchemaInfo() {
         OsObjectSchemaInfo.Builder builder = new OsObjectSchemaInfo.Builder("Address");
         builder.addPersistedProperty("id", RealmFieldType.INTEGER, Property.PRIMARY_KEY, Property.INDEXED, Property.REQUIRED);
         builder.addPersistedProperty("unrestricted_value", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
+        builder.addPersistedLinkProperty("AddressData", RealmFieldType.OBJECT, "AddressData");
         return builder.build();
     }
 
@@ -169,7 +225,7 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
     @SuppressWarnings("cast")
     public static com.gig.gio.search_by_counterparty.model.Address createOrUpdateUsingJsonObject(Realm realm, JSONObject json, boolean update)
         throws JSONException {
-        final List<String> excludeFields = Collections.<String> emptyList();
+        final List<String> excludeFields = new ArrayList<String>(1);
         com.gig.gio.search_by_counterparty.model.Address obj = null;
         if (update) {
             Table table = realm.getTable(com.gig.gio.search_by_counterparty.model.Address.class);
@@ -189,6 +245,9 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
             }
         }
         if (obj == null) {
+            if (json.has("AddressData")) {
+                excludeFields.add("AddressData");
+            }
             if (json.has("id")) {
                 if (json.isNull("id")) {
                     obj = (io.realm.AddressRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.Address.class, null, true, excludeFields);
@@ -206,6 +265,14 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
                 objProxy.realmSet$unrestricted_value(null);
             } else {
                 objProxy.realmSet$unrestricted_value((String) json.getString("unrestricted_value"));
+            }
+        }
+        if (json.has("AddressData")) {
+            if (json.isNull("AddressData")) {
+                objProxy.realmSet$AddressData(null);
+            } else {
+                com.gig.gio.search_by_counterparty.model.AddressData AddressDataObj = AddressDataRealmProxy.createOrUpdateUsingJsonObject(realm, json.getJSONObject("AddressData"), update);
+                objProxy.realmSet$AddressData(AddressDataObj);
             }
         }
         return obj;
@@ -236,6 +303,14 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
                 } else {
                     reader.skipValue();
                     objProxy.realmSet$unrestricted_value(null);
+                }
+            } else if (name.equals("AddressData")) {
+                if (reader.peek() == JsonToken.NULL) {
+                    reader.skipValue();
+                    objProxy.realmSet$AddressData(null);
+                } else {
+                    com.gig.gio.search_by_counterparty.model.AddressData AddressDataObj = AddressDataRealmProxy.createUsingJsonStream(realm, reader);
+                    objProxy.realmSet$AddressData(AddressDataObj);
                 }
             } else {
                 reader.skipValue();
@@ -300,6 +375,18 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         AddressRealmProxyInterface realmObjectCopy = (AddressRealmProxyInterface) realmObject;
 
         realmObjectCopy.realmSet$unrestricted_value(realmObjectSource.realmGet$unrestricted_value());
+
+        com.gig.gio.search_by_counterparty.model.AddressData AddressDataObj = realmObjectSource.realmGet$AddressData();
+        if (AddressDataObj == null) {
+            realmObjectCopy.realmSet$AddressData(null);
+        } else {
+            com.gig.gio.search_by_counterparty.model.AddressData cacheAddressData = (com.gig.gio.search_by_counterparty.model.AddressData) cache.get(AddressDataObj);
+            if (cacheAddressData != null) {
+                realmObjectCopy.realmSet$AddressData(cacheAddressData);
+            } else {
+                realmObjectCopy.realmSet$AddressData(AddressDataRealmProxy.copyOrUpdate(realm, AddressDataObj, update, cache));
+            }
+        }
         return realmObject;
     }
 
@@ -325,6 +412,15 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         String realmGet$unrestricted_value = ((AddressRealmProxyInterface) object).realmGet$unrestricted_value();
         if (realmGet$unrestricted_value != null) {
             Table.nativeSetString(tableNativePtr, columnInfo.unrestricted_valueIndex, rowIndex, realmGet$unrestricted_value, false);
+        }
+
+        com.gig.gio.search_by_counterparty.model.AddressData AddressDataObj = ((AddressRealmProxyInterface) object).realmGet$AddressData();
+        if (AddressDataObj != null) {
+            Long cacheAddressData = cache.get(AddressDataObj);
+            if (cacheAddressData == null) {
+                cacheAddressData = AddressDataRealmProxy.insert(realm, AddressDataObj, cache);
+            }
+            Table.nativeSetLink(tableNativePtr, columnInfo.AddressDataIndex, rowIndex, cacheAddressData, false);
         }
         return rowIndex;
     }
@@ -359,6 +455,15 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
             if (realmGet$unrestricted_value != null) {
                 Table.nativeSetString(tableNativePtr, columnInfo.unrestricted_valueIndex, rowIndex, realmGet$unrestricted_value, false);
             }
+
+            com.gig.gio.search_by_counterparty.model.AddressData AddressDataObj = ((AddressRealmProxyInterface) object).realmGet$AddressData();
+            if (AddressDataObj != null) {
+                Long cacheAddressData = cache.get(AddressDataObj);
+                if (cacheAddressData == null) {
+                    cacheAddressData = AddressDataRealmProxy.insert(realm, AddressDataObj, cache);
+                }
+                table.setLink(columnInfo.AddressDataIndex, rowIndex, cacheAddressData, false);
+            }
         }
     }
 
@@ -384,6 +489,17 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
             Table.nativeSetString(tableNativePtr, columnInfo.unrestricted_valueIndex, rowIndex, realmGet$unrestricted_value, false);
         } else {
             Table.nativeSetNull(tableNativePtr, columnInfo.unrestricted_valueIndex, rowIndex, false);
+        }
+
+        com.gig.gio.search_by_counterparty.model.AddressData AddressDataObj = ((AddressRealmProxyInterface) object).realmGet$AddressData();
+        if (AddressDataObj != null) {
+            Long cacheAddressData = cache.get(AddressDataObj);
+            if (cacheAddressData == null) {
+                cacheAddressData = AddressDataRealmProxy.insertOrUpdate(realm, AddressDataObj, cache);
+            }
+            Table.nativeSetLink(tableNativePtr, columnInfo.AddressDataIndex, rowIndex, cacheAddressData, false);
+        } else {
+            Table.nativeNullifyLink(tableNativePtr, columnInfo.AddressDataIndex, rowIndex);
         }
         return rowIndex;
     }
@@ -418,6 +534,17 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
             } else {
                 Table.nativeSetNull(tableNativePtr, columnInfo.unrestricted_valueIndex, rowIndex, false);
             }
+
+            com.gig.gio.search_by_counterparty.model.AddressData AddressDataObj = ((AddressRealmProxyInterface) object).realmGet$AddressData();
+            if (AddressDataObj != null) {
+                Long cacheAddressData = cache.get(AddressDataObj);
+                if (cacheAddressData == null) {
+                    cacheAddressData = AddressDataRealmProxy.insertOrUpdate(realm, AddressDataObj, cache);
+                }
+                Table.nativeSetLink(tableNativePtr, columnInfo.AddressDataIndex, rowIndex, cacheAddressData, false);
+            } else {
+                Table.nativeNullifyLink(tableNativePtr, columnInfo.AddressDataIndex, rowIndex);
+            }
         }
     }
 
@@ -442,6 +569,9 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         AddressRealmProxyInterface realmSource = (AddressRealmProxyInterface) realmObject;
         unmanagedCopy.realmSet$id(realmSource.realmGet$id());
         unmanagedCopy.realmSet$unrestricted_value(realmSource.realmGet$unrestricted_value());
+
+        // Deep copy of AddressData
+        unmanagedCopy.realmSet$AddressData(AddressDataRealmProxy.createDetachedCopy(realmSource.realmGet$AddressData(), currentDepth + 1, maxDepth, cache));
         return unmanagedObject;
     }
 
@@ -449,6 +579,17 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         AddressRealmProxyInterface realmObjectTarget = (AddressRealmProxyInterface) realmObject;
         AddressRealmProxyInterface realmObjectSource = (AddressRealmProxyInterface) newObject;
         realmObjectTarget.realmSet$unrestricted_value(realmObjectSource.realmGet$unrestricted_value());
+        com.gig.gio.search_by_counterparty.model.AddressData AddressDataObj = realmObjectSource.realmGet$AddressData();
+        if (AddressDataObj == null) {
+            realmObjectTarget.realmSet$AddressData(null);
+        } else {
+            com.gig.gio.search_by_counterparty.model.AddressData cacheAddressData = (com.gig.gio.search_by_counterparty.model.AddressData) cache.get(AddressDataObj);
+            if (cacheAddressData != null) {
+                realmObjectTarget.realmSet$AddressData(cacheAddressData);
+            } else {
+                realmObjectTarget.realmSet$AddressData(AddressDataRealmProxy.copyOrUpdate(realm, AddressDataObj, true, cache));
+            }
+        }
         return realmObject;
     }
 
@@ -465,6 +606,10 @@ public class AddressRealmProxy extends com.gig.gio.search_by_counterparty.model.
         stringBuilder.append(",");
         stringBuilder.append("{unrestricted_value:");
         stringBuilder.append(realmGet$unrestricted_value() != null ? realmGet$unrestricted_value() : "null");
+        stringBuilder.append("}");
+        stringBuilder.append(",");
+        stringBuilder.append("{AddressData:");
+        stringBuilder.append(realmGet$AddressData() != null ? "AddressData" : "null");
         stringBuilder.append("}");
         stringBuilder.append("]");
         return stringBuilder.toString();
