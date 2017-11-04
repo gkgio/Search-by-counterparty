@@ -240,6 +240,10 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\layout\\abc_alert_dialog_material.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_detail.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\layout\\fragment_detail.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\layout\\abc_screen_simple.xml"
     },

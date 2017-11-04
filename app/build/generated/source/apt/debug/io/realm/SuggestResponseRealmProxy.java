@@ -40,20 +40,16 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
         long valueIndex;
         long unrestricted_valueIndex;
         long dataIndex;
-        long innIndex;
-        long ogrnIndex;
-        long addressIndex;
+        long isBookmarkIndex;
 
         SuggestResponseColumnInfo(OsSchemaInfo schemaInfo) {
-            super(7);
+            super(5);
             OsObjectSchemaInfo objectSchemaInfo = schemaInfo.getObjectSchemaInfo("SuggestResponse");
             this.idIndex = addColumnDetails("id", objectSchemaInfo);
             this.valueIndex = addColumnDetails("value", objectSchemaInfo);
             this.unrestricted_valueIndex = addColumnDetails("unrestricted_value", objectSchemaInfo);
             this.dataIndex = addColumnDetails("data", objectSchemaInfo);
-            this.innIndex = addColumnDetails("inn", objectSchemaInfo);
-            this.ogrnIndex = addColumnDetails("ogrn", objectSchemaInfo);
-            this.addressIndex = addColumnDetails("address", objectSchemaInfo);
+            this.isBookmarkIndex = addColumnDetails("isBookmark", objectSchemaInfo);
         }
 
         SuggestResponseColumnInfo(ColumnInfo src, boolean mutable) {
@@ -74,9 +70,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
             dst.valueIndex = src.valueIndex;
             dst.unrestricted_valueIndex = src.unrestricted_valueIndex;
             dst.dataIndex = src.dataIndex;
-            dst.innIndex = src.innIndex;
-            dst.ogrnIndex = src.ogrnIndex;
-            dst.addressIndex = src.addressIndex;
+            dst.isBookmarkIndex = src.isBookmarkIndex;
         }
     }
 
@@ -88,9 +82,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
         fieldNames.add("value");
         fieldNames.add("unrestricted_value");
         fieldNames.add("data");
-        fieldNames.add("inn");
-        fieldNames.add("ogrn");
-        fieldNames.add("address");
+        fieldNames.add("isBookmark");
         FIELD_NAMES = Collections.unmodifiableList(fieldNames);
     }
 
@@ -117,13 +109,13 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
 
     @Override
     @SuppressWarnings("cast")
-    public long realmGet$id() {
+    public String realmGet$id() {
         proxyState.getRealm$realm().checkIfValid();
-        return (long) proxyState.getRow$realm().getLong(columnInfo.idIndex);
+        return (java.lang.String) proxyState.getRow$realm().getString(columnInfo.idIndex);
     }
 
     @Override
-    public void realmSet$id(long value) {
+    public void realmSet$id(String value) {
         if (proxyState.isUnderConstruction()) {
             // default value of the primary key is always ignored.
             return;
@@ -246,124 +238,33 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
 
     @Override
     @SuppressWarnings("cast")
-    public String realmGet$inn() {
+    public boolean realmGet$isBookmark() {
         proxyState.getRealm$realm().checkIfValid();
-        return (java.lang.String) proxyState.getRow$realm().getString(columnInfo.innIndex);
+        return (boolean) proxyState.getRow$realm().getBoolean(columnInfo.isBookmarkIndex);
     }
 
     @Override
-    public void realmSet$inn(String value) {
+    public void realmSet$isBookmark(boolean value) {
         if (proxyState.isUnderConstruction()) {
             if (!proxyState.getAcceptDefaultValue$realm()) {
                 return;
             }
             final Row row = proxyState.getRow$realm();
-            if (value == null) {
-                row.getTable().setNull(columnInfo.innIndex, row.getIndex(), true);
-                return;
-            }
-            row.getTable().setString(columnInfo.innIndex, row.getIndex(), value, true);
+            row.getTable().setBoolean(columnInfo.isBookmarkIndex, row.getIndex(), value, true);
             return;
         }
 
         proxyState.getRealm$realm().checkIfValid();
-        if (value == null) {
-            proxyState.getRow$realm().setNull(columnInfo.innIndex);
-            return;
-        }
-        proxyState.getRow$realm().setString(columnInfo.innIndex, value);
-    }
-
-    @Override
-    @SuppressWarnings("cast")
-    public String realmGet$ogrn() {
-        proxyState.getRealm$realm().checkIfValid();
-        return (java.lang.String) proxyState.getRow$realm().getString(columnInfo.ogrnIndex);
-    }
-
-    @Override
-    public void realmSet$ogrn(String value) {
-        if (proxyState.isUnderConstruction()) {
-            if (!proxyState.getAcceptDefaultValue$realm()) {
-                return;
-            }
-            final Row row = proxyState.getRow$realm();
-            if (value == null) {
-                row.getTable().setNull(columnInfo.ogrnIndex, row.getIndex(), true);
-                return;
-            }
-            row.getTable().setString(columnInfo.ogrnIndex, row.getIndex(), value, true);
-            return;
-        }
-
-        proxyState.getRealm$realm().checkIfValid();
-        if (value == null) {
-            proxyState.getRow$realm().setNull(columnInfo.ogrnIndex);
-            return;
-        }
-        proxyState.getRow$realm().setString(columnInfo.ogrnIndex, value);
-    }
-
-    @Override
-    public com.gig.gio.search_by_counterparty.model.Address realmGet$address() {
-        proxyState.getRealm$realm().checkIfValid();
-        if (proxyState.getRow$realm().isNullLink(columnInfo.addressIndex)) {
-            return null;
-        }
-        return proxyState.getRealm$realm().get(com.gig.gio.search_by_counterparty.model.Address.class, proxyState.getRow$realm().getLink(columnInfo.addressIndex), false, Collections.<String>emptyList());
-    }
-
-    @Override
-    public void realmSet$address(com.gig.gio.search_by_counterparty.model.Address value) {
-        if (proxyState.isUnderConstruction()) {
-            if (!proxyState.getAcceptDefaultValue$realm()) {
-                return;
-            }
-            if (proxyState.getExcludeFields$realm().contains("address")) {
-                return;
-            }
-            if (value != null && !RealmObject.isManaged(value)) {
-                value = ((Realm) proxyState.getRealm$realm()).copyToRealm(value);
-            }
-            final Row row = proxyState.getRow$realm();
-            if (value == null) {
-                // Table#nullifyLink() does not support default value. Just using Row.
-                row.nullifyLink(columnInfo.addressIndex);
-                return;
-            }
-            if (!RealmObject.isValid(value)) {
-                throw new IllegalArgumentException("'value' is not a valid managed object.");
-            }
-            if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
-                throw new IllegalArgumentException("'value' belongs to a different Realm.");
-            }
-            row.getTable().setLink(columnInfo.addressIndex, row.getIndex(), ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex(), true);
-            return;
-        }
-
-        proxyState.getRealm$realm().checkIfValid();
-        if (value == null) {
-            proxyState.getRow$realm().nullifyLink(columnInfo.addressIndex);
-            return;
-        }
-        if (!(RealmObject.isManaged(value) && RealmObject.isValid(value))) {
-            throw new IllegalArgumentException("'value' is not a valid managed object.");
-        }
-        if (((RealmObjectProxy) value).realmGet$proxyState().getRealm$realm() != proxyState.getRealm$realm()) {
-            throw new IllegalArgumentException("'value' belongs to a different Realm.");
-        }
-        proxyState.getRow$realm().setLink(columnInfo.addressIndex, ((RealmObjectProxy) value).realmGet$proxyState().getRow$realm().getIndex());
+        proxyState.getRow$realm().setBoolean(columnInfo.isBookmarkIndex, value);
     }
 
     private static OsObjectSchemaInfo createExpectedObjectSchemaInfo() {
         OsObjectSchemaInfo.Builder builder = new OsObjectSchemaInfo.Builder("SuggestResponse");
-        builder.addPersistedProperty("id", RealmFieldType.INTEGER, Property.PRIMARY_KEY, Property.INDEXED, Property.REQUIRED);
+        builder.addPersistedProperty("id", RealmFieldType.STRING, Property.PRIMARY_KEY, Property.INDEXED, !Property.REQUIRED);
         builder.addPersistedProperty("value", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
         builder.addPersistedProperty("unrestricted_value", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
         builder.addPersistedLinkProperty("data", RealmFieldType.OBJECT, "Data");
-        builder.addPersistedProperty("inn", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
-        builder.addPersistedProperty("ogrn", RealmFieldType.STRING, !Property.PRIMARY_KEY, !Property.INDEXED, !Property.REQUIRED);
-        builder.addPersistedLinkProperty("address", RealmFieldType.OBJECT, "Address");
+        builder.addPersistedProperty("isBookmark", RealmFieldType.BOOLEAN, !Property.PRIMARY_KEY, !Property.INDEXED, Property.REQUIRED);
         return builder.build();
     }
 
@@ -386,14 +287,16 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
     @SuppressWarnings("cast")
     public static com.gig.gio.search_by_counterparty.model.SuggestResponse createOrUpdateUsingJsonObject(Realm realm, JSONObject json, boolean update)
         throws JSONException {
-        final List<String> excludeFields = new ArrayList<String>(2);
+        final List<String> excludeFields = new ArrayList<String>(1);
         com.gig.gio.search_by_counterparty.model.SuggestResponse obj = null;
         if (update) {
             Table table = realm.getTable(com.gig.gio.search_by_counterparty.model.SuggestResponse.class);
             long pkColumnIndex = table.getPrimaryKey();
             long rowIndex = Table.NO_MATCH;
-            if (!json.isNull("id")) {
-                rowIndex = table.findFirstLong(pkColumnIndex, json.getLong("id"));
+            if (json.isNull("id")) {
+                rowIndex = table.findFirstNull(pkColumnIndex);
+            } else {
+                rowIndex = table.findFirstString(pkColumnIndex, json.getString("id"));
             }
             if (rowIndex != Table.NO_MATCH) {
                 final BaseRealm.RealmObjectContext objectContext = BaseRealm.objectContext.get();
@@ -409,14 +312,11 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
             if (json.has("data")) {
                 excludeFields.add("data");
             }
-            if (json.has("address")) {
-                excludeFields.add("address");
-            }
             if (json.has("id")) {
                 if (json.isNull("id")) {
                     obj = (io.realm.SuggestResponseRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.SuggestResponse.class, null, true, excludeFields);
                 } else {
-                    obj = (io.realm.SuggestResponseRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.SuggestResponse.class, json.getLong("id"), true, excludeFields);
+                    obj = (io.realm.SuggestResponseRealmProxy) realm.createObjectInternal(com.gig.gio.search_by_counterparty.model.SuggestResponse.class, json.getString("id"), true, excludeFields);
                 }
             } else {
                 throw new IllegalArgumentException("JSON object doesn't have the primary key field 'id'.");
@@ -446,26 +346,11 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
                 objProxy.realmSet$data(dataObj);
             }
         }
-        if (json.has("inn")) {
-            if (json.isNull("inn")) {
-                objProxy.realmSet$inn(null);
+        if (json.has("isBookmark")) {
+            if (json.isNull("isBookmark")) {
+                throw new IllegalArgumentException("Trying to set non-nullable field 'isBookmark' to null.");
             } else {
-                objProxy.realmSet$inn((String) json.getString("inn"));
-            }
-        }
-        if (json.has("ogrn")) {
-            if (json.isNull("ogrn")) {
-                objProxy.realmSet$ogrn(null);
-            } else {
-                objProxy.realmSet$ogrn((String) json.getString("ogrn"));
-            }
-        }
-        if (json.has("address")) {
-            if (json.isNull("address")) {
-                objProxy.realmSet$address(null);
-            } else {
-                com.gig.gio.search_by_counterparty.model.Address addressObj = AddressRealmProxy.createOrUpdateUsingJsonObject(realm, json.getJSONObject("address"), update);
-                objProxy.realmSet$address(addressObj);
+                objProxy.realmSet$isBookmark((boolean) json.getBoolean("isBookmark"));
             }
         }
         return obj;
@@ -484,10 +369,10 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
             if (false) {
             } else if (name.equals("id")) {
                 if (reader.peek() != JsonToken.NULL) {
-                    objProxy.realmSet$id((long) reader.nextLong());
+                    objProxy.realmSet$id((String) reader.nextString());
                 } else {
                     reader.skipValue();
-                    throw new IllegalArgumentException("Trying to set non-nullable field 'id' to null.");
+                    objProxy.realmSet$id(null);
                 }
                 jsonHasPrimaryKey = true;
             } else if (name.equals("value")) {
@@ -512,27 +397,12 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
                     com.gig.gio.search_by_counterparty.model.Data dataObj = DataRealmProxy.createUsingJsonStream(realm, reader);
                     objProxy.realmSet$data(dataObj);
                 }
-            } else if (name.equals("inn")) {
+            } else if (name.equals("isBookmark")) {
                 if (reader.peek() != JsonToken.NULL) {
-                    objProxy.realmSet$inn((String) reader.nextString());
+                    objProxy.realmSet$isBookmark((boolean) reader.nextBoolean());
                 } else {
                     reader.skipValue();
-                    objProxy.realmSet$inn(null);
-                }
-            } else if (name.equals("ogrn")) {
-                if (reader.peek() != JsonToken.NULL) {
-                    objProxy.realmSet$ogrn((String) reader.nextString());
-                } else {
-                    reader.skipValue();
-                    objProxy.realmSet$ogrn(null);
-                }
-            } else if (name.equals("address")) {
-                if (reader.peek() == JsonToken.NULL) {
-                    reader.skipValue();
-                    objProxy.realmSet$address(null);
-                } else {
-                    com.gig.gio.search_by_counterparty.model.Address addressObj = AddressRealmProxy.createUsingJsonStream(realm, reader);
-                    objProxy.realmSet$address(addressObj);
+                    throw new IllegalArgumentException("Trying to set non-nullable field 'isBookmark' to null.");
                 }
             } else {
                 reader.skipValue();
@@ -566,7 +436,13 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
         if (canUpdate) {
             Table table = realm.getTable(com.gig.gio.search_by_counterparty.model.SuggestResponse.class);
             long pkColumnIndex = table.getPrimaryKey();
-            long rowIndex = table.findFirstLong(pkColumnIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+            String value = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
+            long rowIndex = Table.NO_MATCH;
+            if (value == null) {
+                rowIndex = table.findFirstNull(pkColumnIndex);
+            } else {
+                rowIndex = table.findFirstString(pkColumnIndex, value);
+            }
             if (rowIndex == Table.NO_MATCH) {
                 canUpdate = false;
             } else {
@@ -610,20 +486,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
                 realmObjectCopy.realmSet$data(DataRealmProxy.copyOrUpdate(realm, dataObj, update, cache));
             }
         }
-        realmObjectCopy.realmSet$inn(realmObjectSource.realmGet$inn());
-        realmObjectCopy.realmSet$ogrn(realmObjectSource.realmGet$ogrn());
-
-        com.gig.gio.search_by_counterparty.model.Address addressObj = realmObjectSource.realmGet$address();
-        if (addressObj == null) {
-            realmObjectCopy.realmSet$address(null);
-        } else {
-            com.gig.gio.search_by_counterparty.model.Address cacheaddress = (com.gig.gio.search_by_counterparty.model.Address) cache.get(addressObj);
-            if (cacheaddress != null) {
-                realmObjectCopy.realmSet$address(cacheaddress);
-            } else {
-                realmObjectCopy.realmSet$address(AddressRealmProxy.copyOrUpdate(realm, addressObj, update, cache));
-            }
-        }
+        realmObjectCopy.realmSet$isBookmark(realmObjectSource.realmGet$isBookmark());
         return realmObject;
     }
 
@@ -635,13 +498,15 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
         long tableNativePtr = table.getNativePtr();
         SuggestResponseColumnInfo columnInfo = (SuggestResponseColumnInfo) realm.getSchema().getColumnInfo(com.gig.gio.search_by_counterparty.model.SuggestResponse.class);
         long pkColumnIndex = table.getPrimaryKey();
+        String primaryKeyValue = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
         long rowIndex = Table.NO_MATCH;
-        Object primaryKeyValue = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
-        if (primaryKeyValue != null) {
-            rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+        if (primaryKeyValue == null) {
+            rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
+        } else {
+            rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
         }
         if (rowIndex == Table.NO_MATCH) {
-            rowIndex = OsObject.createRowWithPrimaryKey(table, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+            rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
         } else {
             Table.throwDuplicatePrimaryKeyException(primaryKeyValue);
         }
@@ -663,23 +528,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
             }
             Table.nativeSetLink(tableNativePtr, columnInfo.dataIndex, rowIndex, cachedata, false);
         }
-        String realmGet$inn = ((SuggestResponseRealmProxyInterface) object).realmGet$inn();
-        if (realmGet$inn != null) {
-            Table.nativeSetString(tableNativePtr, columnInfo.innIndex, rowIndex, realmGet$inn, false);
-        }
-        String realmGet$ogrn = ((SuggestResponseRealmProxyInterface) object).realmGet$ogrn();
-        if (realmGet$ogrn != null) {
-            Table.nativeSetString(tableNativePtr, columnInfo.ogrnIndex, rowIndex, realmGet$ogrn, false);
-        }
-
-        com.gig.gio.search_by_counterparty.model.Address addressObj = ((SuggestResponseRealmProxyInterface) object).realmGet$address();
-        if (addressObj != null) {
-            Long cacheaddress = cache.get(addressObj);
-            if (cacheaddress == null) {
-                cacheaddress = AddressRealmProxy.insert(realm, addressObj, cache);
-            }
-            Table.nativeSetLink(tableNativePtr, columnInfo.addressIndex, rowIndex, cacheaddress, false);
-        }
+        Table.nativeSetBoolean(tableNativePtr, columnInfo.isBookmarkIndex, rowIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$isBookmark(), false);
         return rowIndex;
     }
 
@@ -698,13 +547,15 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
                 cache.put(object, ((RealmObjectProxy) object).realmGet$proxyState().getRow$realm().getIndex());
                 continue;
             }
+            String primaryKeyValue = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
             long rowIndex = Table.NO_MATCH;
-            Object primaryKeyValue = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
-            if (primaryKeyValue != null) {
-                rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+            if (primaryKeyValue == null) {
+                rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
+            } else {
+                rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
             }
             if (rowIndex == Table.NO_MATCH) {
-                rowIndex = OsObject.createRowWithPrimaryKey(table, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+                rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
             } else {
                 Table.throwDuplicatePrimaryKeyException(primaryKeyValue);
             }
@@ -726,23 +577,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
                 }
                 table.setLink(columnInfo.dataIndex, rowIndex, cachedata, false);
             }
-            String realmGet$inn = ((SuggestResponseRealmProxyInterface) object).realmGet$inn();
-            if (realmGet$inn != null) {
-                Table.nativeSetString(tableNativePtr, columnInfo.innIndex, rowIndex, realmGet$inn, false);
-            }
-            String realmGet$ogrn = ((SuggestResponseRealmProxyInterface) object).realmGet$ogrn();
-            if (realmGet$ogrn != null) {
-                Table.nativeSetString(tableNativePtr, columnInfo.ogrnIndex, rowIndex, realmGet$ogrn, false);
-            }
-
-            com.gig.gio.search_by_counterparty.model.Address addressObj = ((SuggestResponseRealmProxyInterface) object).realmGet$address();
-            if (addressObj != null) {
-                Long cacheaddress = cache.get(addressObj);
-                if (cacheaddress == null) {
-                    cacheaddress = AddressRealmProxy.insert(realm, addressObj, cache);
-                }
-                table.setLink(columnInfo.addressIndex, rowIndex, cacheaddress, false);
-            }
+            Table.nativeSetBoolean(tableNativePtr, columnInfo.isBookmarkIndex, rowIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$isBookmark(), false);
         }
     }
 
@@ -754,13 +589,15 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
         long tableNativePtr = table.getNativePtr();
         SuggestResponseColumnInfo columnInfo = (SuggestResponseColumnInfo) realm.getSchema().getColumnInfo(com.gig.gio.search_by_counterparty.model.SuggestResponse.class);
         long pkColumnIndex = table.getPrimaryKey();
+        String primaryKeyValue = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
         long rowIndex = Table.NO_MATCH;
-        Object primaryKeyValue = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
-        if (primaryKeyValue != null) {
-            rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+        if (primaryKeyValue == null) {
+            rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
+        } else {
+            rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
         }
         if (rowIndex == Table.NO_MATCH) {
-            rowIndex = OsObject.createRowWithPrimaryKey(table, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+            rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
         }
         cache.put(object, rowIndex);
         String realmGet$value = ((SuggestResponseRealmProxyInterface) object).realmGet$value();
@@ -786,29 +623,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
         } else {
             Table.nativeNullifyLink(tableNativePtr, columnInfo.dataIndex, rowIndex);
         }
-        String realmGet$inn = ((SuggestResponseRealmProxyInterface) object).realmGet$inn();
-        if (realmGet$inn != null) {
-            Table.nativeSetString(tableNativePtr, columnInfo.innIndex, rowIndex, realmGet$inn, false);
-        } else {
-            Table.nativeSetNull(tableNativePtr, columnInfo.innIndex, rowIndex, false);
-        }
-        String realmGet$ogrn = ((SuggestResponseRealmProxyInterface) object).realmGet$ogrn();
-        if (realmGet$ogrn != null) {
-            Table.nativeSetString(tableNativePtr, columnInfo.ogrnIndex, rowIndex, realmGet$ogrn, false);
-        } else {
-            Table.nativeSetNull(tableNativePtr, columnInfo.ogrnIndex, rowIndex, false);
-        }
-
-        com.gig.gio.search_by_counterparty.model.Address addressObj = ((SuggestResponseRealmProxyInterface) object).realmGet$address();
-        if (addressObj != null) {
-            Long cacheaddress = cache.get(addressObj);
-            if (cacheaddress == null) {
-                cacheaddress = AddressRealmProxy.insertOrUpdate(realm, addressObj, cache);
-            }
-            Table.nativeSetLink(tableNativePtr, columnInfo.addressIndex, rowIndex, cacheaddress, false);
-        } else {
-            Table.nativeNullifyLink(tableNativePtr, columnInfo.addressIndex, rowIndex);
-        }
+        Table.nativeSetBoolean(tableNativePtr, columnInfo.isBookmarkIndex, rowIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$isBookmark(), false);
         return rowIndex;
     }
 
@@ -827,13 +642,15 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
                 cache.put(object, ((RealmObjectProxy) object).realmGet$proxyState().getRow$realm().getIndex());
                 continue;
             }
+            String primaryKeyValue = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
             long rowIndex = Table.NO_MATCH;
-            Object primaryKeyValue = ((SuggestResponseRealmProxyInterface) object).realmGet$id();
-            if (primaryKeyValue != null) {
-                rowIndex = Table.nativeFindFirstInt(tableNativePtr, pkColumnIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+            if (primaryKeyValue == null) {
+                rowIndex = Table.nativeFindFirstNull(tableNativePtr, pkColumnIndex);
+            } else {
+                rowIndex = Table.nativeFindFirstString(tableNativePtr, pkColumnIndex, primaryKeyValue);
             }
             if (rowIndex == Table.NO_MATCH) {
-                rowIndex = OsObject.createRowWithPrimaryKey(table, ((SuggestResponseRealmProxyInterface) object).realmGet$id());
+                rowIndex = OsObject.createRowWithPrimaryKey(table, primaryKeyValue);
             }
             cache.put(object, rowIndex);
             String realmGet$value = ((SuggestResponseRealmProxyInterface) object).realmGet$value();
@@ -859,29 +676,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
             } else {
                 Table.nativeNullifyLink(tableNativePtr, columnInfo.dataIndex, rowIndex);
             }
-            String realmGet$inn = ((SuggestResponseRealmProxyInterface) object).realmGet$inn();
-            if (realmGet$inn != null) {
-                Table.nativeSetString(tableNativePtr, columnInfo.innIndex, rowIndex, realmGet$inn, false);
-            } else {
-                Table.nativeSetNull(tableNativePtr, columnInfo.innIndex, rowIndex, false);
-            }
-            String realmGet$ogrn = ((SuggestResponseRealmProxyInterface) object).realmGet$ogrn();
-            if (realmGet$ogrn != null) {
-                Table.nativeSetString(tableNativePtr, columnInfo.ogrnIndex, rowIndex, realmGet$ogrn, false);
-            } else {
-                Table.nativeSetNull(tableNativePtr, columnInfo.ogrnIndex, rowIndex, false);
-            }
-
-            com.gig.gio.search_by_counterparty.model.Address addressObj = ((SuggestResponseRealmProxyInterface) object).realmGet$address();
-            if (addressObj != null) {
-                Long cacheaddress = cache.get(addressObj);
-                if (cacheaddress == null) {
-                    cacheaddress = AddressRealmProxy.insertOrUpdate(realm, addressObj, cache);
-                }
-                Table.nativeSetLink(tableNativePtr, columnInfo.addressIndex, rowIndex, cacheaddress, false);
-            } else {
-                Table.nativeNullifyLink(tableNativePtr, columnInfo.addressIndex, rowIndex);
-            }
+            Table.nativeSetBoolean(tableNativePtr, columnInfo.isBookmarkIndex, rowIndex, ((SuggestResponseRealmProxyInterface) object).realmGet$isBookmark(), false);
         }
     }
 
@@ -910,11 +705,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
 
         // Deep copy of data
         unmanagedCopy.realmSet$data(DataRealmProxy.createDetachedCopy(realmSource.realmGet$data(), currentDepth + 1, maxDepth, cache));
-        unmanagedCopy.realmSet$inn(realmSource.realmGet$inn());
-        unmanagedCopy.realmSet$ogrn(realmSource.realmGet$ogrn());
-
-        // Deep copy of address
-        unmanagedCopy.realmSet$address(AddressRealmProxy.createDetachedCopy(realmSource.realmGet$address(), currentDepth + 1, maxDepth, cache));
+        unmanagedCopy.realmSet$isBookmark(realmSource.realmGet$isBookmark());
         return unmanagedObject;
     }
 
@@ -934,19 +725,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
                 realmObjectTarget.realmSet$data(DataRealmProxy.copyOrUpdate(realm, dataObj, true, cache));
             }
         }
-        realmObjectTarget.realmSet$inn(realmObjectSource.realmGet$inn());
-        realmObjectTarget.realmSet$ogrn(realmObjectSource.realmGet$ogrn());
-        com.gig.gio.search_by_counterparty.model.Address addressObj = realmObjectSource.realmGet$address();
-        if (addressObj == null) {
-            realmObjectTarget.realmSet$address(null);
-        } else {
-            com.gig.gio.search_by_counterparty.model.Address cacheaddress = (com.gig.gio.search_by_counterparty.model.Address) cache.get(addressObj);
-            if (cacheaddress != null) {
-                realmObjectTarget.realmSet$address(cacheaddress);
-            } else {
-                realmObjectTarget.realmSet$address(AddressRealmProxy.copyOrUpdate(realm, addressObj, true, cache));
-            }
-        }
+        realmObjectTarget.realmSet$isBookmark(realmObjectSource.realmGet$isBookmark());
         return realmObject;
     }
 
@@ -958,7 +737,7 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
         }
         StringBuilder stringBuilder = new StringBuilder("SuggestResponse = proxy[");
         stringBuilder.append("{id:");
-        stringBuilder.append(realmGet$id());
+        stringBuilder.append(realmGet$id() != null ? realmGet$id() : "null");
         stringBuilder.append("}");
         stringBuilder.append(",");
         stringBuilder.append("{value:");
@@ -973,16 +752,8 @@ public class SuggestResponseRealmProxy extends com.gig.gio.search_by_counterpart
         stringBuilder.append(realmGet$data() != null ? "Data" : "null");
         stringBuilder.append("}");
         stringBuilder.append(",");
-        stringBuilder.append("{inn:");
-        stringBuilder.append(realmGet$inn() != null ? realmGet$inn() : "null");
-        stringBuilder.append("}");
-        stringBuilder.append(",");
-        stringBuilder.append("{ogrn:");
-        stringBuilder.append(realmGet$ogrn() != null ? realmGet$ogrn() : "null");
-        stringBuilder.append("}");
-        stringBuilder.append(",");
-        stringBuilder.append("{address:");
-        stringBuilder.append(realmGet$address() != null ? "Address" : "null");
+        stringBuilder.append("{isBookmark:");
+        stringBuilder.append(realmGet$isBookmark());
         stringBuilder.append("}");
         stringBuilder.append("]");
         return stringBuilder.toString();

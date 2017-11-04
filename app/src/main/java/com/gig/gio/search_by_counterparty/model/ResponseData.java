@@ -1,5 +1,7 @@
 package com.gig.gio.search_by_counterparty.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 import io.realm.RealmList;
@@ -23,7 +25,8 @@ public class ResponseData extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
-    private long id;
+    private String id;
 
+    @SerializedName("suggestions")
     private RealmList<SuggestResponse> suggestions;
 }

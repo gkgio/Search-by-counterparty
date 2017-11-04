@@ -106,10 +106,10 @@ public class MapPresenterImpl implements MapPresenter {
                 .flatMapIterable(list -> list)
                 .map(suggestResponse -> {
                     final LatLng position = new LatLng(
-                            suggestResponse.getAddress().getAddressData().getGeo_lat(),
-                            suggestResponse.getAddress().getAddressData().getGeo_lon());
+                            suggestResponse.getData().getAddress().getAddressData().getGeo_lat(),
+                            suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
                     final String title = suggestResponse.getValue();
-                    final String snippetId = Long.toString(suggestResponse.getId());
+                    final String snippetId = suggestResponse.getId();
                     return new MarkerOptions().position(position).title(title).snippet(snippetId);
                 })
                 .toList()

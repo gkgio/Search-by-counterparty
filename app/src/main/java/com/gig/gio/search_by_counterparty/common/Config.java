@@ -23,4 +23,8 @@ public class Config {
     public static final String AUTHOR_EMAIL = "eeyyon@gmail.com";
 
     public static final String IS_FIRST_START = "IS_FIRST_START";
+
+    public static final String ABOUT_FRAGMENT_TAG = "ABOUT_FRAGMENT";
+    public static final String SEARCH_FRAGMENT_TAG = "SEARCH_FRAGMENT";
+    public static final String DETAIL_FRAGMENT_TAG = "DETAIL_FRAGMENT";
 }

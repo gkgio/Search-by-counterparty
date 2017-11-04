@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_unbookmark"
+        android:orderInCategory="100"
+        android:icon="@drawable/icon_star_select"
+        android:title="@string/menu_bookmark"
+        app:showAsAction="always" />
+</menu>

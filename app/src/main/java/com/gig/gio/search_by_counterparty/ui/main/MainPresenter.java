@@ -3,7 +3,6 @@ package com.gig.gio.search_by_counterparty.ui.main;
 import android.content.SharedPreferences;
 
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
-import com.gig.gio.search_by_counterparty.network.NetworkService;
 
 import io.realm.Realm;
 

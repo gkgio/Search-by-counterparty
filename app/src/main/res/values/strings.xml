@@ -9,6 +9,7 @@
     <string name="drawer_menu_email">Написать разработчику</string>
     <string name="drawer_menu_exit">Выход</string>
     <string name="drawer_menu_info">О приложении</string>
+    <string name="menu_bookmark">Избранная</string>
 
     <string name="image_description">nav_app_icon</string>
 
@@ -20,17 +21,17 @@
     //SearchFragment
     <string name="input_suggestions">Введите контрагент</string>
     <string name="name_or_inn">Наименование/ИНН</string>
-    <string name="title_activity_main2">Main2Activity</string>
 
     //DetailActivity
-    <string name="value_name_filter">Name: %1$s %%</string>
-    <string name="kpp_name_filter">KPP: %1$s %%</string>
-    <string name="inn_name_filter">INN: %1$s %%</string>
-    <string name="ogrn_name_filter">OGRN: %1$s %%</string>
-    <string name="status_name_filter">Status: %1$s %%</string>
-    <string name="address_name_filter">Address: %1$s %%</string>
+    <string name="value_name_filter">Организация: %1$s</string>
+    <string name="kpp_name_filter">КПП: %1$s</string>
+    <string name="inn_name_filter">ИНН: %1$s</string>
+    <string name="ogrn_name_filter">ОГРН: %1$s</string>
+    <string name="status_name_filter">Статус: %1$s</string>
+    <string name="address_name_filter">Адресс: %1$s</string>
     <string name="delete_recent">Удалить из недавних</string>
     <string name="open_map">На карте</string>
+    <string name="detail_activity_title">Описание</string>
 
     //MapActivity
     <string name="map_activity_title">Карта</string>
@@ -39,4 +40,7 @@
     <string name="about_app_text">Приложение предназначено для быстрого пойска контрагента,
         нахождение его местоположения и сохранения для быстрого нахождения в последующем</string>
     <string name="author_email">По всем вопросам пишите на: eeyyon@gmail.com</string>
+
+    //DetailFragment
+    <string name="detail_fragment_title">Описание</string>
 </resources>

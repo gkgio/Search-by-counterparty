@@ -12,6 +12,8 @@ import com.gig.gio.search_by_counterparty.model.RequestData;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import com.gig.gio.search_by_counterparty.network.NetworkService;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
@@ -19,10 +21,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import java.lang.reflect.Type;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.realm.Realm;
 import retrofit2.Response;
 
 /**
@@ -122,6 +127,29 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
             helperValuesList.add(suggestions.get(i).getValue());
         }
 
-        view.onSuggestionsReady(helperValuesList);
+        view.onSuggestionsReady(helperValuesList, responseData);
+    }
+
+    @Override
+    public void saveSelectedSuggest(ResponseData responseData, String selectedItem, Realm realm) {
+        SuggestResponse suggestResponse = null;
+
+        for (SuggestResponse suggest : responseData.getSuggestions()) {
+            if (suggest.getValue().equals(selectedItem)) {
+                suggestResponse = suggest;
+                break;
+            }
+        }
+
+        // кэшируем данные в realm
+        SuggestResponse finalSuggestResponse = suggestResponse;
+        realm.executeTransaction(transaction -> {
+            assert finalSuggestResponse != null;
+            transaction.copyToRealmOrUpdate(finalSuggestResponse);
+        });
+
+        Gson localGson = new Gson();
+        final String jsonSuggestResponse = localGson.toJson(finalSuggestResponse, SuggestResponse.class);
+        view.startDetailFragment(jsonSuggestResponse);
     }
 }

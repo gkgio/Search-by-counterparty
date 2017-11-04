@@ -1,5 +1,13 @@
 [
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_star_selected.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\menu\\menu_star_selected.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_star_unselected.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\menu\\menu_star_unselected.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\menu\\navigation_menu.xml",
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\menu\\navigation_menu.xml"
     }

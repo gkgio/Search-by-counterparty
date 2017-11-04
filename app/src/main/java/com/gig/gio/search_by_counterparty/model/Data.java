@@ -20,15 +20,29 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Data extends RealmObject implements Serializable{
+public class Data extends RealmObject implements Serializable {
 
-    /** id */
+    /**
+     * id
+     */
     @PrimaryKey
-    private long id;
+    private String id;
 
     private String kpp;
 
     @SerializedName("management")
     private Management management;
 
+    private String inn;
+
+    private String ogrn;
+
+    @SerializedName("opf")
+    private Opf opf;
+
+    @SerializedName("state")
+    private State state;
+
+    @SerializedName("address")
+    private Address address;
 }

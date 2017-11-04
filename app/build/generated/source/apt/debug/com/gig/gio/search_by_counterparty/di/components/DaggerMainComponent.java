@@ -12,6 +12,9 @@ import com.gig.gio.search_by_counterparty.ui.main.MainActivity_MembersInjector;
 import com.gig.gio.search_by_counterparty.ui.main.MainPresenterImpl;
 import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragment;
 import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragment_MembersInjector;
+import com.gig.gio.search_by_counterparty.ui.main.detail.DetailFragment;
+import com.gig.gio.search_by_counterparty.ui.main.detail.DetailFragmentPresenterImpl;
+import com.gig.gio.search_by_counterparty.ui.main.detail.DetailFragment_MembersInjector;
 import com.gig.gio.search_by_counterparty.ui.main.search.SearchFragment;
 import com.gig.gio.search_by_counterparty.ui.main.search.SearchFragment_MembersInjector;
 import dagger.internal.Preconditions;
@@ -53,6 +56,11 @@ public final class DaggerMainComponent implements MainComponent {
   @Override
   public void inject(SearchFragment searchFragment) {
     injectSearchFragment(searchFragment);
+  }
+
+  @Override
+  public void inject(DetailFragment detailFragment) {
+    injectDetailFragment(detailFragment);
   }
 
   private MainActivity injectMainActivity(MainActivity instance) {
@@ -162,6 +170,36 @@ public final class DaggerMainComponent implements MainComponent {
             MainModule_ProvideSearchFragmentPresenterImplFactory
                 .proxyProvideSearchFragmentPresenterImpl(mainModule),
             "Cannot return null from a non-@Nullable @Provides method"));
+    return instance;
+  }
+
+  private DetailFragment injectDetailFragment(DetailFragment instance) {
+    BaseFragment_MembersInjector.injectGson(
+        instance,
+        Preconditions.checkNotNull(
+            counterpartyAppComponent.gson(),
+            "Cannot return null from a non-@Nullable component method"));
+    BaseFragment_MembersInjector.injectPreferences(
+        instance,
+        Preconditions.checkNotNull(
+            counterpartyAppComponent.sharedPreferences(),
+            "Cannot return null from a non-@Nullable component method"));
+    BaseFragment_MembersInjector.injectBus(
+        instance,
+        Preconditions.checkNotNull(
+            counterpartyAppComponent.eventBus(),
+            "Cannot return null from a non-@Nullable component method"));
+    BaseFragment_MembersInjector.injectNetworkService(
+        instance,
+        Preconditions.checkNotNull(
+            counterpartyAppComponent.mobukNoCachedService(),
+            "Cannot return null from a non-@Nullable component method"));
+    BaseFragment_MembersInjector.injectCachedNetworkService(
+        instance,
+        Preconditions.checkNotNull(
+            counterpartyAppComponent.mobukCachedService(),
+            "Cannot return null from a non-@Nullable component method"));
+    DetailFragment_MembersInjector.injectPresenter(instance, new DetailFragmentPresenterImpl());
     return instance;
   }
 
