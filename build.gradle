@@ -40,4 +40,8 @@ ext {
 
     // App dependencies
     daggerVersion = '2.12'
+    httpClientVersion = '3.9.0'
+    rxBindingVersion = '1.0.1'
+    lombokVersion = '1.16.18'
+    retrofitVersion = '2.3.0'
 }

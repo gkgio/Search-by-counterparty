@@ -80,9 +80,9 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
         presenter.onCreateView(bus, networkService);
+
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         currentMarkerLocation = gson.fromJson(getIntent().getStringExtra(BUNDLE_LOCATION), Location.class);
     }
@@ -97,8 +97,8 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     public void onResume() {
         realm = Realm.getDefaultInstance();
         presenter.onAttachView();
-        presenter.initMap(map != null);
         presenter.getCounterPartyFromRealm(bus, realm);
+        presenter.initMap(map != null);
         setCurrentMarkerPosition(currentMarkerLocation);
         super.onResume();
     }

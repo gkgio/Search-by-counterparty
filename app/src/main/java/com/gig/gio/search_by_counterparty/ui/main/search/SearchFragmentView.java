@@ -15,5 +15,5 @@ public interface SearchFragmentView {
     void hideProgress();
     void showMessage(int message, @ToastType int type);
     void onSuggestionsReady(List<String> suggestions, ResponseData responseData);
-    void startDetailFragment(String jsonSuggestResponseString);
+    void startDetailActivity(String jsonSuggestResponseString);
 }

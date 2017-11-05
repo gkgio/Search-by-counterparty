@@ -115,6 +115,8 @@ public class MapPresenterImpl implements MapPresenter {
                 .toList()
                 .subscribe((Consumer<List<MarkerOptions>>) markerOptionsList::addAll);
 
+        view.hideProgress();
+
         view.setMarkers(markerOptionsList);
     }
 }

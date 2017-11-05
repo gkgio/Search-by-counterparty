@@ -87,6 +87,8 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
 
         tvSuggests.setOnItemClickListener((p, v, pos, id) -> {
             presenter.saveSelectedSuggest(responseData, tvSuggests.getText().toString(), realm);
+            tvSuggests.getText().clear();
+            hideProgress();
         });
     }
 
@@ -139,13 +141,10 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     }
 
     @Override
-    public void startDetailFragment(String jsonSuggestResponseString) {
+    public void startDetailActivity(String jsonSuggestResponseString) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
         startActivity(intent);
-
-        tvSuggests.getText().clear();
-        hideProgress();
     }
     //=======--------- SearchView impelement metod END -----------=========
 

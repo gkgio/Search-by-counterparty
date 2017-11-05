@@ -28,6 +28,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -168,7 +169,9 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         final LatLng location = new LatLng(suggestResponse.getData().getAddress().getAddressData().getGeo_lat(),
                 suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
         final String title = suggestResponse.getValue();
-        googleMap.addMarker(new MarkerOptions().position(location)).setTitle(title);
+        googleMap.addMarker(new MarkerOptions()
+                .position(location))
+                .setTitle(title);
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15.0f));
     }
 

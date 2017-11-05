@@ -132,6 +132,7 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
 
     @Override
     public void saveSelectedSuggest(ResponseData responseData, String selectedItem, Realm realm) {
+        view.showProgress();
         SuggestResponse suggestResponse = null;
 
         for (SuggestResponse suggest : responseData.getSuggestions()) {
@@ -150,6 +151,8 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
 
         Gson localGson = new Gson();
         final String jsonSuggestResponse = localGson.toJson(finalSuggestResponse, SuggestResponse.class);
-        view.startDetailFragment(jsonSuggestResponse);
+        view.startDetailActivity(jsonSuggestResponse);
+
+        view.hideProgress();
     }
 }
