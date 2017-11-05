@@ -178,6 +178,12 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
                 nextId = currentIdNum.intValue() + 1;
             }
             suggestResponse.setId(nextId);
+            suggestResponse.getData().setId(nextId);
+            suggestResponse.getData().getAddress().setId(nextId);
+            suggestResponse.getData().getAddress().getAddressData().setId(nextId);
+            suggestResponse.getData().getManagement().setId(nextId);
+            suggestResponse.getData().getOpf().setId(nextId);
+            suggestResponse.getData().getState().setId(nextId);
         });
 
 

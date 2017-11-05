@@ -44,6 +44,10 @@
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_navigator.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_star.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_star.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21\\ic_map.xml",
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_map.xml"
     },

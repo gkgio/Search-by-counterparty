@@ -100,20 +100,18 @@ public class MapPresenterImpl implements MapPresenter {
     }
 
     private void createMarkerOptions(final List<SuggestResponse> suggestResponseList) {
-        List<MarkerOptions> markerOptionsList = new ArrayList<>();
-
-        Observable.just(suggestResponseList)
-                .flatMapIterable(list -> list)
-                .map(suggestResponse -> {
-                    final LatLng position = new LatLng(
-                            suggestResponse.getData().getAddress().getAddressData().getGeo_lat(),
-                            suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
-                    final String title = suggestResponse.getValue();
-                    final String snippetId = Long.toString(suggestResponse.getId());
-                    return new MarkerOptions().position(position).title(title).snippet(snippetId);
-                })
-                .toList()
-                .subscribe((Consumer<List<MarkerOptions>>) markerOptionsList::addAll);
+        List<MarkerOptions> markerOptionsList =
+                Observable.fromIterable(suggestResponseList)
+                        .map(suggestResponse -> {
+                            final LatLng position = new LatLng(
+                                    suggestResponse.getData().getAddress().getAddressData().getGeo_lat(),
+                                    suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
+                            final String title = suggestResponse.getValue();
+                            final String snippetId = Long.toString(suggestResponse.getId());
+                            return new MarkerOptions().position(position).title(title).snippet(snippetId);
+                        })
+                        .toList()
+                        .blockingGet();
 
         view.hideProgress();
 

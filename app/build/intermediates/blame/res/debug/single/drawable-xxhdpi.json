@@ -12,6 +12,10 @@
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_home.png"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_star.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_star.png"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_dehaze.png",
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_dehaze.png"
     },

@@ -95,7 +95,6 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         presenter.onAttachView();
         presenter.getCounterPartyFromRealm(bus, realm);
         presenter.initMap(map != null);
-        setCurrentMarkerPosition(currentMarkerLocation);
         super.onResume();
     }
 
@@ -144,6 +143,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         settings.setMapToolbarEnabled(false);
         this.map = googleMap;
         setMapZoom();
+        setCurrentMarkerPosition(currentMarkerLocation);
     }
 
     //=======--------- MapView implement method START ---------=========

@@ -703,7 +703,8 @@
     <string name="input_suggestions">Пойск контрагента</string>
     <string name="kpp_name_filter">КПП: %1$s</string>
     <string name="map_activity_title">Карта</string>
-    <string name="menu_bookmark">Избранная</string>
+    <string name="menu_bookmark_selected">Избранная</string>
+    <string name="menu_bookmark_unselected">Не избранная</string>
     <string name="name_or_inn">Наименование/ИНН</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

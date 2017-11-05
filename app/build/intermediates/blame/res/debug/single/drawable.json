@@ -4,6 +4,10 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_home.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_home.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\abc_seekbar_track_material.xml"
     },
@@ -16,6 +20,10 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_exit.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_exit.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_light.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\abc_list_selector_background_transition_holo_light.xml"
     },
@@ -24,8 +32,16 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\a17faa2ede2dc42439d65846f21b48d501e94f0d\\output\\res\\drawable\\common_google_signin_btn_text_dark_normal.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_navigator.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_navigator.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light_normal.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\a17faa2ede2dc42439d65846f21b48d501e94f0d\\output\\res\\drawable\\common_google_signin_btn_icon_light_normal.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_block.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_block.xml"
     },
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_dark_focused.xml",
@@ -34,6 +50,10 @@
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_email.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_email.xml"
     },
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_tab_indicator_material.xml",
@@ -68,6 +88,10 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\abc_text_cursor_material.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_info_outline_white.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_info_outline_white.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ic_ab_back_material.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\abc_ic_ab_back_material.xml"
     },
@@ -76,8 +100,16 @@
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\icon_splash.jpg"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_info.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_info.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\icon_star_select.png",
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\icon_star_select.png"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_star.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_star.xml"
     },
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_dark.xml",
@@ -102,6 +134,10 @@
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg_low.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_folder.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_folder.xml"
     },
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_edit_text_material.xml",
@@ -200,6 +236,10 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\abc_item_background_holo_light.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_map.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_map.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_icon_light.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\a17faa2ede2dc42439d65846f21b48d501e94f0d\\output\\res\\drawable\\common_google_signin_btn_icon_light.xml"
     },
@@ -210,6 +250,10 @@
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_bg.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_report_problem_white.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_report_problem_white.xml"
     },
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_google_signin_btn_text_light_focused.xml",
@@ -238,6 +282,10 @@
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_ratingbar_indicator_material.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\drawable\\abc_ratingbar_indicator_material.xml"
+    },
+    {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_dehaze.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\drawable\\ic_dehaze.xml"
     },
     {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",

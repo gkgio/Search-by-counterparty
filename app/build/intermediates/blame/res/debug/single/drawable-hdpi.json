@@ -12,6 +12,10 @@
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_home.png"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_star.png",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_star.png"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_navigator.png",
         "source": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_navigator.png"
     },
