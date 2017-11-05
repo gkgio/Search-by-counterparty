@@ -16,6 +16,4 @@ public interface MainPresenter {
     void logout(SharedPreferences preferences, Realm realm);
     void onAttachView();
     void onDetachView();
-    boolean isFirstStart(SharedPreferences preferences);
-    void setIsFirstStart(SharedPreferences preferences);
 }

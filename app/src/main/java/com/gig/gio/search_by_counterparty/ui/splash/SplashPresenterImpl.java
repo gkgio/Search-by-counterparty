@@ -25,9 +25,7 @@ public class SplashPresenterImpl implements SplashPresenter {
 
         // запускаем соответствующую активити после задержки
         new Handler().postDelayed(() -> {
-
-                view.startMain();
-
+            view.startMain();
             view.finishActivity();
         }, Config.SHOW_SPLASH_DELAY_MILLIS);
     }

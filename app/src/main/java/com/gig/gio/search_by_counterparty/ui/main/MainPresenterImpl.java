@@ -2,32 +2,18 @@ package com.gig.gio.search_by_counterparty.ui.main;
 
 import android.content.SharedPreferences;
 
-import com.gig.gio.search_by_counterparty.BuildConfig;
 import com.gig.gio.search_by_counterparty.R;
-import com.gig.gio.search_by_counterparty.common.Config;
 import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
-import com.gig.gio.search_by_counterparty.common.eventbus.events.main.ResponseDataEvent;
-import com.gig.gio.search_by_counterparty.common.rx.RxUtil;
-import com.gig.gio.search_by_counterparty.model.RequestData;
-import com.gig.gio.search_by_counterparty.model.ResponseData;
-import com.gig.gio.search_by_counterparty.model.SuggestResponse;
-import com.gig.gio.search_by_counterparty.network.NetworkService;
-
-import java.net.HttpURLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.realm.Realm;
-import retrofit2.Response;
 
 /**
  * Created by georgy on 28.10.2017.
@@ -48,10 +34,10 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void logout(SharedPreferences preferences, Realm realm) {
-        realm.executeTransaction(transaction -> transaction.deleteAll());
+        /*realm.executeTransaction(transaction -> transaction.deleteAll());
         preferences.edit()
                 .remove(Config.IS_FIRST_START)
-                .apply();
+                .apply();*/
     }
 
     @Override
@@ -80,15 +66,5 @@ public class MainPresenterImpl implements MainPresenter {
                         view.showMessage(R.string.toast_error, ToastType.ERROR);
                     }
                 });
-    }
-
-    @Override
-    public boolean isFirstStart(SharedPreferences preferences){
-        return preferences.getBoolean(Config.IS_FIRST_START, true);
-    }
-
-    @Override
-    public void setIsFirstStart(SharedPreferences preferences){
-         preferences.edit().putBoolean(Config.IS_FIRST_START, false).apply();
     }
 }

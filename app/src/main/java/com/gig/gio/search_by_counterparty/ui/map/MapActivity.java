@@ -19,7 +19,6 @@ import com.gig.gio.search_by_counterparty.common.map.MapItem;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.components.DaggerMapComponent;
-import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.di.components.MapComponent;
 import com.gig.gio.search_by_counterparty.di.modules.MapModule;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -35,7 +34,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.disposables.Disposable;
 import io.realm.Realm;
 
 /**

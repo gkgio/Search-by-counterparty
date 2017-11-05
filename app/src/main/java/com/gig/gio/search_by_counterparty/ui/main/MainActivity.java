@@ -181,16 +181,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     //=======--------- MainView impelement metod START ---------=========
 
     @Override
-    public void changeItemNavigationViewHomeChecked() {
-        navigationView.getMenu().getItem(0).setChecked(true);
-    }
-
-    @Override
-    public void closeDrawerMenu() {
-        drawer.closeDrawer(GravityCompat.START);
-    }
-
-    @Override
     public void hideProgress() {
         progressBar.setVisibility(View.INVISIBLE);
     }
@@ -204,6 +194,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     public void showMessage(int message, @ToastType int type) {
         showToast(message, type);
     }
+
     //=======--------- MainView impelement metod END -----------=========
 
     // BaseActivity extended method =========
