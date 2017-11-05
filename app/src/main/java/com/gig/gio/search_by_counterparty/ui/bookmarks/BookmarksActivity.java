@@ -4,14 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseActivity;
+import com.gig.gio.search_by_counterparty.common.Config;
+import com.gig.gio.search_by_counterparty.common.adapters.AutoCompleteAdapter;
 import com.gig.gio.search_by_counterparty.common.adapters.BookMarksRecyclerAdapter;
 import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
@@ -42,9 +51,11 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
 
     private ProgressBar progressBar;
     private Toolbar toolbar;
-
+    private AutoCompleteTextView etSearch;
     private Realm realm;
+    private List<SuggestResponse> suggestResponseList;
 
+    private AutoCompleteAdapter<String> adapter;
     private BookMarksRecyclerAdapter bookMarksRecyclerAdapter;
 
     @Override
@@ -69,7 +80,38 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
 
         bookMarksRecyclerAdapter = new BookMarksRecyclerAdapter(this, bus);
 
+        rvBookMarks.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        rvBookMarks.setItemAnimator(new DefaultItemAnimator());
+        rvBookMarks.setLayoutManager(new LinearLayoutManager(this));
         rvBookMarks.setAdapter(bookMarksRecyclerAdapter);
+
+         etSearch = (AutoCompleteTextView) findViewById(R.id.etSearch);
+        adapter = new AutoCompleteAdapter<>(this, android.R.layout.simple_list_item_1, Config.EMPTY);
+
+        etSearch.setAdapter(adapter);
+
+       etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                presenter.searchByBookmarks(s.toString(), suggestResponseList);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        etSearch.setOnItemClickListener((p, v, pos, id) -> {
+            presenter.findSuggestForDetailActivity(etSearch.getText().toString(), suggestResponseList);
+        });
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override
@@ -110,7 +152,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         return super.onOptionsItemSelected(item);
     }
 
-    //=======--------- BookmarksView impelement metod START ---------=========
+    //=======--------- BookmarksView implement method START ---------=========
 
     @Override
     public void hideProgress() {
@@ -128,7 +170,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
     }
 
     @Override
-    public void openDetailActivity(String jsonSuggestResponseString) {
+    public void startDetailActivity(String jsonSuggestResponseString) {
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
         startActivity(intent);
@@ -137,10 +179,18 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
 
     @Override
     public void setDataInAdapter(List<SuggestResponse> suggestResponseList){
-        bookMarksRecyclerAdapter.update(suggestResponseList);
+        bookMarksRecyclerAdapter.setValues(suggestResponseList);
+        this.suggestResponseList = suggestResponseList;
     }
 
-    //=======--------- BookmarksView impelement metod END ---------=========
+    @Override
+    public synchronized void onSuggestionsReady(List<String> suggestions) {
+        adapter.clear();
+        adapter.addAll(suggestions);
+        adapter.notifyDataSetChanged();
+    }
+
+    //=======--------- BookmarksView implement method END ---------=========
 
     // BaseActivity extended method =========
     @Override
@@ -158,4 +208,3 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         return component;
     }
 }
-

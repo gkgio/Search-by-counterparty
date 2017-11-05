@@ -14,7 +14,8 @@ import android.widget.ProgressBar;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseFragment;
-import com.gig.gio.search_by_counterparty.common.adapters.DaDataArrayAdapter;
+import com.gig.gio.search_by_counterparty.common.Config;
+import com.gig.gio.search_by_counterparty.common.adapters.AutoCompleteAdapter;
 import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
@@ -39,12 +40,10 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     SearchFragmentPresenter presenter;
 
     private Realm realm;
-
     private ProgressBar progressBar;
-
     private AutoCompleteTextView tvSuggests;
-    private static final List<String> EMPTY = new ArrayList<>();
-    private DaDataArrayAdapter<String> adapter;
+
+    private AutoCompleteAdapter<String> adapter;
 
     private ResponseData responseData;
 
@@ -60,7 +59,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
         progressBar = (ProgressBar) getActivity().findViewById(R.id.progressBar);
 
         tvSuggests = (AutoCompleteTextView) view.findViewById(R.id.tvAutoComplete);
-        adapter = new DaDataArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, EMPTY);
+        adapter = new AutoCompleteAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Config.EMPTY);
 
         tvSuggests.setAdapter(adapter);
 
@@ -119,7 +118,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
         startActivity(intent);
     }
 
-    //=======--------- SearchView impelement metod START ---------=========
+    //=======--------- SearchView implement method START ---------=========
 
     @Override
     public void hideProgress() {
@@ -150,6 +149,6 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
         intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
         startActivity(intent);
     }
-    //=======--------- SearchView impelement metod END -----------=========
+    //=======--------- SearchView implement method END -----------=========
 
 }

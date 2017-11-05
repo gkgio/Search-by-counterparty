@@ -14,6 +14,7 @@ public interface BookmarksView {
     void showProgress();
     void hideProgress();
     void showMessage(int message, @ToastType int type);
-    void openDetailActivity(String jsonSuggestResponseString);
+    void startDetailActivity(String jsonSuggestResponseString);
     void setDataInAdapter(List<SuggestResponse> suggestResponseList);
+    void onSuggestionsReady(List<String> suggestions);
 }

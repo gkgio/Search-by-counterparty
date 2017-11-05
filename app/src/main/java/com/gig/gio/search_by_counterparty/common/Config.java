@@ -1,5 +1,8 @@
 package com.gig.gio.search_by_counterparty.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by georgy on 15.10.2017.
  * Gig
@@ -22,8 +25,10 @@ public class Config {
 
     public static final String AUTHOR_EMAIL = "eeyyon@gmail.com";
 
-    public static final String IS_FIRST_START = "IS_FIRST_START";
+    public static final String CURRENT_FRAGMENT_TAG = "CURRENT_FRAGMENT_TAG";
 
     public static final String ABOUT_FRAGMENT_TAG = "ABOUT_FRAGMENT";
     public static final String SEARCH_FRAGMENT_TAG = "SEARCH_FRAGMENT";
+
+    public static final List<String> EMPTY = new ArrayList<>();
 }

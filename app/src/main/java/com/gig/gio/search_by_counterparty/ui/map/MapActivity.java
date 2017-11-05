@@ -146,7 +146,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         setMapZoom();
     }
 
-    //=======--------- MapView impelement metod START ---------=========
+    //=======--------- MapView implement method START ---------=========
 
     @Override
     public void hideProgress() {
@@ -183,7 +183,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         map.moveCamera(CameraUpdateFactory.zoomTo(Config.MAP_ZOOM));
     }
 
-    //=======--------- MapView impelement metod END ---------=========
+    //=======--------- MapView implement method END ---------=========
 
     // BaseActivity extended method =========
     @Override

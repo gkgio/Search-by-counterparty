@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:2:1-44:12
+ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:2:1-46:12
 	package
 		ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:4:5-49
 		INJECTED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml
@@ -32,7 +32,7 @@ MERGED from [com.google.firebase:firebase-iid:11.4.2] C:\Users\georgy\.android\b
 	android:name
 		ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:7:22-76
 application
-ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:9:5-42:19
+ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:9:5-44:19
 MERGED from [com.android.support:design:25.3.1] C:\Users\georgy\.android\build-cache\51f3588df95bc8c0c7964a2ebced60c7d9294c13\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:appcompat-v7:25.3.1] C:\Users\georgy\.android\build-cache\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\output\AndroidManifest.xml:29:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.3.1] C:\Users\georgy\.android\build-cache\1ef6cf4bd72d183f4fb1797b1f507633281709b2\output\AndroidManifest.xml:26:5-20
@@ -116,12 +116,16 @@ activity#com.gig.gio.search_by_counterparty.ui.map.MapActivity
 ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:36:9-56
 	android:name
 		ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:36:19-53
-meta-data#io.fabric.ApiKey
-ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:38:9-40:72
-	android:value
-		ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:40:13-69
+activity#com.gig.gio.search_by_counterparty.ui.bookmarks.BookmarksActivity
+ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:38:9-68
 	android:name
-		ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:39:13-44
+		ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:38:19-65
+meta-data#io.fabric.ApiKey
+ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:40:9-42:72
+	android:value
+		ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:42:13-69
+	android:name
+		ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:41:13-44
 uses-sdk
 INJECTED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [io.realm:realm-android-library:3.7.2] C:\Users\georgy\.android\build-cache\5a0ee04c2779435ec19bed2b2ca9435c9c7a8d65\output\AndroidManifest.xml:7:5-9:41

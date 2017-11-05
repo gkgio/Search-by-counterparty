@@ -22,7 +22,7 @@ public class AddressData extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
-    private String id;
+    private long id;
 
     private double geo_lat;
 

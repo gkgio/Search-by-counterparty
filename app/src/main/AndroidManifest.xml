@@ -35,6 +35,8 @@
 
         <activity android:name=".ui.map.MapActivity" />
 
+        <activity android:name=".ui.bookmarks.BookmarksActivity" />
+
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="45aa1bc13b5cfc92ed82fecf5334daf764f59396" />

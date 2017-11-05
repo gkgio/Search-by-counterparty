@@ -30,7 +30,7 @@ public class SplashActivity extends BaseActivity implements HasComponent<SplashC
         presenter.onCreate();
     }
 
-    //=======--------- SplashView impelement metod START ---------=========
+    //=======--------- SplashView implement method START ---------=========
 
 
     @Override
@@ -46,7 +46,7 @@ public class SplashActivity extends BaseActivity implements HasComponent<SplashC
         overridePendingTransition(R.anim.fade_in_activity, R.anim.fade_out_activity);
     }
 
-    //=======--------- SplashView impelement metod END ---------=========
+    //=======--------- SplashView implement method END ---------=========
 
     // BaseActivity extended method =========
     @Override

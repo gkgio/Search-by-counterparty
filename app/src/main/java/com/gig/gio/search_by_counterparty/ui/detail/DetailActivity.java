@@ -186,7 +186,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
     }
 
 
-    //=======--------- DetailView impelement metod START ---------=========
+    //=======--------- DetailView implement method START ---------=========
 
     @Override
     public void hideProgress() {
@@ -210,7 +210,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         startActivity(intent);
     }
 
-    //=======--------- DetailView impelement metod END ---------=========
+    //=======--------- DetailView implement method END ---------=========
 
     // BaseActivity extended method =========
     @Override

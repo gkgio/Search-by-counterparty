@@ -14,6 +14,6 @@
 
     <color name="cream">#fbe3de</color>
 
-    <color name="row_odd">#F8F8F8</color>
+    <color name="row_odd">#efecec</color>
     <color name="row_even">#FFFFFF</color>
 </resources>

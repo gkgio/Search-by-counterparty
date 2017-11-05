@@ -13,6 +13,7 @@ import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.bookmarks.SuggestResponseAdapterEvent;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.RealmList;
@@ -24,14 +25,14 @@ import io.realm.RealmList;
 
 public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecyclerAdapter.BookMarksItemViewHolder> {
 
-    private RealmList<SuggestResponse> suggestResponseRealmList;
+    private List<SuggestResponse> suggestResponseRealmList;
     private Context context;
     private Bus bus;
 
     public BookMarksRecyclerAdapter(Context context, Bus bus) {
         this.context = context;
         this.bus = bus;
-        this.suggestResponseRealmList = new RealmList<>();
+        this.suggestResponseRealmList = new ArrayList<>();
     }
 
     @Override
@@ -49,7 +50,7 @@ public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecy
         holder.tvValue.setText(suggestResponse.getValue());
 
         holder.itemView.setBackgroundColor(context.getResources().
-                getColor(position % 2 != 0 ? R.color.row_even : R.color.row_odd));
+                getColor(position % 2 == 0 ? R.color.row_odd : R.color.row_even));
 
         holder.itemView.setOnClickListener(v -> bus.send(new SuggestResponseAdapterEvent(suggestResponse)));
     }
@@ -63,9 +64,8 @@ public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecy
         return suggestResponseRealmList.get(position);
     }
 
-    public void update(List<SuggestResponse> suggests) {
-        this.suggestResponseRealmList.clear();
-        this.suggestResponseRealmList.addAll(suggests);
+    public void setValues(List<SuggestResponse> suggests) {
+        this.suggestResponseRealmList = suggests;
         notifyDataSetChanged();
     }
 

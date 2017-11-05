@@ -12,12 +12,12 @@ import java.util.List;
  * Gig
  */
 
-public class DaDataArrayAdapter <String> extends ArrayAdapter<String> {
+public class AutoCompleteAdapter<String> extends ArrayAdapter<String> {
 
     private Filter filter = new KNoFilter();
     private List<String> items;
 
-    public DaDataArrayAdapter(Context context, int resource, List<String> items) {
+    public AutoCompleteAdapter(Context context, int resource, List<String> items) {
         super(context, resource, items);
         this.items = items;
     }

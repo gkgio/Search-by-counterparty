@@ -2,8 +2,8 @@ package io.realm;
 
 
 public interface SuggestResponseRealmProxyInterface {
-    public String realmGet$id();
-    public void realmSet$id(String value);
+    public long realmGet$id();
+    public void realmSet$id(long value);
     public String realmGet$value();
     public void realmSet$value(String value);
     public String realmGet$unrestricted_value();
