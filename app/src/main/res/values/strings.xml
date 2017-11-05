@@ -11,7 +11,8 @@
     <string name="drawer_menu_email">Написать разработчику</string>
     <string name="drawer_menu_exit">Выход</string>
     <string name="drawer_menu_info">О приложении</string>
-    <string name="menu_bookmark">Избранная</string>
+    <string name="menu_bookmark_selected">Избранная</string>
+    <string name="menu_bookmark_unselected">Не избранная</string>
 
     <string name="image_description">nav_app_icon</string>
 

@@ -36,10 +36,10 @@ public class MainPresenterImpl implements MainPresenter {
 
     @Override
     public void logout(SharedPreferences preferences, Realm realm) {
-        /*realm.executeTransaction(transaction -> transaction.deleteAll());
+        //realm.executeTransaction(transaction -> transaction.deleteAll());
         preferences.edit()
-                .remove(Config.IS_FIRST_START)
-                .apply();*/
+                .remove(Config.CURRENT_FRAGMENT_TAG)
+                .apply();
     }
 
     @Override

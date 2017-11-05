@@ -5,6 +5,6 @@
         android:id="@+id/action_unbookmark"
         android:orderInCategory="100"
         android:icon="@drawable/icon_star_select"
-        android:title="@string/menu_bookmark"
+        android:title="@string/menu_bookmark_selected"
         app:showAsAction="always" />
 </menu>

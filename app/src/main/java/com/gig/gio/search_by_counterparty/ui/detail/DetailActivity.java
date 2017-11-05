@@ -140,6 +140,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
             case R.id.action_bookmark:
                 suggestResponse.setBookmark(true);
                 invalidateOptionsMenu();
+                presenter.saveChangedInRealm(suggestResponse, realm);
                 break;
             default:
                 break;
