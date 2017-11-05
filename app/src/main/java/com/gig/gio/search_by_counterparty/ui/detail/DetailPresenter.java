@@ -2,8 +2,9 @@ package com.gig.gio.search_by_counterparty.ui.detail;
 
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
-import com.gig.gio.search_by_counterparty.network.NetworkService;
 import com.google.gson.Gson;
+
+import io.realm.Realm;
 
 /**
  * Created by georgy on 02.11.2017.
@@ -11,8 +12,8 @@ import com.google.gson.Gson;
  */
 
 public interface DetailPresenter {
-    void onCreateView(Bus bus, NetworkService networkService);
+    void onCreateView(Bus bus,  Gson gson);
     void onAttachView();
     void onDetachView();
-    void provideLocationForMap(SuggestResponse suggestResponse, Gson gson);
+    void provideLocationForMap(SuggestResponse suggestResponse);
 }
