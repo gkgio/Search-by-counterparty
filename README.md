@@ -7,10 +7,10 @@
 Возможность сохранения историии пойска, отметить объекты как избранные
 
 
-![alt text](image1.jpg)
+![alt text](image1.png)
 
-![alt text](image2.jpg)
+![alt text](image2.png)
 
-![alt text](image3.jpg)
+![alt text](image3.png)
 
-![alt text](image4.jpg)
+![alt text](image4.png)
