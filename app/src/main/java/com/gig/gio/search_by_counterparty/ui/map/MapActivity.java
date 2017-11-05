@@ -164,10 +164,10 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     }
 
     @Override
-    public void setMarkers(List<MarkerOptions> markerOptionses) {
+    public void setMarkers(List<MarkerOptions> markerOptionsList) {
         if (map != null) {
             clusterManager.clearItems();
-            for (MarkerOptions markerOptions : markerOptionses) {
+            for (MarkerOptions markerOptions : markerOptionsList) {
                 LatLng position = markerOptions.getPosition();
                 clusterManager.addItem(new MapItem(position.latitude, position.longitude,
                         markerOptions.getTitle(), markerOptions.getSnippet()));

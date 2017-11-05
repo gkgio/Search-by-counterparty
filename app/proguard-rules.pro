@@ -116,23 +116,6 @@
 -dontwarn retrofit2.**
 
 
-#############
-# Okio
-#############
--keep class okio.** {*;}
--dontwarn okio.**
-
-
-###################
-# ReactiveLocation
-###################
--keep class pl.charmas.android.reactivelocation.** {*;}
--dontwarn pl.charmas.android.reactivelocation.**
-
--keep class rx.internal.util.unsafe.** {*;}
--dontwarn rx.internal.util.unsafe.**
-
-
 ###################
 # Crashlytics
 ###################

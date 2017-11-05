@@ -64,6 +64,10 @@
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\layout\\notification_action.xml"
     },
     {
+        "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_bookmarks.xml",
+        "source": "D:\\androidProjects\\Search-by-counterparty\\app\\src\\main\\res\\layout\\activity_bookmarks.xml"
+    },
+    {
         "merged": "D:\\androidProjects\\Search-by-counterparty\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
         "source": "C:\\Users\\georgy\\.android\\build-cache\\4eaccf0d162ec009b115c7e0ff4f542f8d2a663b\\output\\res\\layout\\abc_action_bar_up_container.xml"
     },

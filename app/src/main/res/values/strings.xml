@@ -21,8 +21,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     //SearchFragment
-    <string name="input_suggestions">Введите контрагент</string>
+    <string name="input_suggestions">Пойск контрагента</string>
     <string name="name_or_inn">Наименование/ИНН</string>
+    <string name="button_open_bookmarks">Недавние и избранные</string>
 
     //DetailActivity
     <string name="value_name_filter">Организация: %1$s</string>
@@ -43,7 +44,9 @@
         нахождение его местоположения и сохранения для быстрого нахождения в последующем</string>
     <string name="author_email">По всем вопросам пишите на: eeyyon@gmail.com</string>
 
-    //BookMarksActivity
-    <string name="book_marks_activity_title">Избранные и недавние</string>
+    //BookmarksActivity
+    <string name="bookmarks_activity_title">Избранные и недавние</string>
     <string name="icon_star_is_bookmark">Избранная</string>
+    <string name="bookmarks_list_empty">Список недавних и избранных пуст</string>
+
 </resources>

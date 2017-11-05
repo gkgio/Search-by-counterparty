@@ -17,7 +17,7 @@ import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.di.components.BookmarksComponent;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
-import com.gig.gio.search_by_counterparty.di.components.DaggerBookMarksComponent;
+import com.gig.gio.search_by_counterparty.di.components.DaggerBookmarksComponent;
 import com.gig.gio.search_by_counterparty.di.modules.BookmarksModule;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import com.gig.gio.search_by_counterparty.ui.detail.DetailActivity;
@@ -75,7 +75,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        toolbar.setTitle(getResources().getString(R.string.book_marks_activity_title));
+        toolbar.setTitle(getResources().getString(R.string.bookmarks_activity_title));
     }
 
     @Override
@@ -132,6 +132,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -144,9 +145,9 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
     // BaseActivity extended method =========
     @Override
     protected void setupComponent(CounterpartyAppComponent appComponent) {
-        component = DaggerBookMarksComponent.builder()
+        component = DaggerBookmarksComponent.builder()
                 .counterpartyAppComponent(appComponent)
-                .bookMarksModule(new BookmarksModule(this))
+                .bookmarksModule(new BookmarksModule(this))
                 .build();
         component.inject(this);
     }

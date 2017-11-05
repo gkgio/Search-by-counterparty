@@ -5,6 +5,7 @@ import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
+import com.gig.gio.search_by_counterparty.common.eventbus.events.bookmarks.ListEmptyInfoEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.bookmarks.ListSuggestResponseEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.bookmarks.SuggestResponseAdapterEvent;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
@@ -68,6 +69,8 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
                         final SuggestResponse suggestResponse = ((SuggestResponseAdapterEvent) event).getSuggestResponse();
                         final String jsonSuggestResponseString = gson.toJson(suggestResponse, SuggestResponse.class);
                         view.openDetailActivity(jsonSuggestResponseString);
+                    } else if (event instanceof ListEmptyInfoEvent) {
+                        view.showMessage(R.string.bookmarks_list_empty, ToastType.INFO);
                     } else if (event instanceof HttpErrorEvent) {
                         view.showMessage(R.string.toast_error, ToastType.ERROR);
                     } else if (event instanceof ThrowableEvent) {
@@ -86,7 +89,7 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
                     // если данные в базе есть, то отправляем их в адаптер
                     // иначе выводим сообщение об ошибке,
                     bus.send((suggestResponseList.size() > 0) ?
-                            new ListSuggestResponseEvent(suggestResponseList) : new ThrowableEvent(new Throwable()));
+                            new ListSuggestResponseEvent(suggestResponseList) : new ListEmptyInfoEvent());
                 }, dbThrowable -> {
                     bus.send(new ThrowableEvent(new Throwable()));
                 });

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.gig.gio.search_by_counterparty.R;
@@ -17,6 +18,7 @@ import com.gig.gio.search_by_counterparty.common.adapters.DaDataArrayAdapter;
 import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
+import com.gig.gio.search_by_counterparty.ui.bookmarks.BookmarksActivity;
 import com.gig.gio.search_by_counterparty.ui.detail.DetailActivity;
 
 import java.util.ArrayList;
@@ -84,6 +86,9 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
             tvSuggests.getText().clear();
             hideProgress();
         });
+
+        final Button btnOpenBookmarks = (Button) view.findViewById(R.id.btnOpenBookmarks);
+        btnOpenBookmarks.setOnClickListener(v -> openBookmarksActivity());
     }
 
     @Override
@@ -107,6 +112,11 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
         presenter.onDetachView();
 
         super.onPause();
+    }
+
+    private void openBookmarksActivity() {
+        Intent intent = new Intent(getActivity(), BookmarksActivity.class);
+        startActivity(intent);
     }
 
     //=======--------- SearchView impelement metod START ---------=========
