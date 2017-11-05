@@ -3,6 +3,7 @@ package com.gig.gio.search_by_counterparty.ui.main;
 import android.content.SharedPreferences;
 
 import com.gig.gio.search_by_counterparty.R;
+import com.gig.gio.search_by_counterparty.common.Config;
 import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
@@ -25,6 +26,7 @@ public class MainPresenterImpl implements MainPresenter {
     private MainView view;
 
     private Bus bus;
+    private SharedPreferences preferences;
     private CompositeDisposable disposables;
 
     @Inject
@@ -41,8 +43,9 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void onCreateView(Bus bus) {
+    public void onCreateView(Bus bus, SharedPreferences preferences) {
         this.bus = bus;
+        this.preferences = preferences;
     }
 
     @Override
@@ -66,5 +69,15 @@ public class MainPresenterImpl implements MainPresenter {
                         view.showMessage(R.string.toast_error, ToastType.ERROR);
                     }
                 });
+    }
+
+    @Override
+    public void putCurrentPageTag(String tag){
+        preferences.edit().putString(Config.CURRENT_FRAGMENT_TAG, tag).apply();
+    }
+
+    @Override
+    public String getCurrentPageTag(){
+        return preferences.getString(Config.CURRENT_FRAGMENT_TAG, null);
     }
 }

@@ -109,7 +109,7 @@ public class MapPresenterImpl implements MapPresenter {
                             suggestResponse.getData().getAddress().getAddressData().getGeo_lat(),
                             suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
                     final String title = suggestResponse.getValue();
-                    final String snippetId = suggestResponse.getId();
+                    final String snippetId = Long.toString(suggestResponse.getId());
                     return new MarkerOptions().position(position).title(title).snippet(snippetId);
                 })
                 .toList()

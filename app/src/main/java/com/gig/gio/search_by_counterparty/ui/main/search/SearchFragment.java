@@ -118,7 +118,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
         startActivity(intent);
     }
 
-    //=======--------- SearchView impelement metod START ---------=========
+    //=======--------- SearchView implement method START ---------=========
 
     @Override
     public void hideProgress() {
@@ -149,6 +149,6 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
         intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
         startActivity(intent);
     }
-    //=======--------- SearchView impelement metod END -----------=========
+    //=======--------- SearchView implement method END -----------=========
 
 }

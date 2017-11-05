@@ -4,12 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 
@@ -76,14 +80,17 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
 
         bookMarksRecyclerAdapter = new BookMarksRecyclerAdapter(this, bus);
 
+        rvBookMarks.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        rvBookMarks.setItemAnimator(new DefaultItemAnimator());
+        rvBookMarks.setLayoutManager(new LinearLayoutManager(this));
         rvBookMarks.setAdapter(bookMarksRecyclerAdapter);
 
-        etSearch = (AutoCompleteTextView) findViewById(R.id.etSearch);
+         etSearch = (AutoCompleteTextView) findViewById(R.id.etSearch);
         adapter = new AutoCompleteAdapter<>(this, android.R.layout.simple_list_item_1, Config.EMPTY);
 
         etSearch.setAdapter(adapter);
 
-        etSearch.addTextChangedListener(new TextWatcher() {
+       etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -103,6 +110,8 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         etSearch.setOnItemClickListener((p, v, pos, id) -> {
             presenter.findSuggestForDetailActivity(etSearch.getText().toString(), suggestResponseList);
         });
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override
@@ -143,7 +152,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         return super.onOptionsItemSelected(item);
     }
 
-    //=======--------- BookmarksView impelement metod START ---------=========
+    //=======--------- BookmarksView implement method START ---------=========
 
     @Override
     public void hideProgress() {
@@ -170,7 +179,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
 
     @Override
     public void setDataInAdapter(List<SuggestResponse> suggestResponseList){
-        bookMarksRecyclerAdapter.update(suggestResponseList);
+        bookMarksRecyclerAdapter.setValues(suggestResponseList);
         this.suggestResponseList = suggestResponseList;
     }
 
@@ -181,7 +190,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         adapter.notifyDataSetChanged();
     }
 
-    //=======--------- BookmarksView impelement metod END ---------=========
+    //=======--------- BookmarksView implement method END ---------=========
 
     // BaseActivity extended method =========
     @Override

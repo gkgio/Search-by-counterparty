@@ -52,6 +52,7 @@
         <activity android:name="com.gig.gio.search_by_counterparty.ui.main.MainActivity" />
         <activity android:name="com.gig.gio.search_by_counterparty.ui.detail.DetailActivity" />
         <activity android:name="com.gig.gio.search_by_counterparty.ui.map.MapActivity" />
+        <activity android:name="com.gig.gio.search_by_counterparty.ui.bookmarks.BookmarksActivity" />
 
         <meta-data
             android:name="io.fabric.ApiKey"

@@ -22,7 +22,7 @@ public class State extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
-    private String id;
+    private long id;
 
     private String status;
 

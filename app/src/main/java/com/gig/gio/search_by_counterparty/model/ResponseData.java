@@ -25,7 +25,7 @@ public class ResponseData extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
-    private String id;
+    private long id;
 
     @SerializedName("suggestions")
     private RealmList<SuggestResponse> suggestions;

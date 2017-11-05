@@ -82,10 +82,13 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
-        presenter.onCreateView(bus);
+        presenter.onCreateView(bus, preferences);
 
-        if (getLastActiveFragmentTag() == null)
+        if (getLastActiveFragmentTag() == null) {
             addSearchFragment();
+            presenter.putCurrentPageTag(Config.SEARCH_FRAGMENT_TAG);
+        }
+
     }
 
     @Override
@@ -101,6 +104,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.navigation_item_home:
+                presenter.putCurrentPageTag(Config.SEARCH_FRAGMENT_TAG);
                 removeFragmentsStack();
                 addSearchFragment();
                 item.setChecked(true);
@@ -111,6 +115,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 //item.setChecked(true);
                 break;
             case R.id.navigation_item_info:
+                presenter.putCurrentPageTag(Config.ABOUT_FRAGMENT_TAG);
                 removeFragmentsStack();
                 addAboutFragment();
                 item.setChecked(true);
@@ -174,11 +179,12 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     }
 
     private void removeFragmentsStack() {
-        getSupportFragmentManager().popBackStack();
+        if (!getLastActiveFragmentTag().equals(presenter.getCurrentPageTag()))
+            getSupportFragmentManager().popBackStack();
     }
 
 
-    //=======--------- MainView impelement metod START ---------=========
+    //=======--------- MainView implement method START ---------=========
 
     @Override
     public void hideProgress() {
@@ -195,7 +201,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         showToast(message, type);
     }
 
-    //=======--------- MainView impelement metod END -----------=========
+    //=======--------- MainView implement method  END -----------=========
 
     // BaseActivity extended method =========
     @Override

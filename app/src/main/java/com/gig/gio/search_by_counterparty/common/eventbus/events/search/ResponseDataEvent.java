@@ -1,4 +1,4 @@
-package com.gig.gio.search_by_counterparty.common.eventbus.events.main;
+package com.gig.gio.search_by_counterparty.common.eventbus.events.search;
 
 import com.gig.gio.search_by_counterparty.model.ResponseData;
 

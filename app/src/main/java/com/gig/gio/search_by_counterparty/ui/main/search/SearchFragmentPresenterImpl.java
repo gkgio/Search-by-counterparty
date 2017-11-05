@@ -6,7 +6,8 @@ import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
-import com.gig.gio.search_by_counterparty.common.eventbus.events.main.ResponseDataEvent;
+import com.gig.gio.search_by_counterparty.common.eventbus.events.search.ListSuggestResponseEvent;
+import com.gig.gio.search_by_counterparty.common.eventbus.events.search.ResponseDataEvent;
 import com.gig.gio.search_by_counterparty.common.rx.RxUtil;
 import com.gig.gio.search_by_counterparty.model.RequestData;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
@@ -16,6 +17,7 @@ import com.google.gson.Gson;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -38,6 +40,7 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
 
     private Bus bus;
     private NetworkService networkService;
+    private Realm realm;
 
     private CompositeDisposable disposables;
 
@@ -71,7 +74,11 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(event -> {
                     view.hideProgress();
-                    if (event instanceof ResponseDataEvent) {
+                    if (event instanceof ListSuggestResponseEvent) {
+                        final List<SuggestResponse> suggestResponseList = ((ListSuggestResponseEvent) event).getSuggestResponseList();
+                        final SuggestResponse suggestResponse = ((ListSuggestResponseEvent) event).getSuggestResponse();
+                        saveNewItemInRealm(suggestResponseList, suggestResponse);
+                    } else if (event instanceof ResponseDataEvent) {
                         final ResponseData responseData = ((ResponseDataEvent) event).getResponseData();
                         prepareSuggestsList(responseData);
                     } else if (event instanceof HttpErrorEvent) {
@@ -130,6 +137,7 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
     @Override
     public void saveSelectedSuggest(ResponseData responseData, String selectedItem, Realm realm) {
         view.showProgress();
+        this.realm = realm;
         SuggestResponse suggestResponse = null;
 
         for (SuggestResponse suggest : responseData.getSuggestions()) {
@@ -139,15 +147,50 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
             }
         }
 
-        // кэшируем данные в realm
         SuggestResponse finalSuggestResponse = suggestResponse;
+        realm.where(SuggestResponse.class).findAll().asObservable()
+                .first()
+                .subscribe(suggest -> {
+                    List<SuggestResponse> suggestResponseList = realm.copyFromRealm(suggest);
+
+                    bus.send(new ListSuggestResponseEvent(suggestResponseList, finalSuggestResponse));
+                }, dbThrowable -> {
+                    bus.send(new ThrowableEvent(new Throwable()));
+                });
+    }
+
+    private void saveNewItemInRealm(List<SuggestResponse> suggestResponseList, SuggestResponse suggestResponse) {
+
+        for (Iterator<SuggestResponse> iter = suggestResponseList.listIterator(); iter.hasNext(); ) {
+            SuggestResponse suggest = iter.next();
+            if (suggest.getValue().equals(suggestResponse.getValue())) {
+                iter.remove();
+            }
+        }
+
         realm.executeTransaction(transaction -> {
-            assert finalSuggestResponse != null;
-            transaction.copyToRealmOrUpdate(finalSuggestResponse);
+            // increment index
+            Number currentIdNum = transaction.where(SuggestResponse.class).max("id");
+            int nextId;
+            if(currentIdNum == null) {
+                nextId = 1;
+            } else {
+                nextId = currentIdNum.intValue() + 1;
+            }
+            suggestResponse.setId(nextId);
+        });
+
+
+        suggestResponseList.add(suggestResponse);
+
+        realm.executeTransaction(transaction -> {
+            for (SuggestResponse suggest : suggestResponseList)
+                transaction.copyToRealmOrUpdate(suggest);
+
         });
 
         Gson localGson = new Gson();
-        final String jsonSuggestResponse = localGson.toJson(finalSuggestResponse, SuggestResponse.class);
+        final String jsonSuggestResponse = localGson.toJson(suggestResponse, SuggestResponse.class);
         view.startDetailActivity(jsonSuggestResponse);
 
         view.hideProgress();

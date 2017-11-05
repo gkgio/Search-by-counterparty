@@ -24,7 +24,7 @@ public class Address extends RealmObject implements Serializable {
 
     /** id */
     @PrimaryKey
-    private String id;
+    private long id;
 
     private String value;
 

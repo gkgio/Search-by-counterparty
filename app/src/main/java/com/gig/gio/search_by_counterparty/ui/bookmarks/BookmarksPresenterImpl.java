@@ -104,7 +104,7 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
         if (!queryFromUser.isEmpty()) {
             for (SuggestResponse suggest : suggestResponseList) {
                 //TODO проверить что начинается с этого
-                if (suggest.getValue().matches("")) helperValuesList.add(suggest.getValue());
+                if (suggest.getValue().startsWith(queryFromUser)) helperValuesList.add(suggest.getValue());
             }
         }
 

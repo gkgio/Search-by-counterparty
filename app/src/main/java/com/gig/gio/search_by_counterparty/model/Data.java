@@ -26,7 +26,7 @@ public class Data extends RealmObject implements Serializable {
      * id
      */
     @PrimaryKey
-    private String id;
+    private long id;
 
     private String kpp;
 
