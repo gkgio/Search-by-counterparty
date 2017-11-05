@@ -3,27 +3,21 @@ package com.gig.gio.search_by_counterparty.ui.main.search;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseFragment;
-import com.gig.gio.search_by_counterparty.common.Config;
 import com.gig.gio.search_by_counterparty.common.adapters.DaDataArrayAdapter;
 import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
 import com.gig.gio.search_by_counterparty.ui.detail.DetailActivity;
-import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
-import com.gig.gio.search_by_counterparty.ui.main.detail.DetailFragment;
 
 import java.util.ArrayList;
 import java.util.List;

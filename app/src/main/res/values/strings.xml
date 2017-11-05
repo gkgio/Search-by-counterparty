@@ -2,6 +2,8 @@
     <string name="app_name">Suggestions</string>
 
     <string name="toast_error">Ошибка подключения к серверу. Проверьте настройки сети или повторите попытку позже.</string>
+
+    //SplashActivity
     <string name="image_splash">Splash image</string>
 
     //navigation menu
@@ -41,6 +43,7 @@
         нахождение его местоположения и сохранения для быстрого нахождения в последующем</string>
     <string name="author_email">По всем вопросам пишите на: eeyyon@gmail.com</string>
 
-    //DetailFragment
-    <string name="detail_fragment_title">Описание</string>
+    //BookMarksActivity
+    <string name="book_marks_activity_title">Избранные и недавние</string>
+    <string name="icon_star_is_bookmark">Избранная</string>
 </resources>

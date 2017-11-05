@@ -55,8 +55,6 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     private GoogleMap map;
     private ClusterManager<MapItem> clusterManager;
 
-    private Disposable updateDisposable;
-
     private Realm realm;
 
     private Location currentMarkerLocation;

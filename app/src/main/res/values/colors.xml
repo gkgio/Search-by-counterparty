@@ -13,4 +13,7 @@
     <color name="splash_background">#93A2C2</color>
 
     <color name="cream">#fbe3de</color>
+
+    <color name="row_odd">#F8F8F8</color>
+    <color name="row_even">#FFFFFF</color>
 </resources>

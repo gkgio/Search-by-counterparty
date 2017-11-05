@@ -22,13 +22,13 @@ import com.gig.gio.search_by_counterparty.di.components.DaggerDetailComponent;
 import com.gig.gio.search_by_counterparty.di.components.DetailComponent;
 import com.gig.gio.search_by_counterparty.di.modules.DetailModule;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
+import com.gig.gio.search_by_counterparty.ui.bookmarks.BookmarksActivity;
 import com.gig.gio.search_by_counterparty.ui.map.MapActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -75,7 +75,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        presenter.onCreateView(bus, networkService);
+        presenter.onCreateView(bus, gson);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -102,7 +102,10 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
                 suggestResponse.getData().getAddress().getValue()));
 
         final Button btnOpenMap = (Button) findViewById(R.id.btnOpenMap);
-        btnOpenMap.setOnClickListener(v -> presenter.provideLocationForMap(suggestResponse, gson));
+        btnOpenMap.setOnClickListener(v -> presenter.provideLocationForMap(suggestResponse));
+
+        final Button btnDeleteFromLatest = (Button) findViewById(R.id.btnDeleteFromLatest);
+        btnDeleteFromLatest.setOnClickListener(v -> openBookMarksActivity());
 
     }
 
@@ -173,6 +176,12 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
                 .position(location))
                 .setTitle(title);
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15.0f));
+    }
+
+    private void openBookMarksActivity(){
+        Intent intent = new Intent(this, BookmarksActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

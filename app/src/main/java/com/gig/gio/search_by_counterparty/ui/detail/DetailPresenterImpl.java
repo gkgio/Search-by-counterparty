@@ -8,12 +8,8 @@ import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
-import com.gig.gio.search_by_counterparty.common.eventbus.events.map.MapSuggestResponseEvent;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
-import com.gig.gio.search_by_counterparty.network.NetworkService;
 import com.google.gson.Gson;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -26,12 +22,13 @@ import io.reactivex.disposables.Disposable;
  * Gig
  */
 
-public class DetailPresenterImpl implements DetailPresenter{
+public class DetailPresenterImpl implements DetailPresenter {
 
     private DetailView view;
 
-    private NetworkService networkService;
     private Bus bus;
+    private Gson gson;
+
     private CompositeDisposable disposables;
 
     @Inject
@@ -40,9 +37,9 @@ public class DetailPresenterImpl implements DetailPresenter{
     }
 
     @Override
-    public void onCreateView(Bus bus, NetworkService networkService) {
+    public void onCreateView(Bus bus, Gson gson) {
         this.bus = bus;
-        this.networkService = networkService;
+        this.gson = gson;
     }
 
     @Override
@@ -69,7 +66,7 @@ public class DetailPresenterImpl implements DetailPresenter{
     }
 
     @Override
-    public void provideLocationForMap(SuggestResponse suggestResponse, Gson gson){
+    public void provideLocationForMap(SuggestResponse suggestResponse) {
         Location location = new Location(LocationManager.GPS_PROVIDER);
         location.setLatitude(suggestResponse.getData().getAddress().getAddressData().getGeo_lat());
         location.setLongitude(suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
