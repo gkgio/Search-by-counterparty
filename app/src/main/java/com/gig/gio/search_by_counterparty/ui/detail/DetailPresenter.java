@@ -16,4 +16,5 @@ public interface DetailPresenter {
     void onAttachView();
     void onDetachView();
     void provideLocationForMap(SuggestResponse suggestResponse);
+    void saveChangedInRealm(SuggestResponse suggestResponse, Realm realm);
 }

@@ -135,6 +135,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
             case R.id.action_unbookmark:
                 suggestResponse.setBookmark(false);
                 invalidateOptionsMenu();
+                presenter.saveChangedInRealm(suggestResponse, realm);
                 break;
             case R.id.action_bookmark:
                 suggestResponse.setBookmark(true);
