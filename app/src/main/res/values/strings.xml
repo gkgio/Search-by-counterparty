@@ -48,5 +48,6 @@
     <string name="bookmarks_activity_title">Избранные и недавние</string>
     <string name="icon_star_is_bookmark">Избранная</string>
     <string name="bookmarks_list_empty">Список недавних и избранных пуст</string>
+    <string name="search">Пойск</string>
 
 </resources>

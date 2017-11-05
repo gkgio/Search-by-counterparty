@@ -9,9 +9,9 @@ import com.gig.gio.search_by_counterparty.common.eventbus.events.bookmarks.ListE
 import com.gig.gio.search_by_counterparty.common.eventbus.events.bookmarks.ListSuggestResponseEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.bookmarks.SuggestResponseAdapterEvent;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
-import com.gig.gio.search_by_counterparty.network.NetworkService;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -68,7 +68,7 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
                     } else if (event instanceof SuggestResponseAdapterEvent) {
                         final SuggestResponse suggestResponse = ((SuggestResponseAdapterEvent) event).getSuggestResponse();
                         final String jsonSuggestResponseString = gson.toJson(suggestResponse, SuggestResponse.class);
-                        view.openDetailActivity(jsonSuggestResponseString);
+                        view.startDetailActivity(jsonSuggestResponseString);
                     } else if (event instanceof ListEmptyInfoEvent) {
                         view.showMessage(R.string.bookmarks_list_empty, ToastType.INFO);
                     } else if (event instanceof HttpErrorEvent) {
@@ -93,6 +93,37 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
                 }, dbThrowable -> {
                     bus.send(new ThrowableEvent(new Throwable()));
                 });
+    }
 
+    @Override
+    public void searchByBookmarks(String searchValue, List<SuggestResponse> suggestResponseList) {
+        final String queryFromUser = searchValue.replaceAll("\\s+", " ").trim();
+
+        final List<String> helperValuesList = new ArrayList<>();
+
+        if (!queryFromUser.isEmpty()) {
+            for (SuggestResponse suggest : suggestResponseList) {
+                //TODO проверить что начинается с этого
+                if (suggest.getValue().matches("")) helperValuesList.add(suggest.getValue());
+            }
+        }
+
+        if (helperValuesList.size() > 0)
+            view.onSuggestionsReady(helperValuesList);
+    }
+
+    @Override
+    public void findSuggestForDetailActivity(String selectedItem, List<SuggestResponse> suggestResponseList) {
+        SuggestResponse suggestResponse = null;
+
+        for (SuggestResponse suggest : suggestResponseList) {
+            if (suggest.getValue().equals(selectedItem)) {
+                suggestResponse = suggest;
+                break;
+            }
+        }
+
+        final String jsonSuggestResponse = gson.toJson(suggestResponse, SuggestResponse.class);
+        view.startDetailActivity(jsonSuggestResponse);
     }
 }
