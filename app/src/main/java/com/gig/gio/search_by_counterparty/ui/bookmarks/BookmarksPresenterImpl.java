@@ -12,6 +12,7 @@ import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -88,8 +89,16 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
 
                     // если данные в базе есть, то отправляем их в адаптер
                     // иначе выводим сообщение об ошибке,
-                    bus.send((suggestResponseList.size() > 0) ?
-                            new ListSuggestResponseEvent(suggestResponseList) : new ListEmptyInfoEvent());
+                    if (suggestResponseList.size() > 0) {
+                        //предварительно сортируем
+                        Collections.sort(suggestResponseList, (o1, o2) -> {
+                            int first = o1.isBookmark() ? 1 : 0;
+                            int second = o2.isBookmark() ? 1 : 0;
+                            return second - first;
+                        });
+                        bus.send(new ListSuggestResponseEvent(suggestResponseList));
+                    } else bus.send(new ListEmptyInfoEvent());
+
                 }, dbThrowable -> {
                     bus.send(new ThrowableEvent(new Throwable()));
                 });
@@ -103,8 +112,8 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
 
         if (!queryFromUser.isEmpty()) {
             for (SuggestResponse suggest : suggestResponseList) {
-                //TODO проверить что начинается с этого
-                if (suggest.getValue().startsWith(queryFromUser)) helperValuesList.add(suggest.getValue());
+                if (suggest.getValue().startsWith(queryFromUser))
+                    helperValuesList.add(suggest.getValue());
             }
         }
 
