@@ -3,10 +3,12 @@ package com.gig.gio.search_by_counterparty.app;
 import android.app.Application;
 import android.content.Context;
 
+import com.crashlytics.android.Crashlytics;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.components.DaggerCounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.modules.CounterpartyAppModule;
 
+import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -26,6 +28,7 @@ public class CounterpartyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fabric.with(this, new Crashlytics());
         buildObjectGraphAndInject();
        // Fabric.with(this, new Crashlytics());
 

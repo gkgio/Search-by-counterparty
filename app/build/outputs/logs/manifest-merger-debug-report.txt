@@ -18,6 +18,11 @@ ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifes
 uses-permission#android.permission.INTERNET
 ADDED from D:\androidProjects\Search-by-counterparty\app\src\main\AndroidManifest.xml:6:5-67
 MERGED from [com.google.android.gms:play-services-maps:11.4.2] C:\Users\georgy\.android\build-cache\e5c5b4891cc76e803538fae8e2a4154b13101fcb\output\AndroidManifest.xml:20:5-66
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.7.1] C:\Users\georgy\.android\build-cache\7898ee0d169c6557a663ffdb68c6f1c7c6f8123b\output\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:beta:1.2.7] C:\Users\georgy\.android\build-cache\05f498fbba184d5a3b770ae216d66275fa389da8\output\AndroidManifest.xml:9:5-67
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.4.1] C:\Users\georgy\.android\build-cache\3637defc2b8ae69d160c25096d1c4d3ba4ad7823\output\AndroidManifest.xml:52:5-67
+MERGED from [com.crashlytics.sdk.android:answers:1.4.1] C:\Users\georgy\.android\build-cache\f9e6b027594c3928d1ed8e8733dca492fe4a026a\output\AndroidManifest.xml:9:5-67
+MERGED from [io.fabric.sdk.android:fabric:1.4.1] C:\Users\georgy\.android\build-cache\526e44169442a073b1e98f00d2006edf43dc9270\output\AndroidManifest.xml:29:5-67
 MERGED from [com.google.firebase:firebase-analytics:11.4.2] C:\Users\georgy\.android\build-cache\eab48be05df0551a2270ec1563b02c4b5269137a\output\AndroidManifest.xml:20:5-66
 MERGED from [com.google.firebase:firebase-analytics-impl:11.4.2] C:\Users\georgy\.android\build-cache\3ef6cea0dcd55ce42250227219cfdfa5327900e6\output\AndroidManifest.xml:20:5-66
 MERGED from [com.google.firebase:firebase-iid:11.4.2] C:\Users\georgy\.android\build-cache\2bf58018e33989228819ec714598c21b63a5773f\output\AndroidManifest.xml:20:5-66
@@ -46,6 +51,11 @@ MERGED from [com.google.android.gms:play-services-base:11.4.2] C:\Users\georgy\.
 MERGED from [com.google.android.gms:play-services-base-license:11.4.2] C:\Users\georgy\.android\build-cache\17ebc10d2a9c0114eef541082833c78215d9247b\output\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-maps-license:11.4.2] C:\Users\georgy\.android\build-cache\9b53f12f9d4a85b054298409d794870dd41e2807\output\AndroidManifest.xml:5:5-20
 MERGED from [com.google.maps.android:android-maps-utils:0.5] C:\Users\georgy\.android\build-cache\6d09ae24426babe8be6c12d3997f7335ac6ed017\output\AndroidManifest.xml:7:5-11:19
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.7.1] C:\Users\georgy\.android\build-cache\7898ee0d169c6557a663ffdb68c6f1c7c6f8123b\output\AndroidManifest.xml:11:5-17:19
+MERGED from [com.crashlytics.sdk.android:beta:1.2.7] C:\Users\georgy\.android\build-cache\05f498fbba184d5a3b770ae216d66275fa389da8\output\AndroidManifest.xml:11:5-20
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.4.1] C:\Users\georgy\.android\build-cache\3637defc2b8ae69d160c25096d1c4d3ba4ad7823\output\AndroidManifest.xml:54:5-20
+MERGED from [com.crashlytics.sdk.android:answers:1.4.1] C:\Users\georgy\.android\build-cache\f9e6b027594c3928d1ed8e8733dca492fe4a026a\output\AndroidManifest.xml:11:5-20
+MERGED from [io.fabric.sdk.android:fabric:1.4.1] C:\Users\georgy\.android\build-cache\526e44169442a073b1e98f00d2006edf43dc9270\output\AndroidManifest.xml:31:5-20
 MERGED from [com.tbruyelle.rxpermissions:rxpermissions:0.9.4] C:\Users\georgy\.android\build-cache\da0128330cb54066ac6d1395d5eeb403d30cea96\output\AndroidManifest.xml:11:5-20
 MERGED from [com.google.firebase:firebase-core:11.4.2] C:\Users\georgy\.android\build-cache\376290376f562694dd877d56a5da05dddf412920\output\AndroidManifest.xml:5:5-20
 MERGED from [com.google.firebase:firebase-analytics:11.4.2] C:\Users\georgy\.android\build-cache\eab48be05df0551a2270ec1563b02c4b5269137a\output\AndroidManifest.xml:24:5-34:19
@@ -148,6 +158,11 @@ MERGED from [io.reactivex.rxjava2:rxandroid:2.0.1] C:\Users\georgy\.android\buil
 MERGED from [com.jakewharton.rxbinding:rxbinding-support-v4:1.0.1] C:\Users\georgy\.android\build-cache\bb0b821fd2a38b762243d743199a829ea8205aa9\output\AndroidManifest.xml:6:5-44
 MERGED from [com.jakewharton.rxbinding:rxbinding:1.0.1] C:\Users\georgy\.android\build-cache\3fcd5a8e2bb59469a944a2d7513a5c75ed981c82\output\AndroidManifest.xml:6:5-44
 MERGED from [io.reactivex:rxandroid:1.2.1] C:\Users\georgy\.android\build-cache\663497c6464ab36690cbdcd8f9157b4abde426fe\output\AndroidManifest.xml:19:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics:2.7.1] C:\Users\georgy\.android\build-cache\7898ee0d169c6557a663ffdb68c6f1c7c6f8123b\output\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:beta:1.2.7] C:\Users\georgy\.android\build-cache\05f498fbba184d5a3b770ae216d66275fa389da8\output\AndroidManifest.xml:7:5-43
+MERGED from [com.crashlytics.sdk.android:crashlytics-core:2.4.1] C:\Users\georgy\.android\build-cache\3637defc2b8ae69d160c25096d1c4d3ba4ad7823\output\AndroidManifest.xml:50:5-43
+MERGED from [com.crashlytics.sdk.android:answers:1.4.1] C:\Users\georgy\.android\build-cache\f9e6b027594c3928d1ed8e8733dca492fe4a026a\output\AndroidManifest.xml:7:5-43
+MERGED from [io.fabric.sdk.android:fabric:1.4.1] C:\Users\georgy\.android\build-cache\526e44169442a073b1e98f00d2006edf43dc9270\output\AndroidManifest.xml:27:5-43
 MERGED from [com.tbruyelle.rxpermissions:rxpermissions:0.9.4] C:\Users\georgy\.android\build-cache\da0128330cb54066ac6d1395d5eeb403d30cea96\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:firebase-core:11.4.2] C:\Users\georgy\.android\build-cache\376290376f562694dd877d56a5da05dddf412920\output\AndroidManifest.xml:4:5-43
 MERGED from [com.google.firebase:firebase-analytics:11.4.2] C:\Users\georgy\.android\build-cache\eab48be05df0551a2270ec1563b02c4b5269137a\output\AndroidManifest.xml:17:5-43
@@ -215,6 +230,16 @@ MERGED from [com.google.android.gms:play-services-basement:11.4.2] C:\Users\geor
 		ADDED from [com.google.maps.android:android-maps-utils:0.5] C:\Users\georgy\.android\build-cache\6d09ae24426babe8be6c12d3997f7335ac6ed017\output\AndroidManifest.xml:10:13-66
 	android:name
 		ADDED from [com.google.maps.android:android-maps-utils:0.5] C:\Users\georgy\.android\build-cache\6d09ae24426babe8be6c12d3997f7335ac6ed017\output\AndroidManifest.xml:9:13-58
+provider#com.crashlytics.android.CrashlyticsInitProvider
+ADDED from [com.crashlytics.sdk.android:crashlytics:2.7.1] C:\Users\georgy\.android\build-cache\7898ee0d169c6557a663ffdb68c6f1c7c6f8123b\output\AndroidManifest.xml:12:9-16:39
+	android:authorities
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.7.1] C:\Users\georgy\.android\build-cache\7898ee0d169c6557a663ffdb68c6f1c7c6f8123b\output\AndroidManifest.xml:14:13-75
+	android:exported
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.7.1] C:\Users\georgy\.android\build-cache\7898ee0d169c6557a663ffdb68c6f1c7c6f8123b\output\AndroidManifest.xml:15:13-37
+	android:initOrder
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.7.1] C:\Users\georgy\.android\build-cache\7898ee0d169c6557a663ffdb68c6f1c7c6f8123b\output\AndroidManifest.xml:16:13-36
+	android:name
+		ADDED from [com.crashlytics.sdk.android:crashlytics:2.7.1] C:\Users\georgy\.android\build-cache\7898ee0d169c6557a663ffdb68c6f1c7c6f8123b\output\AndroidManifest.xml:13:13-75
 uses-permission#android.permission.WAKE_LOCK
 ADDED from [com.google.firebase:firebase-analytics:11.4.2] C:\Users\georgy\.android\build-cache\eab48be05df0551a2270ec1563b02c4b5269137a\output\AndroidManifest.xml:22:5-67
 MERGED from [com.google.firebase:firebase-analytics-impl:11.4.2] C:\Users\georgy\.android\build-cache\3ef6cea0dcd55ce42250227219cfdfa5327900e6\output\AndroidManifest.xml:22:5-67

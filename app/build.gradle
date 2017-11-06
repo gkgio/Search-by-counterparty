@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'realm-android'
 apply plugin: 'me.tatarka.retrolambda'
-//apply plugin: 'io.fabric'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion rootProject.compileSdkVersion
@@ -99,13 +99,13 @@ dependencies {
     // gson
     compile 'com.google.code.gson:gson:2.8.0'
 
-   /* //crashlytics
+    //crashlytics
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true;
     }
     compile('com.crashlytics.sdk.android:answers:1.4.0@aar') {
         transitive = true;
-    }*/
+    }
 
     //lombok
     provided "org.projectlombok:lombok:${rootProject.lombokVersion}"

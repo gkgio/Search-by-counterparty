@@ -67,6 +67,12 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
+        <provider
+            android:name="com.crashlytics.android.CrashlyticsInitProvider"
+            android:authorities="com.gig.gio.search_by_counterparty.crashlyticsinitprovider"
+            android:exported="false"
+            android:initOrder="100" />
+
         <receiver
             android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
             android:enabled="true"
