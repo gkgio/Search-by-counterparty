@@ -23,11 +23,10 @@ android {
 
     signingConfigs {
         release {
-           /* storeFile file("keystore.jks")
-            storePassword "11"
+            storeFile file("key-store.jks")
+            storePassword "android-counterparty"
             keyAlias "Counterparty"
-            keyPassword "11"
-            */
+            keyPassword "android-counterparty"
         }
     }
 
@@ -41,6 +40,7 @@ android {
             ext.enableCrashlytics = true
             shrinkResources true
             minifyEnabled true
+            zipAlignEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -97,7 +97,7 @@ dependencies {
     compile "com.squareup.okhttp3:logging-interceptor:${rootProject.httpClientVersion}"
 
     // gson
-    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.google.code.gson:gson:2.8.2'
 
     //crashlytics
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {

@@ -1,6 +1,7 @@
 package com.gig.gio.search_by_counterparty.common.adapters;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,8 +50,8 @@ public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecy
             holder.ivStar.setVisibility(View.VISIBLE);
         holder.tvValue.setText(suggestResponse.getValue());
 
-        holder.itemView.setBackgroundColor(context.getResources().
-                getColor(position % 2 == 0 ? R.color.row_odd : R.color.row_even));
+        holder.itemView.setBackgroundColor(ContextCompat.
+                getColor(context, position % 2 == 0 ? R.color.row_odd : R.color.row_even));
 
         holder.itemView.setOnClickListener(v -> bus.send(new SuggestResponseAdapterEvent(suggestResponse)));
     }
