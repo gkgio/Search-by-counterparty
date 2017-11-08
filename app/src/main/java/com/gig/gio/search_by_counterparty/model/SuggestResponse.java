@@ -6,20 +6,12 @@ import java.io.Serializable;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * Created by georgy on 29.10.2017.
  * Gig
  */
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class SuggestResponse extends RealmObject implements Serializable {
 
     /** id */
@@ -33,5 +25,46 @@ public class SuggestResponse extends RealmObject implements Serializable {
     @SerializedName("data")
     private Data data;
 
-    boolean isBookmark;
+    private boolean isBookmark;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String getUnrestricted_value() {
+        return unrestricted_value;
+    }
+
+    public Data getData() {
+        return data;
+    }
+
+    public boolean isBookmark() {
+        return isBookmark;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setUnrestricted_value(String unrestricted_value) {
+        this.unrestricted_value = unrestricted_value;
+    }
+
+    public void setData(Data data) {
+        this.data = data;
+    }
+
+    public void setBookmark(boolean bookmark) {
+        isBookmark = bookmark;
+    }
 }

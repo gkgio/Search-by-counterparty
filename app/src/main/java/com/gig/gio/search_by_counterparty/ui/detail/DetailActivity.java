@@ -22,7 +22,6 @@ import com.gig.gio.search_by_counterparty.di.components.DaggerDetailComponent;
 import com.gig.gio.search_by_counterparty.di.components.DetailComponent;
 import com.gig.gio.search_by_counterparty.di.modules.DetailModule;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
-import com.gig.gio.search_by_counterparty.ui.bookmarks.BookmarksActivity;
 import com.gig.gio.search_by_counterparty.ui.map.MapActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -89,15 +88,22 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         final TextView tvStatus = (TextView) findViewById(R.id.tvStatus);
         final TextView tvAddress = (TextView) findViewById(R.id.tvAddress);
 
-        tvNameManagement.setText(suggestResponse.getData().getManagement().getName());
-        tvPostManagement.setText(suggestResponse.getData().getManagement().getPost());
-        tvOpfFull.setText(suggestResponse.getData().getOpf().getFull());
+        if (suggestResponse.getData().getManagement() != null) {
+            tvNameManagement.setText(suggestResponse.getData().getManagement().getName());
+            tvPostManagement.setText(suggestResponse.getData().getManagement().getPost());
+        }
+        if (suggestResponse.getData().getOpf() != null)
+            tvOpfFull.setText(suggestResponse.getData().getOpf().getFull());
+
+
         tvValue.setText(getString(R.string.value_name_filter, suggestResponse.getValue()));
         tvKpp.setText(getString(R.string.kpp_name_filter, suggestResponse.getData().getKpp()));
         tvInn.setText(getString(R.string.inn_name_filter, suggestResponse.getData().getInn()));
         tvOgrn.setText(getString(R.string.ogrn_name_filter, suggestResponse.getData().getOgrn()));
-        tvStatus.setText(getString(R.string.status_name_filter,
-                suggestResponse.getData().getState().getStatus()));
+
+        if (suggestResponse.getData().getState().getStatus() != null)
+            tvStatus.setText(getString(R.string.status_name_filter,
+                    suggestResponse.getData().getState().getStatus()));
         tvAddress.setText(getString(R.string.address_name_filter,
                 suggestResponse.getData().getAddress().getValue()));
 
@@ -105,7 +111,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         btnOpenMap.setOnClickListener(v -> presenter.provideLocationForMap(suggestResponse));
 
         final Button btnDeleteFromLatest = (Button) findViewById(R.id.btnDeleteFromLatest);
-        btnDeleteFromLatest.setOnClickListener(v -> openBookMarksActivity());
+        btnDeleteFromLatest.setOnClickListener(v -> presenter.deleteFromLatest(suggestResponse, realm));
 
     }
 
@@ -171,19 +177,15 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         UiSettings settings = googleMap.getUiSettings();
         settings.setZoomControlsEnabled(true);
         settings.setMapToolbarEnabled(false);
-        final LatLng location = new LatLng(suggestResponse.getData().getAddress().getAddressData().getGeo_lat(),
-                suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
-        final String title = suggestResponse.getValue();
-        googleMap.addMarker(new MarkerOptions()
-                .position(location))
-                .setTitle(title);
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15.0f));
-    }
-
-    private void openBookMarksActivity(){
-        Intent intent = new Intent(this, BookmarksActivity.class);
-        startActivity(intent);
-        finish();
+        if (suggestResponse.getData().getAddress().getAddressData() != null) {
+            final LatLng location = new LatLng(suggestResponse.getData().getAddress().getAddressData().getGeo_lat(),
+                    suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
+            final String title = suggestResponse.getValue();
+            googleMap.addMarker(new MarkerOptions()
+                    .position(location))
+                    .setTitle(title);
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location, 15.0f));
+        }
     }
 
 

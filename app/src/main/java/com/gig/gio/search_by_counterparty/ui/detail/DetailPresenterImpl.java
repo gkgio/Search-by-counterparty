@@ -9,6 +9,7 @@ import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.detail.ListSuggestResponseEvent;
+import com.gig.gio.search_by_counterparty.common.eventbus.events.detail.SuggestDeleteBookmarkEvent;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import com.google.gson.Gson;
 
@@ -62,7 +63,9 @@ public class DetailPresenterImpl implements DetailPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(event -> {
                     view.hideProgress();
-                    if (event instanceof ListSuggestResponseEvent) {
+                    if (event instanceof SuggestDeleteBookmarkEvent) {
+                        view.showMessage(R.string.success_delete_from_bookmark, ToastType.INFO);
+                    } else if (event instanceof ListSuggestResponseEvent) {
                         final List<SuggestResponse> suggestResponseList = ((ListSuggestResponseEvent) event).getSuggestResponseList();
                         final SuggestResponse suggestResponse = ((ListSuggestResponseEvent) event).getSuggestResponse();
                         changeSelectedValue(suggestResponseList, suggestResponse);
@@ -77,12 +80,14 @@ public class DetailPresenterImpl implements DetailPresenter {
     @Override
     public void provideLocationForMap(SuggestResponse suggestResponse) {
         Location location = new Location(LocationManager.GPS_PROVIDER);
-        location.setLatitude(suggestResponse.getData().getAddress().getAddressData().getGeo_lat());
-        location.setLongitude(suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
+        if (suggestResponse.getData().getAddress().getAddressData() != null){
+            location.setLatitude(suggestResponse.getData().getAddress().getAddressData().getGeo_lat());
+            location.setLongitude(suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
 
-        final String jsonLocationString = gson.toJson(location, Location.class);
+            final String jsonLocationString = gson.toJson(location, Location.class);
 
-        view.startMapActivity(jsonLocationString);
+            view.startMapActivity(jsonLocationString);
+        }else view.startMapActivity(null);
     }
 
     @Override
@@ -92,22 +97,33 @@ public class DetailPresenterImpl implements DetailPresenter {
                 .first()
                 .subscribe(suggestResponseResult -> {
                     List<SuggestResponse> suggestResponseList = realm.copyFromRealm(suggestResponseResult);
-                    // если данные в базе есть, то открываем Seller активити, иначе выводим сообщение об ошибке
+                    // если данные в базе есть, то открываем отпаляем дальше активити, иначе выводим сообщение об ошибке
                     bus.send(suggestResponseList.size() > 0 ?
-                            new ListSuggestResponseEvent(suggestResponseList, suggestResponse) : new ThrowableEvent(new Throwable()));
+                            new ListSuggestResponseEvent(suggestResponseList, suggestResponse) :
+                            new ThrowableEvent(new Throwable()));
                 }, dbThrowable -> bus.send(new ThrowableEvent(new Throwable())));
         realm.executeTransaction(transaction -> transaction.deleteAll());
     }
 
-    private void changeSelectedValue(List<SuggestResponse> suggestResponseList, SuggestResponse suggestResponse){
+    private void changeSelectedValue(List<SuggestResponse> suggestResponseList, SuggestResponse suggestResponse) {
         // кэшируем данные в realm, обновив одно значение
         realm.executeTransaction(transaction -> {
-            for (SuggestResponse suggest : suggestResponseList){
-                if(suggest.getValue().equals(suggestResponse.getValue())){
+            for (SuggestResponse suggest : suggestResponseList) {
+                if (suggest.getValue().equals(suggestResponse.getValue())) {
                     suggest.setBookmark(!suggest.isBookmark());
                 }
                 transaction.copyToRealmOrUpdate(suggest);
             }
         });
+    }
+
+    @Override
+    public void deleteFromLatest(SuggestResponse suggestResponse, Realm realm) {
+        realm.executeTransaction(transaction -> {
+            transaction.where(SuggestResponse.class).
+                    equalTo("id", suggestResponse.getId()).findFirst().deleteFromRealm();
+        });
+
+        bus.send(new SuggestDeleteBookmarkEvent());
     }
 }

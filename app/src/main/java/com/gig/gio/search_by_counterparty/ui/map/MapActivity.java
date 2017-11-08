@@ -100,7 +100,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
     @Override
     public void onPause() {
-        if(!realm.isEmpty()) {
+        if (!realm.isEmpty()) {
             realm.close();
         }
         presenter.onDetachView();
@@ -143,7 +143,8 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         settings.setMapToolbarEnabled(false);
         this.map = googleMap;
         setMapZoom();
-        setCurrentMarkerPosition(currentMarkerLocation);
+        if (currentMarkerLocation != null)
+            setCurrentMarkerPosition(currentMarkerLocation);
     }
 
     //=======--------- MapView implement method START ---------=========

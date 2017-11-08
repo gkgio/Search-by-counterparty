@@ -4,20 +4,12 @@ import java.io.Serializable;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * Created by georgy on 01.11.2017.
  * Gig
  */
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class Management extends RealmObject implements Serializable {
 
     /** id */
@@ -27,4 +19,29 @@ public class Management extends RealmObject implements Serializable {
     private String name;
 
     private String post;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPost() {
+        return post;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
 }

@@ -17,4 +17,5 @@ public interface DetailPresenter {
     void onDetachView();
     void provideLocationForMap(SuggestResponse suggestResponse);
     void saveChangedInRealm(SuggestResponse suggestResponse, Realm realm);
+    void deleteFromLatest(SuggestResponse suggestResponse, Realm realm);
 }

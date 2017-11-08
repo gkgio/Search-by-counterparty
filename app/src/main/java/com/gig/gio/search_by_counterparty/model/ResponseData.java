@@ -7,20 +7,12 @@ import java.io.Serializable;
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * Created by georgy on 01.11.2017.
  * Gig
  */
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class ResponseData extends RealmObject implements Serializable {
 
     /** id */
@@ -29,4 +21,21 @@ public class ResponseData extends RealmObject implements Serializable {
 
     @SerializedName("suggestions")
     private RealmList<SuggestResponse> suggestions;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public RealmList<SuggestResponse> getSuggestions() {
+        return suggestions;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setSuggestions(RealmList<SuggestResponse> suggestions) {
+        this.suggestions = suggestions;
+    }
 }

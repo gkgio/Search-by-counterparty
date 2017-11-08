@@ -1,19 +1,10 @@
 package com.gig.gio.search_by_counterparty.model;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
 /**
  * Created by georgy on 30.10.2017.
  * Gig
  */
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class RequestData {
 
     /** Request string */
@@ -21,4 +12,21 @@ public class RequestData {
 
     /** Count of response object */
     private int count;
+
+
+    public String getQuery() {
+        return query;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setQuery(String query) {
+        this.query = query;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
 }

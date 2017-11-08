@@ -160,19 +160,27 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
     }
 
     private void saveNewItemInRealm(List<SuggestResponse> suggestResponseList, SuggestResponse suggestResponse) {
+        boolean isInHistory = false;
 
         for (Iterator<SuggestResponse> iter = suggestResponseList.listIterator(); iter.hasNext(); ) {
             SuggestResponse suggest = iter.next();
             if (suggest.getValue().equals(suggestResponse.getValue())) {
                 iter.remove();
+                isInHistory = true;
             }
         }
+
+        if (isInHistory)
+            realm.executeTransaction(transaction -> {
+                transaction.where(SuggestResponse.class).
+                        equalTo("value", suggestResponse.getValue()).findFirst().deleteFromRealm();
+            });
 
         realm.executeTransaction(transaction -> {
             // increment index
             Number currentIdNum = transaction.where(SuggestResponse.class).max("id");
             int nextId;
-            if(currentIdNum == null) {
+            if (currentIdNum == null) {
                 nextId = 1;
             } else {
                 nextId = currentIdNum.intValue() + 1;
@@ -180,19 +188,16 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
             suggestResponse.setId(nextId);
             suggestResponse.getData().setId(nextId);
             suggestResponse.getData().getAddress().setId(nextId);
-            suggestResponse.getData().getAddress().getAddressData().setId(nextId);
-            suggestResponse.getData().getManagement().setId(nextId);
-            suggestResponse.getData().getOpf().setId(nextId);
-            suggestResponse.getData().getState().setId(nextId);
-        });
+            if (suggestResponse.getData().getAddress().getAddressData() != null)
+                suggestResponse.getData().getAddress().getAddressData().setId(nextId);
+            if (suggestResponse.getData().getManagement() != null)
+                suggestResponse.getData().getManagement().setId(nextId);
+            if (suggestResponse.getData().getOpf() != null)
+                suggestResponse.getData().getOpf().setId(nextId);
+            if (suggestResponse.getData().getState() != null)
+                suggestResponse.getData().getState().setId(nextId);
 
-
-        suggestResponseList.add(suggestResponse);
-
-        realm.executeTransaction(transaction -> {
-            for (SuggestResponse suggest : suggestResponseList)
-                transaction.copyToRealmOrUpdate(suggest);
-
+            transaction.copyToRealm(suggestResponse);
         });
 
         Gson localGson = new Gson();

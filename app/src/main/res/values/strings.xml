@@ -36,6 +36,9 @@
     <string name="delete_recent">Удалить из недавних</string>
     <string name="open_map">На карте</string>
     <string name="detail_activity_title">Описание</string>
+    <string name="not_indicated_value_name">не указано имя</string>
+    <string name="not_indicated_value_post">не указана должность</string>
+
 
     //MapActivity
     <string name="map_activity_title">Карта</string>
@@ -50,5 +53,6 @@
     <string name="icon_star_is_bookmark">Избранная</string>
     <string name="bookmarks_list_empty">Список недавних и избранных пуст</string>
     <string name="search">Пойск</string>
+    <string name="success_delete_from_bookmark">Организация успешно удалена</string>
 
 </resources>

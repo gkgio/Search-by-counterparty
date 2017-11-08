@@ -6,20 +6,12 @@ import java.io.Serializable;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * Created by georgy on 29.10.2017.
  * Gig
  */
 
-@Getter
-@Setter
-@ToString
-@RequiredArgsConstructor
 public class Address extends RealmObject implements Serializable {
 
     /** id */
@@ -30,4 +22,29 @@ public class Address extends RealmObject implements Serializable {
 
     @SerializedName("data")
     private AddressData AddressData;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public com.gig.gio.search_by_counterparty.model.AddressData getAddressData() {
+        return AddressData;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public void setAddressData(com.gig.gio.search_by_counterparty.model.AddressData addressData) {
+        AddressData = addressData;
+    }
 }
