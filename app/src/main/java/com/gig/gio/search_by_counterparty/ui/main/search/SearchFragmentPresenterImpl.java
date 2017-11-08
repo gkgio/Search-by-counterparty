@@ -181,10 +181,11 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
             Number currentIdNum = transaction.where(SuggestResponse.class).max("id");
             int nextId;
             if (currentIdNum == null) {
-                nextId = 1;
+                nextId = length.intValue() + 1;
             } else {
                 nextId = currentIdNum.intValue() + 1;
             }
+
             suggestResponse.setId(nextId);
             suggestResponse.getData().setId(nextId);
             suggestResponse.getData().getAddress().setId(nextId);
@@ -197,7 +198,7 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
             if (suggestResponse.getData().getState() != null)
                 suggestResponse.getData().getState().setId(nextId);
 
-            transaction.copyToRealm(suggestResponse);
+            transaction.copyToRealmOrUpdate(suggestResponse);
         });
 
         Gson localGson = new Gson();

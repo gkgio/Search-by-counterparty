@@ -85,12 +85,12 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         rvBookMarks.setLayoutManager(new LinearLayoutManager(this));
         rvBookMarks.setAdapter(bookMarksRecyclerAdapter);
 
-         etSearch = (AutoCompleteTextView) findViewById(R.id.etSearch);
+        etSearch = (AutoCompleteTextView) findViewById(R.id.etSearch);
         adapter = new AutoCompleteAdapter<>(this, android.R.layout.simple_list_item_1, Config.EMPTY);
 
         etSearch.setAdapter(adapter);
 
-       etSearch.addTextChangedListener(new TextWatcher() {
+        etSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -98,7 +98,8 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                presenter.searchByBookmarks(s.toString(), suggestResponseList);
+                if (suggestResponseList != null)
+                    presenter.searchByBookmarks(s.toString(), suggestResponseList);
             }
 
             @Override
@@ -108,7 +109,8 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         });
 
         etSearch.setOnItemClickListener((p, v, pos, id) -> {
-            presenter.findSuggestForDetailActivity(etSearch.getText().toString(), suggestResponseList);
+            if (suggestResponseList != null)
+                presenter.findSuggestForDetailActivity(etSearch.getText().toString(), suggestResponseList);
         });
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -178,7 +180,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
     }
 
     @Override
-    public void setDataInAdapter(List<SuggestResponse> suggestResponseList){
+    public void setDataInAdapter(List<SuggestResponse> suggestResponseList) {
         bookMarksRecyclerAdapter.setValues(suggestResponseList);
         this.suggestResponseList = suggestResponseList;
     }

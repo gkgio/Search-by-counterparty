@@ -36,9 +36,6 @@
     <string name="delete_recent">Удалить из недавних</string>
     <string name="open_map">На карте</string>
     <string name="detail_activity_title">Описание</string>
-    <string name="not_indicated_value_name">не указано имя</string>
-    <string name="not_indicated_value_post">не указана должность</string>
-
 
     //MapActivity
     <string name="map_activity_title">Карта</string>

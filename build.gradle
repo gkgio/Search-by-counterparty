@@ -37,7 +37,7 @@ ext {
     buildToolsVersion = '26.0.2'
 
     // App dependencies
-    supportVersion = '26.1.0'
+    supportVersion = '27.0.0'
     daggerVersion = '2.12'
     httpClientVersion = '3.9.0'
     rxBindingVersion = '1.0.1'
