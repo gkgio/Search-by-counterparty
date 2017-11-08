@@ -181,7 +181,7 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
             Number currentIdNum = transaction.where(SuggestResponse.class).max("id");
             int nextId;
             if (currentIdNum == null) {
-                nextId = length.intValue() + 1;
+                nextId = 1;
             } else {
                 nextId = currentIdNum.intValue() + 1;
             }

@@ -8,7 +8,6 @@ MERGED from [io.realm:realm-android-library:3.7.2] C:\Users\georgy\.gradle\cache
 MERGED from [com.google.firebase:firebase-core:11.6.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\firebase-core-11.6.0.aar\7bcaacd766c4f5ac6cbd10a78f830058\AndroidManifest.xml:2:1-6:12
 MERGED from [com.android.support:design:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\design-27.0.0.aar\a6ab9d6e84a6a957086d9171bb91d99a\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.0.aar\09bed2c2331c275c586167cb6f40d973\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:cardview-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.0.0.aar\290e3d89327831f42792249311c5d507\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:recyclerview-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.0.0.aar\848342e9420334844dcaddb6b961d1d5\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-location:11.6.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\play-services-location-11.6.0.aar\fbbaf9593ba14bab517dc322c53a82df\AndroidManifest.xml:2:1-5:12
 MERGED from [com.google.android.gms:play-services-maps:11.6.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\play-services-maps-11.6.0.aar\fccde9020337125df770f54f7d3ea3fb\AndroidManifest.xml:16:1-25:12
@@ -231,8 +230,6 @@ MERGED from [com.android.support:design:27.0.0] C:\Users\georgy\.gradle\caches\t
 MERGED from [com.android.support:design:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\design-27.0.0.aar\a6ab9d6e84a6a957086d9171bb91d99a\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.0.aar\09bed2c2331c275c586167cb6f40d973\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.0.0.aar\09bed2c2331c275c586167cb6f40d973\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.0.0.aar\290e3d89327831f42792249311c5d507\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\cardview-v7-27.0.0.aar\290e3d89327831f42792249311c5d507\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.0.0.aar\848342e9420334844dcaddb6b961d1d5\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:recyclerview-v7:27.0.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.0.0.aar\848342e9420334844dcaddb6b961d1d5\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:11.6.0] C:\Users\georgy\.gradle\caches\transforms-1\files-1.1\play-services-location-11.6.0.aar\fbbaf9593ba14bab517dc322c53a82df\AndroidManifest.xml:3:5-43
