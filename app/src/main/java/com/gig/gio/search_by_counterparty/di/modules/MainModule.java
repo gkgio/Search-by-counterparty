@@ -8,7 +8,7 @@ import com.gig.gio.search_by_counterparty.ui.main.MainPresenterImpl;
 import com.gig.gio.search_by_counterparty.ui.main.MainView;
 import com.gig.gio.search_by_counterparty.ui.main.search.SearchFragmentPresenter;
 import com.gig.gio.search_by_counterparty.ui.main.search.SearchFragmentPresenterImpl;
-import com.tbruyelle.rxpermissions.RxPermissions;
+
 
 import dagger.Module;
 import dagger.Provides;
@@ -49,10 +49,5 @@ public class MainModule {
     @Provides
     SearchFragmentPresenter provideSearchFragmentPresenterImpl() {
         return new SearchFragmentPresenterImpl();
-    }
-
-    @Provides
-    RxPermissions provideRxPermissions() {
-        return new RxPermissions(activity);
     }
 }

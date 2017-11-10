@@ -147,16 +147,12 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
             }
         }
 
-        SuggestResponse finalSuggestResponse = suggestResponse;
-        realm.where(SuggestResponse.class).findAll().asObservable()
-                .first()
-                .subscribe(suggest -> {
-                    List<SuggestResponse> suggestResponseList = realm.copyFromRealm(suggest);
-
-                    bus.send(new ListSuggestResponseEvent(suggestResponseList, finalSuggestResponse));
-                }, dbThrowable -> {
-                    bus.send(new ThrowableEvent(new Throwable()));
-                });
+        List<SuggestResponse> suggestResponseList = realm.copyFromRealm(realm.where(SuggestResponse.class).findAll());
+        if (suggestResponseList != null) {
+            bus.send(new ListSuggestResponseEvent(suggestResponseList, suggestResponse));
+        } else {
+            bus.send(new ThrowableEvent(new Throwable()));
+        }
     }
 
     private void saveNewItemInRealm(List<SuggestResponse> suggestResponseList, SuggestResponse suggestResponse) {

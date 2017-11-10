@@ -9,8 +9,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,11 +29,15 @@ import com.gig.gio.search_by_counterparty.di.components.DaggerBookmarksComponent
 import com.gig.gio.search_by_counterparty.di.modules.BookmarksModule;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import com.gig.gio.search_by_counterparty.ui.detail.DetailActivity;
+import com.jakewharton.rxbinding2.widget.RxAutoCompleteTextView;
+import com.jakewharton.rxbinding2.widget.RxTextView;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.realm.Realm;
 
 /**
@@ -90,28 +93,19 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
 
         etSearch.setAdapter(adapter);
 
-        etSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        RxTextView.textChanges(etSearch)
+                .debounce(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .filter(str -> !TextUtils.isEmpty(str))
+                .subscribe(s ->{
+                    if (suggestResponseList != null)
+                        presenter.searchByBookmarks(s.toString(), suggestResponseList);
+                });
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (suggestResponseList != null)
-                    presenter.searchByBookmarks(s.toString(), suggestResponseList);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        etSearch.setOnItemClickListener((p, v, pos, id) -> {
-            if (suggestResponseList != null)
-                presenter.findSuggestForDetailActivity(etSearch.getText().toString(), suggestResponseList);
-        });
+        RxAutoCompleteTextView.itemClickEvents(etSearch)
+                .subscribe(a -> {
+                    if (suggestResponseList != null)
+                        presenter.findSuggestForDetailActivity(etSearch.getText().toString(), suggestResponseList);
+                });
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
@@ -127,6 +121,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         realm = Realm.getDefaultInstance();
         presenter.onAttachView();
         presenter.loadDataForAdapter(realm);
+        adapter.clear();
 
         super.onResume();
     }

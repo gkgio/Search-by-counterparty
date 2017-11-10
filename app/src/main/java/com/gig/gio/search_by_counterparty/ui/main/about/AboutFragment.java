@@ -23,7 +23,6 @@ public class AboutFragment extends BaseFragment implements AboutFragmentView {
     @Inject
     AboutFragmentPresenter presenter;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

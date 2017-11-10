@@ -5,7 +5,6 @@ import com.gig.gio.search_by_counterparty.app.BaseFragment_MembersInjector;
 import com.gig.gio.search_by_counterparty.di.modules.MainModule;
 import com.gig.gio.search_by_counterparty.di.modules.MainModule_ProvideAboutFragmentPresenterImplFactory;
 import com.gig.gio.search_by_counterparty.di.modules.MainModule_ProvideMainViewFactory;
-import com.gig.gio.search_by_counterparty.di.modules.MainModule_ProvideRxPermissionsFactory;
 import com.gig.gio.search_by_counterparty.di.modules.MainModule_ProvideSearchFragmentPresenterImplFactory;
 import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
 import com.gig.gio.search_by_counterparty.ui.main.MainActivity_MembersInjector;
@@ -87,11 +86,6 @@ public final class DaggerMainComponent implements MainComponent {
             Preconditions.checkNotNull(
                 MainModule_ProvideMainViewFactory.proxyProvideMainView(mainModule),
                 "Cannot return null from a non-@Nullable @Provides method")));
-    MainActivity_MembersInjector.injectRxPermissions(
-        instance,
-        Preconditions.checkNotNull(
-            MainModule_ProvideRxPermissionsFactory.proxyProvideRxPermissions(mainModule),
-            "Cannot return null from a non-@Nullable @Provides method"));
     return instance;
   }
 

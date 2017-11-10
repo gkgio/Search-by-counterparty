@@ -3,8 +3,7 @@ package com.gig.gio.search_by_counterparty.ui.main.search;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +20,18 @@ import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
 import com.gig.gio.search_by_counterparty.ui.bookmarks.BookmarksActivity;
 import com.gig.gio.search_by_counterparty.ui.detail.DetailActivity;
+import com.jakewharton.rxbinding2.view.RxView;
+import com.jakewharton.rxbinding2.widget.RxAutoCompleteTextView;
+import com.jakewharton.rxbinding2.widget.RxTextView;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.realm.Realm;
 
 /**
@@ -41,7 +46,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
 
     private Realm realm;
     private ProgressBar progressBar;
-    private AutoCompleteTextView tvSuggests;
+    private AutoCompleteTextView etSuggests;
 
     private AutoCompleteAdapter<String> adapter;
 
@@ -58,36 +63,25 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         progressBar = (ProgressBar) getActivity().findViewById(R.id.progressBar);
 
-        tvSuggests = (AutoCompleteTextView) view.findViewById(R.id.tvAutoComplete);
+        etSuggests = (AutoCompleteTextView) view.findViewById(R.id.etAutoComplete);
         adapter = new AutoCompleteAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Config.EMPTY);
 
-        tvSuggests.setAdapter(adapter);
+        etSuggests.setAdapter(adapter);
 
-        tvSuggests.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        RxTextView.textChanges(etSuggests)
+                .debounce(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
+                .filter(str -> !TextUtils.isEmpty(str))
+                .subscribe(a -> presenter.requestSuggestions(a.toString()));
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                presenter.requestSuggestions(s.toString());
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        tvSuggests.setOnItemClickListener((p, v, pos, id) -> {
-            presenter.saveSelectedSuggest(responseData, tvSuggests.getText().toString(), realm);
-            tvSuggests.getText().clear();
-            hideProgress();
-        });
+        RxAutoCompleteTextView.itemClickEvents(etSuggests)
+                .subscribe(a -> {
+                    presenter.saveSelectedSuggest(responseData, etSuggests.getText().toString(), realm);
+                    etSuggests.getText().clear();
+                    hideProgress();
+                });
 
         final Button btnOpenBookmarks = (Button) view.findViewById(R.id.btnOpenBookmarks);
-        btnOpenBookmarks.setOnClickListener(v -> openBookmarksActivity());
+        RxView.clicks(btnOpenBookmarks).subscribe(aVoid -> openBookmarksActivity());
     }
 
     @Override
@@ -101,6 +95,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
         realm = Realm.getDefaultInstance();
         presenter.init(this);
         presenter.onAttachView(bus, networkService);
+        adapter.clear();
 
         super.onResume();
     }

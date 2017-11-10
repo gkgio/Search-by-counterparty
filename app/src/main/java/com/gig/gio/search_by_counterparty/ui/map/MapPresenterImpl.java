@@ -12,7 +12,6 @@ import com.gig.gio.search_by_counterparty.network.NetworkService;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,7 +20,6 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.realm.Realm;
 
 /**
@@ -83,20 +81,15 @@ public class MapPresenterImpl implements MapPresenter {
     @Override
     public void getCounterPartyFromRealm(Bus bus, Realm realm) {
         view.showProgress();
+        List<SuggestResponse> suggestResponseList = realm.copyFromRealm(realm.where(SuggestResponse.class).findAll());
 
-        realm.where(SuggestResponse.class).findAll().asObservable()
-                .first()
-                .subscribe(suggestResponse -> {
-                    List<SuggestResponse> suggestResponseList = realm.copyFromRealm(suggestResponse);
-
-                    // если данные в базе есть, то отправляем их на обработку,
-                    // иначе выводим сообщение об ошибке
-                    bus.send((suggestResponseList.size() > 0) ?
-                            new MapSuggestResponseEvent(suggestResponseList) : new ThrowableEvent(new Throwable()));
-                }, dbThrowable -> {
-                    bus.send(new ThrowableEvent(new Throwable()));
-                    view.hideProgress();
-                });
+        // если данные в базе есть, то отправляем их на обработку,
+        // иначе выводим сообщение об ошибке
+        if (suggestResponseList != null && suggestResponseList.size() > 0) {
+            bus.send(new MapSuggestResponseEvent(suggestResponseList));
+        }else {
+            bus.send(new ThrowableEvent(new Throwable()));
+        }
     }
 
     private void createMarkerOptions(final List<SuggestResponse> suggestResponseList) {

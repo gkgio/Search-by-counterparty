@@ -30,6 +30,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.jakewharton.rxbinding2.view.RxView;
 
 import javax.inject.Inject;
 
@@ -108,10 +109,10 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
                 suggestResponse.getData().getAddress().getValue()));
 
         final Button btnOpenMap = (Button) findViewById(R.id.btnOpenMap);
-        btnOpenMap.setOnClickListener(v -> presenter.provideLocationForMap(suggestResponse));
+        RxView.clicks(btnOpenMap).subscribe(aVoid -> presenter.provideLocationForMap(suggestResponse));
 
         final Button btnDeleteFromLatest = (Button) findViewById(R.id.btnDeleteFromLatest);
-        btnDeleteFromLatest.setOnClickListener(v -> presenter.deleteFromLatest(suggestResponse, realm));
+        RxView.clicks(btnDeleteFromLatest).subscribe(aVoid -> presenter.deleteFromLatest(suggestResponse, realm));
 
     }
 

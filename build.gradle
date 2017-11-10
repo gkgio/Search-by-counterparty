@@ -40,6 +40,6 @@ ext {
     supportVersion = '27.0.0'
     daggerVersion = '2.12'
     httpClientVersion = '3.9.0'
-    rxBindingVersion = '1.0.1'
+    rxBindingVersion = '2.0.0'
     retrofitVersion = '2.3.0'
 }

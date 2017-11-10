@@ -25,7 +25,6 @@ import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.di.modules.MainModule;
 import com.gig.gio.search_by_counterparty.ui.main.about.AboutFragment;
 import com.gig.gio.search_by_counterparty.ui.main.search.SearchFragment;
-import com.tbruyelle.rxpermissions.RxPermissions;
 
 import javax.inject.Inject;
 
@@ -36,9 +35,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     @Inject
     public MainPresenterImpl presenter;
-
-    @Inject
-    RxPermissions rxPermissions;
 
     private MainComponent component;
 

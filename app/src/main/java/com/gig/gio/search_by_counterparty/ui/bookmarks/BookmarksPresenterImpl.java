@@ -82,43 +82,41 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
 
     @Override
     public void loadDataForAdapter(Realm realm) {
-        realm.where(SuggestResponse.class).findAll().asObservable()
-                .first()
-                .subscribe(suggestResponse -> {
-                    List<SuggestResponse> suggestResponseList = realm.copyFromRealm(suggestResponse);
+        List<SuggestResponse> suggestResponseList = realm.copyFromRealm(
+                realm.where(SuggestResponse.class).findAll());
 
-                    // если данные в базе есть, то отправляем их в адаптер
-                    // иначе выводим сообщение об ошибке,
-                    if (suggestResponseList.size() > 0) {
-                        //предварительно сортируем
-                        Collections.sort(suggestResponseList, (o1, o2) -> {
-                            int first = o1.isBookmark() ? 1 : 0;
-                            int second = o2.isBookmark() ? 1 : 0;
-                            return second - first;
-                        });
-                        bus.send(new ListSuggestResponseEvent(suggestResponseList));
-                    } else bus.send(new ListEmptyInfoEvent());
-
-                }, dbThrowable -> {
-                    bus.send(new ThrowableEvent(new Throwable()));
-                });
+        // если данные в базе есть, то отправляем их в адаптер
+        // иначе выводим сообщение об ошибке,
+        if (suggestResponseList.size() > 0) {
+            //предварительно сортируем
+            Collections.sort(suggestResponseList, (o1, o2) -> {
+                int first = o1.isBookmark() ? 1 : 0;
+                int second = o2.isBookmark() ? 1 : 0;
+                return second - first;
+            });
+            bus.send(new ListSuggestResponseEvent(suggestResponseList));
+        } else bus.send(new ListEmptyInfoEvent());
     }
 
     @Override
     public void searchByBookmarks(String searchValue, List<SuggestResponse> suggestResponseList) {
         final String queryFromUser = searchValue.replaceAll("\\s+", " ").trim();
 
+        view.showProgress();
+
         final List<String> helperValuesList = new ArrayList<>();
 
         if (!queryFromUser.isEmpty()) {
             for (SuggestResponse suggest : suggestResponseList) {
-                if (suggest.getValue().startsWith(queryFromUser))
+                if (suggest.getValue().toLowerCase().startsWith(queryFromUser.toLowerCase()))
                     helperValuesList.add(suggest.getValue());
             }
         }
 
         if (helperValuesList.size() > 0)
             view.onSuggestionsReady(helperValuesList);
+
+        view.hideProgress();
     }
 
     @Override
