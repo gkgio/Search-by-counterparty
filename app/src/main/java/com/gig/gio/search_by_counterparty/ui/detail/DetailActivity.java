@@ -208,8 +208,9 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
     }
 
     @Override
-    public void startMapActivity(String jsonLocationSting) {
+    public void startMapActivity(String jsonSuggestResponseString, String jsonLocationSting) {
         Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(MapActivity.BUNDLE_SUGGEST_RESPONSE, jsonSuggestResponseString);
         intent.putExtra(MapActivity.BUNDLE_LOCATION, jsonLocationSting);
         startActivity(intent);
     }

@@ -36,9 +36,9 @@ android {
         release {
             debuggable false
             ext.enableCrashlytics = true
-            shrinkResources true
-            minifyEnabled true
-            zipAlignEnabled true
+            //shrinkResources true
+            minifyEnabled false
+            //zipAlignEnabled true
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

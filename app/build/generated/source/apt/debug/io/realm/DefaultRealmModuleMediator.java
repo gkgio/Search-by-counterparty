@@ -29,14 +29,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     static {
         Set<Class<? extends RealmModel>> modelClasses = new HashSet<Class<? extends RealmModel>>();
         modelClasses.add(com.gig.gio.search_by_counterparty.common.LongWrapper.class);
-        modelClasses.add(com.gig.gio.search_by_counterparty.model.Data.class);
-        modelClasses.add(com.gig.gio.search_by_counterparty.model.Address.class);
-        modelClasses.add(com.gig.gio.search_by_counterparty.model.SuggestResponse.class);
-        modelClasses.add(com.gig.gio.search_by_counterparty.model.State.class);
-        modelClasses.add(com.gig.gio.search_by_counterparty.model.ResponseData.class);
-        modelClasses.add(com.gig.gio.search_by_counterparty.model.Opf.class);
         modelClasses.add(com.gig.gio.search_by_counterparty.model.AddressData.class);
         modelClasses.add(com.gig.gio.search_by_counterparty.model.Management.class);
+        modelClasses.add(com.gig.gio.search_by_counterparty.model.SuggestResponse.class);
+        modelClasses.add(com.gig.gio.search_by_counterparty.model.Opf.class);
+        modelClasses.add(com.gig.gio.search_by_counterparty.model.State.class);
+        modelClasses.add(com.gig.gio.search_by_counterparty.model.Data.class);
+        modelClasses.add(com.gig.gio.search_by_counterparty.model.Address.class);
+        modelClasses.add(com.gig.gio.search_by_counterparty.model.ResponseData.class);
         MODEL_CLASSES = Collections.unmodifiableSet(modelClasses);
     }
 
@@ -44,14 +44,14 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
     public Map<Class<? extends RealmModel>, OsObjectSchemaInfo> getExpectedObjectSchemaInfoMap() {
         Map<Class<? extends RealmModel>, OsObjectSchemaInfo> infoMap = new HashMap<Class<? extends RealmModel>, OsObjectSchemaInfo>();
         infoMap.put(com.gig.gio.search_by_counterparty.common.LongWrapper.class, io.realm.LongWrapperRealmProxy.getExpectedObjectSchemaInfo());
-        infoMap.put(com.gig.gio.search_by_counterparty.model.Data.class, io.realm.DataRealmProxy.getExpectedObjectSchemaInfo());
-        infoMap.put(com.gig.gio.search_by_counterparty.model.Address.class, io.realm.AddressRealmProxy.getExpectedObjectSchemaInfo());
-        infoMap.put(com.gig.gio.search_by_counterparty.model.SuggestResponse.class, io.realm.SuggestResponseRealmProxy.getExpectedObjectSchemaInfo());
-        infoMap.put(com.gig.gio.search_by_counterparty.model.State.class, io.realm.StateRealmProxy.getExpectedObjectSchemaInfo());
-        infoMap.put(com.gig.gio.search_by_counterparty.model.ResponseData.class, io.realm.ResponseDataRealmProxy.getExpectedObjectSchemaInfo());
-        infoMap.put(com.gig.gio.search_by_counterparty.model.Opf.class, io.realm.OpfRealmProxy.getExpectedObjectSchemaInfo());
         infoMap.put(com.gig.gio.search_by_counterparty.model.AddressData.class, io.realm.AddressDataRealmProxy.getExpectedObjectSchemaInfo());
         infoMap.put(com.gig.gio.search_by_counterparty.model.Management.class, io.realm.ManagementRealmProxy.getExpectedObjectSchemaInfo());
+        infoMap.put(com.gig.gio.search_by_counterparty.model.SuggestResponse.class, io.realm.SuggestResponseRealmProxy.getExpectedObjectSchemaInfo());
+        infoMap.put(com.gig.gio.search_by_counterparty.model.Opf.class, io.realm.OpfRealmProxy.getExpectedObjectSchemaInfo());
+        infoMap.put(com.gig.gio.search_by_counterparty.model.State.class, io.realm.StateRealmProxy.getExpectedObjectSchemaInfo());
+        infoMap.put(com.gig.gio.search_by_counterparty.model.Data.class, io.realm.DataRealmProxy.getExpectedObjectSchemaInfo());
+        infoMap.put(com.gig.gio.search_by_counterparty.model.Address.class, io.realm.AddressRealmProxy.getExpectedObjectSchemaInfo());
+        infoMap.put(com.gig.gio.search_by_counterparty.model.ResponseData.class, io.realm.ResponseDataRealmProxy.getExpectedObjectSchemaInfo());
         return infoMap;
     }
 
@@ -62,29 +62,29 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             return io.realm.LongWrapperRealmProxy.createColumnInfo(schemaInfo);
         }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
+            return io.realm.AddressDataRealmProxy.createColumnInfo(schemaInfo);
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
+            return io.realm.ManagementRealmProxy.createColumnInfo(schemaInfo);
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            return io.realm.SuggestResponseRealmProxy.createColumnInfo(schemaInfo);
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            return io.realm.OpfRealmProxy.createColumnInfo(schemaInfo);
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            return io.realm.StateRealmProxy.createColumnInfo(schemaInfo);
+        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
             return io.realm.DataRealmProxy.createColumnInfo(schemaInfo);
         }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
             return io.realm.AddressRealmProxy.createColumnInfo(schemaInfo);
         }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            return io.realm.SuggestResponseRealmProxy.createColumnInfo(schemaInfo);
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            return io.realm.StateRealmProxy.createColumnInfo(schemaInfo);
-        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
             return io.realm.ResponseDataRealmProxy.createColumnInfo(schemaInfo);
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            return io.realm.OpfRealmProxy.createColumnInfo(schemaInfo);
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
-            return io.realm.AddressDataRealmProxy.createColumnInfo(schemaInfo);
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
-            return io.realm.ManagementRealmProxy.createColumnInfo(schemaInfo);
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -96,29 +96,29 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             return io.realm.LongWrapperRealmProxy.getFieldNames();
         }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
+            return io.realm.AddressDataRealmProxy.getFieldNames();
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
+            return io.realm.ManagementRealmProxy.getFieldNames();
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            return io.realm.SuggestResponseRealmProxy.getFieldNames();
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            return io.realm.OpfRealmProxy.getFieldNames();
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            return io.realm.StateRealmProxy.getFieldNames();
+        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
             return io.realm.DataRealmProxy.getFieldNames();
         }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
             return io.realm.AddressRealmProxy.getFieldNames();
         }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            return io.realm.SuggestResponseRealmProxy.getFieldNames();
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            return io.realm.StateRealmProxy.getFieldNames();
-        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
             return io.realm.ResponseDataRealmProxy.getFieldNames();
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            return io.realm.OpfRealmProxy.getFieldNames();
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
-            return io.realm.AddressDataRealmProxy.getFieldNames();
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
-            return io.realm.ManagementRealmProxy.getFieldNames();
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -130,29 +130,29 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             return io.realm.LongWrapperRealmProxy.getTableName();
         }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
+            return io.realm.AddressDataRealmProxy.getTableName();
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
+            return io.realm.ManagementRealmProxy.getTableName();
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            return io.realm.SuggestResponseRealmProxy.getTableName();
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            return io.realm.OpfRealmProxy.getTableName();
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            return io.realm.StateRealmProxy.getTableName();
+        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
             return io.realm.DataRealmProxy.getTableName();
         }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
             return io.realm.AddressRealmProxy.getTableName();
         }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            return io.realm.SuggestResponseRealmProxy.getTableName();
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            return io.realm.StateRealmProxy.getTableName();
-        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
             return io.realm.ResponseDataRealmProxy.getTableName();
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            return io.realm.OpfRealmProxy.getTableName();
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
-            return io.realm.AddressDataRealmProxy.getTableName();
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
-            return io.realm.ManagementRealmProxy.getTableName();
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -167,29 +167,29 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
             if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
                 return clazz.cast(new io.realm.LongWrapperRealmProxy());
             }
+            if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
+                return clazz.cast(new io.realm.AddressDataRealmProxy());
+            }
+            if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
+                return clazz.cast(new io.realm.ManagementRealmProxy());
+            }
+            if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+                return clazz.cast(new io.realm.SuggestResponseRealmProxy());
+            }
+            if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+                return clazz.cast(new io.realm.OpfRealmProxy());
+            }
+            if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+                return clazz.cast(new io.realm.StateRealmProxy());
+            }
             if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
                 return clazz.cast(new io.realm.DataRealmProxy());
             }
             if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
                 return clazz.cast(new io.realm.AddressRealmProxy());
             }
-            if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-                return clazz.cast(new io.realm.SuggestResponseRealmProxy());
-            }
-            if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-                return clazz.cast(new io.realm.StateRealmProxy());
-            }
             if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
                 return clazz.cast(new io.realm.ResponseDataRealmProxy());
-            }
-            if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-                return clazz.cast(new io.realm.OpfRealmProxy());
-            }
-            if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
-                return clazz.cast(new io.realm.AddressDataRealmProxy());
-            }
-            if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
-                return clazz.cast(new io.realm.ManagementRealmProxy());
             }
             throw getMissingProxyClassException(clazz);
         } finally {
@@ -211,29 +211,29 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             return clazz.cast(io.realm.LongWrapperRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.common.LongWrapper) obj, update, cache));
         }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
+            return clazz.cast(io.realm.AddressDataRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.AddressData) obj, update, cache));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
+            return clazz.cast(io.realm.ManagementRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Management) obj, update, cache));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            return clazz.cast(io.realm.SuggestResponseRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) obj, update, cache));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            return clazz.cast(io.realm.OpfRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Opf) obj, update, cache));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            return clazz.cast(io.realm.StateRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.State) obj, update, cache));
+        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
             return clazz.cast(io.realm.DataRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Data) obj, update, cache));
         }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
             return clazz.cast(io.realm.AddressRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Address) obj, update, cache));
         }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            return clazz.cast(io.realm.SuggestResponseRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) obj, update, cache));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            return clazz.cast(io.realm.StateRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.State) obj, update, cache));
-        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
             return clazz.cast(io.realm.ResponseDataRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) obj, update, cache));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            return clazz.cast(io.realm.OpfRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Opf) obj, update, cache));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
-            return clazz.cast(io.realm.AddressDataRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.AddressData) obj, update, cache));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
-            return clazz.cast(io.realm.ManagementRealmProxy.copyOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Management) obj, update, cache));
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -246,22 +246,22 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
 
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             io.realm.LongWrapperRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.common.LongWrapper) object, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
-            io.realm.DataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Data) object, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
-            io.realm.AddressRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Address) object, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            io.realm.SuggestResponseRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) object, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            io.realm.StateRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.State) object, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
-            io.realm.ResponseDataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) object, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            io.realm.OpfRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Opf) object, cache);
         } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
             io.realm.AddressDataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.AddressData) object, cache);
         } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
             io.realm.ManagementRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Management) object, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            io.realm.SuggestResponseRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) object, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            io.realm.OpfRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Opf) object, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            io.realm.StateRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.State) object, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
+            io.realm.DataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Data) object, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
+            io.realm.AddressRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Address) object, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
+            io.realm.ResponseDataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) object, cache);
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -281,44 +281,44 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
 
             if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
                 io.realm.LongWrapperRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.common.LongWrapper) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
-                io.realm.DataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Data) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
-                io.realm.AddressRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Address) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-                io.realm.SuggestResponseRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-                io.realm.StateRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.State) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
-                io.realm.ResponseDataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-                io.realm.OpfRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Opf) object, cache);
             } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
                 io.realm.AddressDataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.AddressData) object, cache);
             } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
                 io.realm.ManagementRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Management) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+                io.realm.SuggestResponseRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+                io.realm.OpfRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Opf) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+                io.realm.StateRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.State) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
+                io.realm.DataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Data) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
+                io.realm.AddressRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.Address) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
+                io.realm.ResponseDataRealmProxy.insert(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) object, cache);
             } else {
                 throw getMissingProxyClassException(clazz);
             }
             if (iterator.hasNext()) {
                 if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
                     io.realm.LongWrapperRealmProxy.insert(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
-                    io.realm.DataRealmProxy.insert(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
-                    io.realm.AddressRealmProxy.insert(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-                    io.realm.SuggestResponseRealmProxy.insert(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-                    io.realm.StateRealmProxy.insert(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
-                    io.realm.ResponseDataRealmProxy.insert(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-                    io.realm.OpfRealmProxy.insert(realm, iterator, cache);
                 } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
                     io.realm.AddressDataRealmProxy.insert(realm, iterator, cache);
                 } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
                     io.realm.ManagementRealmProxy.insert(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+                    io.realm.SuggestResponseRealmProxy.insert(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+                    io.realm.OpfRealmProxy.insert(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+                    io.realm.StateRealmProxy.insert(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
+                    io.realm.DataRealmProxy.insert(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
+                    io.realm.AddressRealmProxy.insert(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
+                    io.realm.ResponseDataRealmProxy.insert(realm, iterator, cache);
                 } else {
                     throw getMissingProxyClassException(clazz);
                 }
@@ -334,22 +334,22 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
 
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             io.realm.LongWrapperRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.common.LongWrapper) obj, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
-            io.realm.DataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Data) obj, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
-            io.realm.AddressRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Address) obj, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            io.realm.SuggestResponseRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) obj, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            io.realm.StateRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.State) obj, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
-            io.realm.ResponseDataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) obj, cache);
-        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            io.realm.OpfRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Opf) obj, cache);
         } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
             io.realm.AddressDataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.AddressData) obj, cache);
         } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
             io.realm.ManagementRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Management) obj, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            io.realm.SuggestResponseRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) obj, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            io.realm.OpfRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Opf) obj, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            io.realm.StateRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.State) obj, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
+            io.realm.DataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Data) obj, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
+            io.realm.AddressRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Address) obj, cache);
+        } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
+            io.realm.ResponseDataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) obj, cache);
         } else {
             throw getMissingProxyClassException(clazz);
         }
@@ -369,44 +369,44 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
 
             if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
                 io.realm.LongWrapperRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.common.LongWrapper) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
-                io.realm.DataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Data) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
-                io.realm.AddressRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Address) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-                io.realm.SuggestResponseRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-                io.realm.StateRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.State) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
-                io.realm.ResponseDataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) object, cache);
-            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-                io.realm.OpfRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Opf) object, cache);
             } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
                 io.realm.AddressDataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.AddressData) object, cache);
             } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
                 io.realm.ManagementRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Management) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+                io.realm.SuggestResponseRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.SuggestResponse) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+                io.realm.OpfRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Opf) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+                io.realm.StateRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.State) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
+                io.realm.DataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Data) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
+                io.realm.AddressRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.Address) object, cache);
+            } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
+                io.realm.ResponseDataRealmProxy.insertOrUpdate(realm, (com.gig.gio.search_by_counterparty.model.ResponseData) object, cache);
             } else {
                 throw getMissingProxyClassException(clazz);
             }
             if (iterator.hasNext()) {
                 if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
                     io.realm.LongWrapperRealmProxy.insertOrUpdate(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
-                    io.realm.DataRealmProxy.insertOrUpdate(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
-                    io.realm.AddressRealmProxy.insertOrUpdate(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-                    io.realm.SuggestResponseRealmProxy.insertOrUpdate(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-                    io.realm.StateRealmProxy.insertOrUpdate(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
-                    io.realm.ResponseDataRealmProxy.insertOrUpdate(realm, iterator, cache);
-                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-                    io.realm.OpfRealmProxy.insertOrUpdate(realm, iterator, cache);
                 } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
                     io.realm.AddressDataRealmProxy.insertOrUpdate(realm, iterator, cache);
                 } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
                     io.realm.ManagementRealmProxy.insertOrUpdate(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+                    io.realm.SuggestResponseRealmProxy.insertOrUpdate(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+                    io.realm.OpfRealmProxy.insertOrUpdate(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+                    io.realm.StateRealmProxy.insertOrUpdate(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
+                    io.realm.DataRealmProxy.insertOrUpdate(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
+                    io.realm.AddressRealmProxy.insertOrUpdate(realm, iterator, cache);
+                } else if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
+                    io.realm.ResponseDataRealmProxy.insertOrUpdate(realm, iterator, cache);
                 } else {
                     throw getMissingProxyClassException(clazz);
                 }
@@ -422,29 +422,29 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             return clazz.cast(io.realm.LongWrapperRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
+            return clazz.cast(io.realm.AddressDataRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
+            return clazz.cast(io.realm.ManagementRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            return clazz.cast(io.realm.SuggestResponseRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            return clazz.cast(io.realm.OpfRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            return clazz.cast(io.realm.StateRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
+        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
             return clazz.cast(io.realm.DataRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
             return clazz.cast(io.realm.AddressRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            return clazz.cast(io.realm.SuggestResponseRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            return clazz.cast(io.realm.StateRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
-        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
             return clazz.cast(io.realm.ResponseDataRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            return clazz.cast(io.realm.OpfRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
-            return clazz.cast(io.realm.AddressDataRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
-            return clazz.cast(io.realm.ManagementRealmProxy.createOrUpdateUsingJsonObject(realm, json, update));
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -457,29 +457,29 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             return clazz.cast(io.realm.LongWrapperRealmProxy.createUsingJsonStream(realm, reader));
         }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
+            return clazz.cast(io.realm.AddressDataRealmProxy.createUsingJsonStream(realm, reader));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
+            return clazz.cast(io.realm.ManagementRealmProxy.createUsingJsonStream(realm, reader));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            return clazz.cast(io.realm.SuggestResponseRealmProxy.createUsingJsonStream(realm, reader));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            return clazz.cast(io.realm.OpfRealmProxy.createUsingJsonStream(realm, reader));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            return clazz.cast(io.realm.StateRealmProxy.createUsingJsonStream(realm, reader));
+        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
             return clazz.cast(io.realm.DataRealmProxy.createUsingJsonStream(realm, reader));
         }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
             return clazz.cast(io.realm.AddressRealmProxy.createUsingJsonStream(realm, reader));
         }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            return clazz.cast(io.realm.SuggestResponseRealmProxy.createUsingJsonStream(realm, reader));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            return clazz.cast(io.realm.StateRealmProxy.createUsingJsonStream(realm, reader));
-        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
             return clazz.cast(io.realm.ResponseDataRealmProxy.createUsingJsonStream(realm, reader));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            return clazz.cast(io.realm.OpfRealmProxy.createUsingJsonStream(realm, reader));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
-            return clazz.cast(io.realm.AddressDataRealmProxy.createUsingJsonStream(realm, reader));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
-            return clazz.cast(io.realm.ManagementRealmProxy.createUsingJsonStream(realm, reader));
         }
         throw getMissingProxyClassException(clazz);
     }
@@ -493,29 +493,29 @@ class DefaultRealmModuleMediator extends RealmProxyMediator {
         if (clazz.equals(com.gig.gio.search_by_counterparty.common.LongWrapper.class)) {
             return clazz.cast(io.realm.LongWrapperRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.common.LongWrapper) realmObject, 0, maxDepth, cache));
         }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
+            return clazz.cast(io.realm.AddressDataRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.AddressData) realmObject, 0, maxDepth, cache));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
+            return clazz.cast(io.realm.ManagementRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.Management) realmObject, 0, maxDepth, cache));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
+            return clazz.cast(io.realm.SuggestResponseRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.SuggestResponse) realmObject, 0, maxDepth, cache));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
+            return clazz.cast(io.realm.OpfRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.Opf) realmObject, 0, maxDepth, cache));
+        }
+        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
+            return clazz.cast(io.realm.StateRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.State) realmObject, 0, maxDepth, cache));
+        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Data.class)) {
             return clazz.cast(io.realm.DataRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.Data) realmObject, 0, maxDepth, cache));
         }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.Address.class)) {
             return clazz.cast(io.realm.AddressRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.Address) realmObject, 0, maxDepth, cache));
         }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.SuggestResponse.class)) {
-            return clazz.cast(io.realm.SuggestResponseRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.SuggestResponse) realmObject, 0, maxDepth, cache));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.State.class)) {
-            return clazz.cast(io.realm.StateRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.State) realmObject, 0, maxDepth, cache));
-        }
         if (clazz.equals(com.gig.gio.search_by_counterparty.model.ResponseData.class)) {
             return clazz.cast(io.realm.ResponseDataRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.ResponseData) realmObject, 0, maxDepth, cache));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Opf.class)) {
-            return clazz.cast(io.realm.OpfRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.Opf) realmObject, 0, maxDepth, cache));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.AddressData.class)) {
-            return clazz.cast(io.realm.AddressDataRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.AddressData) realmObject, 0, maxDepth, cache));
-        }
-        if (clazz.equals(com.gig.gio.search_by_counterparty.model.Management.class)) {
-            return clazz.cast(io.realm.ManagementRealmProxy.createDetachedCopy((com.gig.gio.search_by_counterparty.model.Management) realmObject, 0, maxDepth, cache));
         }
         throw getMissingProxyClassException(clazz);
     }

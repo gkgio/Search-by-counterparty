@@ -78,9 +78,10 @@ public class DetailPresenterImpl implements DetailPresenter {
             location.setLongitude(suggestResponse.getData().getAddress().getAddressData().getGeo_lon());
 
             final String jsonLocationString = gson.toJson(location, Location.class);
+            final String jsonSuggestResponseString = gson.toJson(suggestResponse, SuggestResponse.class);
 
-            view.startMapActivity(jsonLocationString);
-        } else view.startMapActivity(null);
+            view.startMapActivity(jsonSuggestResponseString, jsonLocationString);
+        } else view.startMapActivity(null, null);
     }
 
     @Override

@@ -79,7 +79,7 @@ public class MapPresenterImpl implements MapPresenter {
     }
 
     @Override
-    public void getCounterPartyFromRealm(Bus bus, Realm realm) {
+    public void getCounterPartyFromRealm(Bus bus, Realm realm, SuggestResponse currentSuggestResponse) {
         view.showProgress();
         List<SuggestResponse> suggestResponseList = realm.copyFromRealm(realm.where(SuggestResponse.class).findAll());
 
@@ -87,7 +87,10 @@ public class MapPresenterImpl implements MapPresenter {
         // иначе выводим сообщение об ошибке
         if (suggestResponseList != null && suggestResponseList.size() > 0) {
             bus.send(new MapSuggestResponseEvent(suggestResponseList));
-        }else {
+        } else if (suggestResponseList != null && currentSuggestResponse != null) {
+            suggestResponseList.add(currentSuggestResponse);
+            bus.send(new MapSuggestResponseEvent(suggestResponseList));
+        } else {
             bus.send(new ThrowableEvent(new Throwable()));
         }
     }

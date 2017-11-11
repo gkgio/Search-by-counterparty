@@ -21,6 +21,7 @@ import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent
 import com.gig.gio.search_by_counterparty.di.components.DaggerMapComponent;
 import com.gig.gio.search_by_counterparty.di.components.MapComponent;
 import com.gig.gio.search_by_counterparty.di.modules.MapModule;
+import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -55,8 +56,10 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
     private Realm realm;
 
+    private SuggestResponse currentSuggestResponse;
     private Location currentMarkerLocation;
 
+    public static final String BUNDLE_SUGGEST_RESPONSE = "BUNDLE_SUGGEST_RESPONSE";
     public static final String BUNDLE_LOCATION = "BUNDLE_LOCATION";
 
     @Override
@@ -80,6 +83,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        currentSuggestResponse = gson.fromJson(getIntent().getStringExtra(BUNDLE_SUGGEST_RESPONSE), SuggestResponse.class);
         currentMarkerLocation = gson.fromJson(getIntent().getStringExtra(BUNDLE_LOCATION), Location.class);
     }
 
@@ -93,7 +97,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     public void onResume() {
         realm = Realm.getDefaultInstance();
         presenter.onAttachView();
-        presenter.getCounterPartyFromRealm(bus, realm);
+        presenter.getCounterPartyFromRealm(bus, realm, currentSuggestResponse);
         presenter.initMap(map != null);
         super.onResume();
     }

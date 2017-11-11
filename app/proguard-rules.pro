@@ -116,6 +116,13 @@
 -dontwarn retrofit2.**
 
 
+#############
+# Okio
+#############
+-keep class okio.** {*;}
+-dontwarn okio.**
+
+
 ###################
 # Crashlytics
 ###################
@@ -146,4 +153,5 @@
 -dontnote android.support.**
 
 
-
+-keep class rx.internal.util.unsafe.** {*;}
+-dontwarn rx.internal.util.unsafe.**
