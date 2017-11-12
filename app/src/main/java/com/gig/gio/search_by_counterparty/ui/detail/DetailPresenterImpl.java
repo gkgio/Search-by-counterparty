@@ -30,7 +30,6 @@ public class DetailPresenterImpl implements DetailPresenter {
 
     private Bus bus;
     private Gson gson;
-    private Realm realm;
 
     private CompositeDisposable disposables;
 
@@ -86,7 +85,6 @@ public class DetailPresenterImpl implements DetailPresenter {
 
     @Override
     synchronized public void saveChangedInRealm(SuggestResponse suggestResponse, Realm realm) {
-        this.realm = realm;
 
         final SuggestResponse lastSuggestResponse = realm.where(SuggestResponse.class).
                 equalTo("value", suggestResponse.getValue()).findFirst();

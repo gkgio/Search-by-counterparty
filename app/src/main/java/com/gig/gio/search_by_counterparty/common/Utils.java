@@ -3,8 +3,6 @@ package com.gig.gio.search_by_counterparty.common;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -26,7 +24,8 @@ public class Utils {
         if (v == null)
             return;
 
-        inputManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
+        if (inputManager != null)
+            inputManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
     public static Intent buildEmailIntent(String email) {

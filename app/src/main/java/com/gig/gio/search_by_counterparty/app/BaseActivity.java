@@ -33,8 +33,6 @@ public abstract class BaseActivity  extends AppCompatActivity {
     public SharedPreferences preferences;
     @Inject
     public Bus bus;
-    @Inject @Named("cached")
-    public NetworkService cachedNetworkService;
     @Inject @Named("no_cached")
     public NetworkService networkService;
 

@@ -30,7 +30,6 @@ public class CounterpartyApp extends Application {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
         buildObjectGraphAndInject();
-       // Fabric.with(this, new Crashlytics());
 
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()

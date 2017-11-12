@@ -120,13 +120,6 @@ public class CounterpartyAppModule {
 
     @Provides
     @Singleton
-    Cache provideOkHttpCache() {
-        File httpCacheDirectory = new File(app.getApplicationContext().getCacheDir(), Config.CACHE_FILE_NAME);
-        return new Cache(httpCacheDirectory, Config.CACHE_FILE_SIZE);
-    }
-
-    @Provides
-    @Singleton
     OkHttpClient provideHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         // logging для http клиента TODO закомментировать в продакшен
@@ -138,47 +131,9 @@ public class CounterpartyAppModule {
     }
 
     @Provides
-    @Named("cached")
-    @Singleton
-    NetworkService provideCachedMobukService(Cache cache, Gson gson) {
-
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
-        // включаем нужные хэдеры в ответе
-        builder.interceptors().add(chain -> {
-            Request original = chain.request();
-            Request request = original.newBuilder()
-                    .header("Accept", "application/json")
-                    .cacheControl(new CacheControl.Builder()
-                            .maxStale(Config.CACHE_TIME, TimeUnit.MINUTES) // кэш
-                            .build())
-                    .method(original.method(), original.body())
-                    .build();
-            return chain.proceed(request);
-        });
-
-        // logging для http клиента TODO закомментировать в продакшен
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        builder.interceptors().add(interceptor);
-
-        // устанавливаем кэш
-        builder.cache(cache);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .baseUrl(Config.API_URL)
-                .client(builder.build())
-                .build();
-
-        return retrofit.create(NetworkService.class);
-    }
-
-    @Provides
     @Named("no_cached")
     @Singleton
-    NetworkService provideMobukService(Gson gson, OkHttpClient client) {
+    NetworkService provideService(Gson gson, OkHttpClient client) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

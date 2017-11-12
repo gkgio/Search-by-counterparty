@@ -36,9 +36,6 @@ public class BaseFragment extends Fragment {
     @Inject
     @Named("no_cached")
     public NetworkService networkService;
-    @Inject
-    @Named("cached")
-    public NetworkService cachedNetworkService;
 
     @SuppressWarnings("unchecked")
     protected <T> T getComponent(Class<T> componentType) {

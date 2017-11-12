@@ -16,13 +16,6 @@ public class Config {
 
     public static final float MAP_ZOOM = 13.0f; // величина зума камеры на экране с картой
 
-    // имя файла для http кэша
-    public static final String CACHE_FILE_NAME = "responseCache";
-    // время хранения кэша в минутах
-    public static final int CACHE_TIME = 1;
-    // размер файла для кжша
-    public static final long CACHE_FILE_SIZE = 10 * 1024 * 1024; // 10 Mb
-
     public static final String AUTHOR_EMAIL = "eeyyon@gmail.com";
 
     public static final String CURRENT_FRAGMENT_TAG = "CURRENT_FRAGMENT_TAG";

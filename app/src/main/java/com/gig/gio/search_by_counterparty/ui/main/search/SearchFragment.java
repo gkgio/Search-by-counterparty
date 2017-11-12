@@ -2,6 +2,7 @@ package com.gig.gio.search_by_counterparty.ui.main.search;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
 import com.gig.gio.search_by_counterparty.ui.bookmarks.BookmarksActivity;
 import com.gig.gio.search_by_counterparty.ui.detail.DetailActivity;
+import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.jakewharton.rxbinding2.widget.RxAutoCompleteTextView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
@@ -54,14 +56,16 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        progressBar = (ProgressBar) getActivity().findViewById(R.id.progressBar);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        final MainActivity mainActivity = (MainActivity) getActivity();
+        if (mainActivity != null)
+            progressBar = (ProgressBar) mainActivity.findViewById(R.id.progressBar);
 
         etSuggests = (AutoCompleteTextView) view.findViewById(R.id.etAutoComplete);
         adapter = new AutoCompleteAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Config.EMPTY);
