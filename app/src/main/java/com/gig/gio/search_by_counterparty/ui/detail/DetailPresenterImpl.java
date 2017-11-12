@@ -8,6 +8,7 @@ import com.gig.gio.search_by_counterparty.common.enums.ToastType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
+import com.gig.gio.search_by_counterparty.common.eventbus.events.detail.ShareDataEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.detail.SuggestDeleteBookmarkEvent;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import com.google.gson.Gson;
@@ -59,7 +60,9 @@ public class DetailPresenterImpl implements DetailPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(event -> {
                     view.hideProgress();
-                    if (event instanceof SuggestDeleteBookmarkEvent) {
+                    if (event instanceof ShareDataEvent) {
+                        view.shareData();
+                    } else if (event instanceof SuggestDeleteBookmarkEvent) {
                         view.showMessage(R.string.success_delete_from_bookmark, ToastType.INFO);
                     } else if (event instanceof HttpErrorEvent) {
                         view.showMessage(R.string.toast_error, ToastType.ERROR);
@@ -104,5 +107,31 @@ public class DetailPresenterImpl implements DetailPresenter {
         });
 
         bus.send(new SuggestDeleteBookmarkEvent());
+    }
+
+    @Override
+    public void prepareDateForSend(String nameManagement,
+                                   String postManagement,
+                                   String opfFull,
+                                   String value,
+                                   String kpp,
+                                   String inn,
+                                   String ogrn,
+                                   String status,
+                                   String address) {
+        StringBuilder messageBodyBuilder = new StringBuilder();
+        if (nameManagement != null)
+            messageBodyBuilder.append(nameManagement).append("\n");
+        if (postManagement != null)
+            messageBodyBuilder.append(postManagement).append("\n");
+        messageBodyBuilder.append(opfFull).append("\n");
+        messageBodyBuilder.append(value).append("\n");
+        messageBodyBuilder.append(kpp).append("\n");
+        messageBodyBuilder.append(inn).append("\n");
+        messageBodyBuilder.append(ogrn).append("\n");
+        messageBodyBuilder.append(status).append("\n");
+        if (address != null)
+            messageBodyBuilder.append(address).append("\n");
+        view.sendData(messageBodyBuilder.toString());
     }
 }

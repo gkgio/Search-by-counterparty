@@ -13,4 +13,6 @@ public interface DetailView {
     void hideProgress();
     void showMessage(int message, @ToastType int type);
     void startMapActivity(String jsonSuggestResponseString, String jsonLocationSting);
+    void shareData();
+    void sendData(String messageBody);
 }

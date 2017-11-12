@@ -3,6 +3,9 @@
 
     <string name="toast_error">Ошибка подключения к серверу. Проверьте настройки сети или повторите попытку позже.</string>
 
+    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_button_cancel">Отмена</string>
+
     //SplashActivity
     <string name="image_splash">Splash image</string>
 
@@ -13,6 +16,7 @@
     <string name="drawer_menu_info">О приложении</string>
     <string name="menu_bookmark_selected">Избранная</string>
     <string name="menu_bookmark_unselected">Не избранная</string>
+    <string name="menu_bookmark_share">Share</string>
 
     <string name="image_description">nav_app_icon</string>
 
@@ -36,6 +40,9 @@
     <string name="delete_recent">Удалить из недавних</string>
     <string name="open_map">На карте</string>
     <string name="detail_activity_title">Описание</string>
+    <string name="share_fragment_title">Отправка</string>
+    <string name="share_fragment_message">Поделиться информацией?</string>
+    <string name="sending_date_title">Организация - информация</string>
 
     //MapActivity
     <string name="map_activity_title">Карта</string>
