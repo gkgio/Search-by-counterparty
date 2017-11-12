@@ -56,6 +56,16 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
 
     public static final String BUNDLE_SUGGEST = "BUNDLE_SUGGEST";
 
+    private TextView tvNameManagement;
+    private TextView tvPostManagement;
+    private TextView tvOpfFull;
+    private TextView tvValue;
+    private TextView tvKpp;
+    private TextView tvInn;
+    private TextView tvOgrn;
+    private TextView tvStatus;
+    private TextView tvAddress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +77,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         suggestResponse = gson.fromJson(getIntent().getStringExtra(BUNDLE_SUGGEST), SuggestResponse.class);
 
         // toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -77,17 +87,17 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
 
         presenter.onCreateView(bus, gson);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
 
-        final TextView tvNameManagement = (TextView) findViewById(R.id.tvNameManagement);
-        final TextView tvPostManagement = (TextView) findViewById(R.id.tvPostManagement);
-        final TextView tvOpfFull = (TextView) findViewById(R.id.tvOpfFull);
-        final TextView tvValue = (TextView) findViewById(R.id.tvValue);
-        final TextView tvKpp = (TextView) findViewById(R.id.tvKpp);
-        final TextView tvInn = (TextView) findViewById(R.id.tvInn);
-        final TextView tvOgrn = (TextView) findViewById(R.id.tvOgrn);
-        final TextView tvStatus = (TextView) findViewById(R.id.tvStatus);
-        final TextView tvAddress = (TextView) findViewById(R.id.tvAddress);
+        tvNameManagement = findViewById(R.id.tvNameManagement);
+        tvPostManagement = findViewById(R.id.tvPostManagement);
+        tvOpfFull = findViewById(R.id.tvOpfFull);
+        tvValue = findViewById(R.id.tvValue);
+        tvKpp = findViewById(R.id.tvKpp);
+        tvInn = findViewById(R.id.tvInn);
+        tvOgrn = findViewById(R.id.tvOgrn);
+        tvStatus = findViewById(R.id.tvStatus);
+        tvAddress = findViewById(R.id.tvAddress);
 
         if (suggestResponse.getData().getManagement() != null) {
             tvNameManagement.setText(suggestResponse.getData().getManagement().getName());
@@ -108,10 +118,10 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         tvAddress.setText(getString(R.string.address_name_filter,
                 suggestResponse.getData().getAddress().getValue()));
 
-        final Button btnOpenMap = (Button) findViewById(R.id.btnOpenMap);
+        final Button btnOpenMap = findViewById(R.id.btnOpenMap);
         RxView.clicks(btnOpenMap).subscribe(aVoid -> presenter.provideLocationForMap(suggestResponse));
 
-        final Button btnDeleteFromLatest = (Button) findViewById(R.id.btnDeleteFromLatest);
+        final Button btnDeleteFromLatest = findViewById(R.id.btnDeleteFromLatest);
         RxView.clicks(btnDeleteFromLatest).subscribe(aVoid -> presenter.deleteFromLatest(suggestResponse, realm));
 
     }
@@ -149,6 +159,10 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
                 invalidateOptionsMenu();
                 presenter.saveChangedInRealm(suggestResponse, realm);
                 break;
+            case R.id.action_share:
+                openDialog();
+                break;
+
             default:
                 break;
         }
@@ -189,6 +203,12 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         }
     }
 
+    private void openDialog() {
+        final AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
+        alertDialogFragment.setBus(bus);
+        alertDialogFragment.show(getSupportFragmentManager(), AlertDialogFragment.ALERT_DIALOG_FRAGMENT_TAG);
+    }
+
 
     //=======--------- DetailView implement method START ---------=========
 
@@ -213,6 +233,28 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         intent.putExtra(MapActivity.BUNDLE_SUGGEST_RESPONSE, jsonSuggestResponseString);
         intent.putExtra(MapActivity.BUNDLE_LOCATION, jsonLocationSting);
         startActivity(intent);
+    }
+
+    @Override
+    public void shareData() {
+        presenter.prepareDateForSend(tvNameManagement.getText().toString(),
+                tvPostManagement.getText().toString(),
+                tvOpfFull.getText().toString(),
+                tvValue.getText().toString(),
+                tvKpp.getText().toString(),
+                tvInn.getText().toString(),
+                tvOgrn.getText().toString(),
+                tvStatus.getText().toString(),
+                tvAddress.getText().toString());
+    }
+
+    @Override
+    public void sendData(String messageBody){
+        final Intent sendIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sendIntent.setType("text/plain");
+        sendIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.sending_date_title));
+        sendIntent.putExtra(android.content.Intent.EXTRA_TEXT, messageBody);
+        startActivity(Intent.createChooser(sendIntent, "Sending..."));
     }
 
     //=======--------- DetailView implement method END ---------=========

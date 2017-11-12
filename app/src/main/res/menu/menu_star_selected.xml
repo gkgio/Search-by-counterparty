@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/action_unbookmark"
-        android:orderInCategory="100"
         android:icon="@drawable/icon_star_select"
+        android:orderInCategory="2"
         android:title="@string/menu_bookmark_selected"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_share"
+        android:orderInCategory="1"
+        android:title="@string/menu_bookmark_share"
         app:showAsAction="always" />
 </menu>
