@@ -16,4 +16,6 @@
 
     <color name="row_odd">#efecec</color>
     <color name="row_even">#FFFFFF</color>
+
+    <color name="white">#FFFFFF</color>
 </resources>

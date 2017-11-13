@@ -26,7 +26,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     //SearchFragment
-    <string name="input_suggestions">Пойск контрагента</string>
+    <string name="input_suggestions">Поиск контрагента</string>
     <string name="name_or_inn">Наименование/ИНН</string>
     <string name="button_open_bookmarks">Недавние и избранные</string>
 
@@ -48,7 +48,7 @@
     <string name="map_activity_title">Карта</string>
 
     //AboutFragment
-    <string name="about_app_text">Приложение предназначено для быстрого пойска контрагента,
+    <string name="about_app_text">Приложение предназначено для быстрого поиска контрагента,
         нахождение его местоположения и сохранения для быстрого нахождения в последующем</string>
     <string name="author_email">По всем вопросам пишите на: eeyyon@gmail.com</string>
 
@@ -56,7 +56,7 @@
     <string name="bookmarks_activity_title">Избранные и недавние</string>
     <string name="icon_star_is_bookmark">Избранная</string>
     <string name="bookmarks_list_empty">Список недавних и избранных пуст</string>
-    <string name="search">Пойск</string>
+    <string name="search">Поиск</string>
     <string name="success_delete_from_bookmark">Организация успешно удалена</string>
 
 </resources>

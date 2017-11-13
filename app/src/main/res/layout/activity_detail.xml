@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_cancel_order"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.detail.DetailActivity">
 
-    <!-- toolbar -->
-    <include layout="@layout/toolbar" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminate="false"
+        android:indeterminateDrawable="@drawable/spinner_load_wait"
+        android:visibility="invisible" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,6 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <include layout="@layout/toolbar" />
 
             <TextView
                 android:id="@+id/tvNameManagement"
@@ -137,20 +143,20 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:text="@string/address_name_filter"
                 android:textColor="@color/primary_text"
-                android:textSize="12sp"
-                android:text="@string/address_name_filter" />
+                android:textSize="12sp" />
 
             <RelativeLayout
                 android:id="@+id/btnLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
                 android:layout_marginBottom="32dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp">
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp">
 
                 <Button
                     android:id="@+id/btnDeleteFromLatest"
@@ -159,7 +165,7 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:text="@string/delete_recent"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:theme="@style/Button.ButtonOverlay" />
 
@@ -170,7 +176,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:text="@string/open_map"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/white"
                     android:textSize="12sp"
                     android:theme="@style/Button.ButtonOverlay"
                     tools:ignore="RelativeOverlap" />
@@ -181,12 +187,12 @@
                 android:name="com.google.android.gms.maps.SupportMapFragment"
                 android:layout_width="match_parent"
                 android:layout_height="208dp"
-                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginStart="8dp">
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp">
 
                 <ImageView
                     android:id="@+id/btnNavigator"
@@ -201,4 +207,4 @@
 
     </ScrollView>
 
-</LinearLayout>
+</RelativeLayout>

@@ -36,7 +36,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/button_open_bookmarks"
-        android:textColor="@android:color/white"
+        android:textColor="@color/white"
         android:textSize="12sp"
         android:layout_marginBottom="8dp"
         android:theme="@style/Button.ButtonOverlay"

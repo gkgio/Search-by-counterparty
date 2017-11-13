@@ -67,7 +67,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         setContentView(R.layout.activity_bookmarks);
 
         // toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -77,18 +77,18 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
 
         presenter.onCreateView(bus, gson);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
 
-        final RecyclerView rvBookMarks = (RecyclerView) findViewById(R.id.rvBookmarks);
+        final RecyclerView rvBookMarks = findViewById(R.id.rvBookmarks);
 
-        bookMarksRecyclerAdapter = new BookMarksRecyclerAdapter(this, bus);
+        bookMarksRecyclerAdapter = new BookMarksRecyclerAdapter(bus);
 
         rvBookMarks.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rvBookMarks.setItemAnimator(new DefaultItemAnimator());
         rvBookMarks.setLayoutManager(new LinearLayoutManager(this));
         rvBookMarks.setAdapter(bookMarksRecyclerAdapter);
 
-        etSearch = (AutoCompleteTextView) findViewById(R.id.etSearch);
+        etSearch = findViewById(R.id.etSearch);
         adapter = new AutoCompleteAdapter<>(this, android.R.layout.simple_list_item_1, Config.EMPTY);
 
         etSearch.setAdapter(adapter);

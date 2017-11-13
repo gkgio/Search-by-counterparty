@@ -25,7 +25,7 @@ import javax.inject.Named;
  * Gig
  */
 
-public abstract class BaseActivity  extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Inject
     public Gson gson;
@@ -33,7 +33,8 @@ public abstract class BaseActivity  extends AppCompatActivity {
     public SharedPreferences preferences;
     @Inject
     public Bus bus;
-    @Inject @Named("no_cached")
+    @Inject
+    @Named("no_cached")
     public NetworkService networkService;
 
     @Override
@@ -46,13 +47,13 @@ public abstract class BaseActivity  extends AppCompatActivity {
 
         LayoutInflater inflater = getLayoutInflater();
 
-        View toastView = inflater.inflate(R.layout.toast, (ViewGroup) findViewById(R.id.toast_layout_root));
-        toastView.setBackgroundResource(type == ToastType .ERROR ?
+        View toastView = inflater.inflate(R.layout.toast, findViewById(R.id.toast_layout_root));
+        toastView.setBackgroundResource(type == ToastType.ERROR ?
                 R.drawable.toast_error_bg : R.drawable.toast_info_bg);
 
-        TextView tvToast = (TextView) toastView.findViewById(R.id.tvToast);
+        TextView tvToast = toastView.findViewById(R.id.tvToast);
         tvToast.setText(message);
-        tvToast.setCompoundDrawablesWithIntrinsicBounds( type == ToastType.ERROR ?
+        tvToast.setCompoundDrawablesWithIntrinsicBounds(type == ToastType.ERROR ?
                 R.drawable.ic_report_problem_white : R.drawable.ic_info_outline_white, 0, 0, 0);
 
         Toast toast = new Toast(getApplicationContext());

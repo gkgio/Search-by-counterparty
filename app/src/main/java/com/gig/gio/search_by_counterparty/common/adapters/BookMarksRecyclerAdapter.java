@@ -1,6 +1,5 @@
 package com.gig.gio.search_by_counterparty.common.adapters;
 
-import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,11 +26,9 @@ import io.realm.RealmList;
 public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecyclerAdapter.BookMarksItemViewHolder> {
 
     private List<SuggestResponse> suggestResponseRealmList;
-    private Context context;
     private Bus bus;
 
-    public BookMarksRecyclerAdapter(Context context, Bus bus) {
-        this.context = context;
+    public BookMarksRecyclerAdapter(Bus bus) {
         this.bus = bus;
         this.suggestResponseRealmList = new ArrayList<>();
     }
@@ -51,7 +48,7 @@ public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecy
         holder.tvValue.setText(suggestResponse.getValue());
 
         holder.itemView.setBackgroundColor(ContextCompat.
-                getColor(context, position % 2 == 0 ? R.color.row_odd : R.color.row_even));
+                getColor(holder.itemView.getContext(), position % 2 == 0 ? R.color.row_odd : R.color.row_even));
 
         holder.itemView.setOnClickListener(v -> bus.send(new SuggestResponseAdapterEvent(suggestResponse)));
     }
@@ -78,8 +75,8 @@ public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecy
 
         BookMarksItemViewHolder(View itemView) {
             super(itemView);
-            tvValue = (TextView) itemView.findViewById(R.id.tvValue);
-            ivStar = (ImageView) itemView.findViewById((R.id.ivStar));
+            tvValue = itemView.findViewById(R.id.tvValue);
+            ivStar = itemView.findViewById((R.id.ivStar));
         }
     }
 }

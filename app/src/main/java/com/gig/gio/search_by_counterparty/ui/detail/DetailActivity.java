@@ -162,7 +162,6 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
             case R.id.action_share:
                 openDialog();
                 break;
-
             default:
                 break;
         }
