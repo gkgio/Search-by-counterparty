@@ -16,7 +16,6 @@ import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.realm.RealmList;
 
 /**
  * Created by georgy on 05.11.2017.
@@ -43,8 +42,11 @@ public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecy
     public void onBindViewHolder(BookMarksItemViewHolder holder, int position) {
 
         final SuggestResponse suggestResponse = getSuggestResponse(position);
-        if (suggestResponse.isBookmark())
+        if (suggestResponse.isBookmark()) {
             holder.ivStar.setVisibility(View.VISIBLE);
+        } else {
+            holder.ivStar.setVisibility(View.INVISIBLE);
+        }
         holder.tvValue.setText(suggestResponse.getValue());
 
         holder.itemView.setBackgroundColor(ContextCompat.

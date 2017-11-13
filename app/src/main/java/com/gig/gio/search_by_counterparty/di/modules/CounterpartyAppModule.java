@@ -122,11 +122,9 @@ public class CounterpartyAppModule {
     @Singleton
     OkHttpClient provideHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        // logging для http клиента TODO закомментировать в продакшен
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        interceptor.setLevel(BuildConfig.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         builder.interceptors().add(interceptor);
-
         return builder.build();
     }
 
