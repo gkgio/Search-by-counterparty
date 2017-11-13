@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseActivity;
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.components.DaggerDetailComponent;
@@ -222,8 +222,8 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
     }
 
     @Override
-    public void showMessage(int message, @ToastType int type) {
-        showToast(message, type);
+    public void showMessage(int message, @SnackBarType int type) {
+        showSnackBar(getWindow().getDecorView().getRootView(), message, type);
     }
 
     @Override

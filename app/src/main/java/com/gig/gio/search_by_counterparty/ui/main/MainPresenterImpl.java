@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.common.Config;
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
@@ -64,9 +64,9 @@ public class MainPresenterImpl implements MainPresenter {
                 .subscribe(event -> {
                     view.hideProgress();
                     if (event instanceof HttpErrorEvent) {
-                        view.showMessage(R.string.toast_error, ToastType.ERROR);
+                        view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     } else if (event instanceof ThrowableEvent) {
-                        view.showMessage(R.string.toast_error, ToastType.ERROR);
+                        view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     }
                 });
     }

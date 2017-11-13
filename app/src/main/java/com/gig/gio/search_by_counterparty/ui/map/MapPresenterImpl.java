@@ -2,7 +2,7 @@ package com.gig.gio.search_by_counterparty.ui.map;
 
 
 import com.gig.gio.search_by_counterparty.R;
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
@@ -12,6 +12,7 @@ import com.gig.gio.search_by_counterparty.network.NetworkService;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -60,15 +61,14 @@ public class MapPresenterImpl implements MapPresenter {
         return bus.toObservable()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(event -> {
-                    view.hideProgress();
                     if (event instanceof MapSuggestResponseEvent) {
                         final List<SuggestResponse> suggestResponseList =
                                 ((MapSuggestResponseEvent) event).getSuggestResponseList();
                         createMarkerOptions(suggestResponseList);
                     } else if (event instanceof HttpErrorEvent) {
-                        view.showMessage(R.string.toast_error, ToastType.ERROR);
+                        view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     } else if (event instanceof ThrowableEvent) {
-                        view.showMessage(R.string.toast_error, ToastType.ERROR);
+                        view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     }
                 });
     }
@@ -80,7 +80,6 @@ public class MapPresenterImpl implements MapPresenter {
 
     @Override
     public void getCounterPartyFromRealm(Bus bus, Realm realm, SuggestResponse currentSuggestResponse) {
-        view.showProgress();
         List<SuggestResponse> suggestResponseList = realm.copyFromRealm(realm.where(SuggestResponse.class).findAll());
 
         // если данные в базе есть, то отправляем их на обработку,
@@ -96,6 +95,13 @@ public class MapPresenterImpl implements MapPresenter {
     }
 
     private void createMarkerOptions(final List<SuggestResponse> suggestResponseList) {
+        for (Iterator<SuggestResponse> iter = suggestResponseList.listIterator(); iter.hasNext(); ) {
+            SuggestResponse suggest = iter.next();
+            if (suggest.getData().getAddress().getAddressData() == null){
+                iter.remove();
+            }
+        }
+
         List<MarkerOptions> markerOptionsList =
                 Observable.fromIterable(suggestResponseList)
                         .map(suggestResponse -> {
@@ -108,8 +114,6 @@ public class MapPresenterImpl implements MapPresenter {
                         })
                         .toList()
                         .blockingGet();
-
-        view.hideProgress();
 
         view.setMarkers(markerOptionsList);
     }

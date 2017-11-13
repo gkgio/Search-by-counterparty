@@ -1,5 +1,6 @@
 package com.gig.gio.search_by_counterparty.ui.main.search;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,7 +17,7 @@ import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseFragment;
 import com.gig.gio.search_by_counterparty.common.Config;
 import com.gig.gio.search_by_counterparty.common.adapters.AutoCompleteAdapter;
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.di.components.MainComponent;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
 import com.gig.gio.search_by_counterparty.ui.bookmarks.BookmarksActivity;
@@ -64,9 +65,9 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         final MainActivity mainActivity = (MainActivity) getActivity();
         if (mainActivity != null)
-            progressBar = (ProgressBar) mainActivity.findViewById(R.id.progressBar);
+            progressBar = mainActivity.findViewById(R.id.progressBar);
 
-        etSuggests = (AutoCompleteTextView) view.findViewById(R.id.etAutoComplete);
+        etSuggests = view.findViewById(R.id.etAutoComplete);
         adapter = new AutoCompleteAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Config.EMPTY);
 
         etSuggests.setAdapter(adapter);
@@ -83,7 +84,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
                     hideProgress();
                 });
 
-        final Button btnOpenBookmarks = (Button) view.findViewById(R.id.btnOpenBookmarks);
+        final Button btnOpenBookmarks = view.findViewById(R.id.btnOpenBookmarks);
         RxView.clicks(btnOpenBookmarks).subscribe(aVoid -> openBookmarksActivity());
     }
 
@@ -129,8 +130,10 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     }
 
     @Override
-    public void showMessage(int message, @ToastType int type) {
-        showToast(message, type);
+    public void showMessage(int message, @SnackBarType int type) {
+        final Activity activity = getActivity();
+        if (activity != null)
+            showSnackBar(getActivity().getWindow().getDecorView().getRootView(), message, type);
     }
 
     @Override

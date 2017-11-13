@@ -2,7 +2,7 @@ package com.gig.gio.search_by_counterparty.ui.main.search;
 
 import com.gig.gio.search_by_counterparty.BuildConfig;
 import com.gig.gio.search_by_counterparty.R;
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
@@ -82,9 +82,9 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
                         final ResponseData responseData = ((ResponseDataEvent) event).getResponseData();
                         prepareSuggestsList(responseData);
                     } else if (event instanceof HttpErrorEvent) {
-                        view.showMessage(R.string.toast_error, ToastType.ERROR);
+                        view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     } else if (event instanceof ThrowableEvent) {
-                        view.showMessage(R.string.toast_error, ToastType.ERROR);
+                        view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     }
                 });
     }

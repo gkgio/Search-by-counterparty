@@ -21,7 +21,7 @@ import com.gig.gio.search_by_counterparty.app.BaseActivity;
 import com.gig.gio.search_by_counterparty.common.Config;
 import com.gig.gio.search_by_counterparty.common.adapters.AutoCompleteAdapter;
 import com.gig.gio.search_by_counterparty.common.adapters.BookMarksRecyclerAdapter;
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.di.components.BookmarksComponent;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
@@ -162,8 +162,8 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
     }
 
     @Override
-    public void showMessage(int message, @ToastType int type) {
-        showToast(message, type);
+    public void showMessage(int message, @SnackBarType int type) {
+        showSnackBar(getWindow().getDecorView().getRootView(), message, type);
     }
 
     @Override

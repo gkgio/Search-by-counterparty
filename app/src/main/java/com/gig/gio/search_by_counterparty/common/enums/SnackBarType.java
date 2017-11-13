@@ -11,9 +11,9 @@ import java.lang.annotation.RetentionPolicy;
  * Тип сообщения
  */
 
-@IntDef({ToastType.INFO, ToastType.ERROR})
+@IntDef({SnackBarType.INFO, SnackBarType.ERROR})
 @Retention(RetentionPolicy.SOURCE)
-public @interface ToastType {
+public @interface SnackBarType {
     int INFO = 0;
     int ERROR = 1;
 }

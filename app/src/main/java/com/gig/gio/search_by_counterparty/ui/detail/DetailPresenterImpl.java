@@ -4,7 +4,7 @@ import android.location.Location;
 import android.location.LocationManager;
 
 import com.gig.gio.search_by_counterparty.R;
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
@@ -63,11 +63,11 @@ public class DetailPresenterImpl implements DetailPresenter {
                     if (event instanceof ShareDataEvent) {
                         view.shareData();
                     } else if (event instanceof SuggestDeleteBookmarkEvent) {
-                        view.showMessage(R.string.success_delete_from_bookmark, ToastType.INFO);
+                        view.showMessage(R.string.success_delete_from_bookmark, SnackBarType.INFO);
                     } else if (event instanceof HttpErrorEvent) {
-                        view.showMessage(R.string.toast_error, ToastType.ERROR);
+                        view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     } else if (event instanceof ThrowableEvent) {
-                        view.showMessage(R.string.toast_error, ToastType.ERROR);
+                        view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     }
                 });
     }
@@ -101,10 +101,14 @@ public class DetailPresenterImpl implements DetailPresenter {
 
     @Override
     public void deleteFromLatest(SuggestResponse suggestResponse, Realm realm) {
-        realm.executeTransaction(transaction -> {
-            transaction.where(SuggestResponse.class).
-                    equalTo("id", suggestResponse.getId()).findFirst().deleteFromRealm();
-        });
+        final SuggestResponse historySuggestResponse = realm.where(SuggestResponse.class).
+                equalTo("id", suggestResponse.getId()).findFirst();
+
+        if (historySuggestResponse != null)
+            realm.executeTransaction(transaction -> {
+                transaction.where(SuggestResponse.class).
+                        equalTo("id", suggestResponse.getId()).findFirst().deleteFromRealm();
+            });
 
         bus.send(new SuggestDeleteBookmarkEvent());
     }

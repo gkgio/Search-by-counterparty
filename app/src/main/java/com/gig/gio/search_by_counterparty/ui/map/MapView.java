@@ -1,7 +1,7 @@
 package com.gig.gio.search_by_counterparty.ui.map;
 
 
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
@@ -12,9 +12,7 @@ import java.util.List;
  */
 
 public interface MapView{
-    void showProgress();
-    void hideProgress();
-    void showMessage(int message, @ToastType int type);
+    void showMessage(int message, @SnackBarType int type);
     void setMarkers(List<MarkerOptions> markerOptionsList);
     void setMapZoom();
 }

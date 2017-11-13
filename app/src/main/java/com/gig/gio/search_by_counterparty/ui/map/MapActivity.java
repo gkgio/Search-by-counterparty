@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ProgressBar;
 import android.support.v7.widget.Toolbar;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseActivity;
 import com.gig.gio.search_by_counterparty.common.Config;
-import com.gig.gio.search_by_counterparty.common.enums.ToastType;
+import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.common.map.ClusterInfoWindowAdapter;
 import com.gig.gio.search_by_counterparty.common.map.MapClusterRenderer;
 import com.gig.gio.search_by_counterparty.common.map.MapItem;
@@ -49,7 +48,6 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
 
     private MapComponent component;
 
-    private ProgressBar progressBar;
     private Toolbar toolbar;
     private GoogleMap map;
     private ClusterManager<MapItem> clusterManager;
@@ -71,7 +69,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         mapFragment.getMapAsync(this);
 
         // toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -80,8 +78,6 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
         }
 
         presenter.onCreateView(bus, networkService);
-
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         currentSuggestResponse = gson.fromJson(getIntent().getStringExtra(BUNDLE_SUGGEST_RESPONSE), SuggestResponse.class);
         currentMarkerLocation = gson.fromJson(getIntent().getStringExtra(BUNDLE_LOCATION), Location.class);
@@ -154,18 +150,8 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     //=======--------- MapView implement method START ---------=========
 
     @Override
-    public void hideProgress() {
-        progressBar.setVisibility(View.INVISIBLE);
-    }
-
-    @Override
-    public void showProgress() {
-        progressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void showMessage(int message, @ToastType int type) {
-        showToast(message, type);
+    public void showMessage(int message, @SnackBarType int type) {
+        showSnackBar(getWindow().getDecorView().getRootView(), message, type);
     }
 
     @Override
