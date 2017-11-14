@@ -1,16 +1,11 @@
 package com.gig.gio.search_by_counterparty.app;
 
-import android.app.Activity;
 import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
@@ -55,8 +50,8 @@ public class BaseFragment extends Fragment {
         TextView textView = snackBarView.findViewById(android.support.design.R.id.snackbar_text);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         textView.setCompoundDrawablesWithIntrinsicBounds(type == SnackBarType.ERROR ?
-                R.drawable.ic_report_problem_white : R.drawable.ic_info_outline_white, 0, 0, 0);
-        textView.setCompoundDrawablePadding(getResources().getDimensionPixelOffset(R.dimen.snackbar_icon_padding));
+                R.drawable.ic_report_problem : R.drawable.ic_info_outline, 0, 0, 0);
+        textView.setCompoundDrawablePadding(getResources().getDimensionPixelOffset(R.dimen.snackBar_icon_padding));
         snackbar.show();
     }
 }
