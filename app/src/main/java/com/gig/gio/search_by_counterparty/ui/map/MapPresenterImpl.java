@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -32,19 +33,18 @@ public class MapPresenterImpl implements MapPresenter {
 
     private MapView view;
 
-    private NetworkService networkService;
-    private Bus bus;
+    @Inject
+    @Named("no_cached")
+    public NetworkService networkService;
+
+    @Inject
+    public Bus bus;
+
     private CompositeDisposable disposables;
 
     @Inject
     public MapPresenterImpl(MapView view) {
         this.view = view;
-    }
-
-    @Override
-    public void onCreateView(Bus bus, NetworkService networkService) {
-        this.bus = bus;
-        this.networkService = networkService;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class MapPresenterImpl implements MapPresenter {
     }
 
     @Override
-    public void getCounterPartyFromRealm(Bus bus, Realm realm, SuggestResponse currentSuggestResponse) {
+    public void getCounterPartyFromRealm(Realm realm, SuggestResponse currentSuggestResponse) {
         List<SuggestResponse> suggestResponseList = realm.copyFromRealm(realm.where(SuggestResponse.class).findAll());
 
         // если данные в базе есть, то отправляем их на обработку,
