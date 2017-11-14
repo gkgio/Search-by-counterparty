@@ -20,23 +20,16 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Named;
 import javax.inject.Singleton;
-
 import java.lang.reflect.Type;
 
 import dagger.Module;
 import dagger.Provides;
 import io.realm.RealmList;
 import io.realm.RealmObject;
-import okhttp3.Cache;
-import okhttp3.CacheControl;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;

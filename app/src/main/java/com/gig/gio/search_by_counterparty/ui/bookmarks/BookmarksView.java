@@ -1,6 +1,7 @@
 package com.gig.gio.search_by_counterparty.ui.bookmarks;
 
 import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
+import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface BookmarksView {
     void startDetailActivity(String jsonSuggestResponseString);
     void setDataInAdapter(List<SuggestResponse> suggestResponseList);
     void onSuggestionsReady(List<String> suggestions);
+    void setBus(Bus bus);
 }

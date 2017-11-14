@@ -1,6 +1,5 @@
 package com.gig.gio.search_by_counterparty.app;
 
-import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.TypedValue;
@@ -12,7 +11,6 @@ import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.network.NetworkService;
-import com.google.gson.Gson;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,10 +22,6 @@ import javax.inject.Named;
 
 public class BaseFragment extends Fragment {
 
-    @Inject
-    public Gson gson;
-    @Inject
-    public SharedPreferences preferences;
     @Inject
     public Bus bus;
     @Inject

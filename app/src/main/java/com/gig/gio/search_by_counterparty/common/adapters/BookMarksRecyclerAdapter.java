@@ -27,9 +27,12 @@ public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecy
     private List<SuggestResponse> suggestResponseRealmList;
     private Bus bus;
 
-    public BookMarksRecyclerAdapter(Bus bus) {
-        this.bus = bus;
+    public BookMarksRecyclerAdapter() {
         this.suggestResponseRealmList = new ArrayList<>();
+    }
+
+    public void setBus(Bus bus) {
+        this.bus = bus;
     }
 
     @Override

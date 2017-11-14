@@ -14,7 +14,6 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import okhttp3.Cache;
 
 /**
  * Created by georgy on 15.10.2017.

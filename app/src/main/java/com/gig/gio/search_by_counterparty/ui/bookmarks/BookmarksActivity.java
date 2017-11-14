@@ -22,6 +22,7 @@ import com.gig.gio.search_by_counterparty.common.Config;
 import com.gig.gio.search_by_counterparty.common.adapters.AutoCompleteAdapter;
 import com.gig.gio.search_by_counterparty.common.adapters.BookMarksRecyclerAdapter;
 import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
+import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.di.components.BookmarksComponent;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
@@ -75,13 +76,12 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        presenter.onCreateView(bus, gson);
-
         progressBar = findViewById(R.id.progressBar);
 
         final RecyclerView rvBookMarks = findViewById(R.id.rvBookmarks);
 
-        bookMarksRecyclerAdapter = new BookMarksRecyclerAdapter(bus);
+        bookMarksRecyclerAdapter = new BookMarksRecyclerAdapter();
+        presenter.setBusInAdapter();
 
         rvBookMarks.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         rvBookMarks.setItemAnimator(new DefaultItemAnimator());
@@ -96,7 +96,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         RxTextView.textChanges(etSearch)
                 .debounce(200, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .filter(str -> !TextUtils.isEmpty(str))
-                .subscribe(s ->{
+                .subscribe(s -> {
                     if (suggestResponseList != null)
                         presenter.searchByBookmarks(s.toString(), suggestResponseList);
                 });
@@ -185,6 +185,11 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         adapter.clear();
         adapter.addAll(suggestions);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setBus(Bus bus) {
+        bookMarksRecyclerAdapter.setBus(bus);
     }
 
     //=======--------- BookmarksView implement method END ---------=========

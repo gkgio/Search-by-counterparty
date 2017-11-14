@@ -45,7 +45,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     private Realm realm;
 
-    @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,8 +78,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
-
-        presenter.onCreateView(bus, preferences);
 
         if (getLastActiveFragmentTag() == null) {
             addSearchFragment();
@@ -119,7 +116,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 item.setChecked(true);
                 break;
             case R.id.navigation_item_logout:
-                presenter.logout(preferences, realm);
+                presenter.logout(realm);
                 item.setChecked(true);
                 finish();
                 break;

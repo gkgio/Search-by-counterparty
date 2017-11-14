@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseActivity;
 import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
+import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.di.HasComponent;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
 import com.gig.gio.search_by_counterparty.di.components.DaggerDetailComponent;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import javax.inject.Inject;
@@ -45,6 +47,12 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
 
     @Inject
     public DetailPresenterImpl presenter;
+
+    @Inject
+    public Gson gson;
+
+    @Inject
+    public Bus bus;
 
     private DetailComponent component;
 

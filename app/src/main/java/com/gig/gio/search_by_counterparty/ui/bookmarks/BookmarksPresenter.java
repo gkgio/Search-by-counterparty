@@ -14,7 +14,7 @@ import io.realm.Realm;
  */
 
 public interface BookmarksPresenter {
-    void onCreateView(Bus bus, Gson gson);
+    void setBusInAdapter();
     void onAttachView();
     void onDetachView();
     void loadDataForAdapter(Realm realm);

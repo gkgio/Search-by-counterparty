@@ -1,6 +1,5 @@
 package com.gig.gio.search_by_counterparty.app;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +9,7 @@ import android.widget.TextView;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
-import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.di.components.CounterpartyAppComponent;
-import com.gig.gio.search_by_counterparty.network.NetworkService;
-import com.google.gson.Gson;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * Created by georgy on 15.10.2017.
@@ -24,16 +17,6 @@ import javax.inject.Named;
  */
 
 public abstract class BaseActivity extends AppCompatActivity {
-
-    @Inject
-    public Gson gson;
-    @Inject
-    public SharedPreferences preferences;
-    @Inject
-    public Bus bus;
-    @Inject
-    @Named("no_cached")
-    public NetworkService networkService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -28,6 +28,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.google.maps.android.clustering.ClusterManager;
 
 import java.util.List;
@@ -51,6 +52,9 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     private Toolbar toolbar;
     private GoogleMap map;
     private ClusterManager<MapItem> clusterManager;
+
+    @Inject
+    public Gson gson;
 
     private Realm realm;
 
@@ -77,8 +81,6 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        presenter.onCreateView(bus, networkService);
-
         currentSuggestResponse = gson.fromJson(getIntent().getStringExtra(BUNDLE_SUGGEST_RESPONSE), SuggestResponse.class);
         currentMarkerLocation = gson.fromJson(getIntent().getStringExtra(BUNDLE_LOCATION), Location.class);
     }
@@ -93,7 +95,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     public void onResume() {
         realm = Realm.getDefaultInstance();
         presenter.onAttachView();
-        presenter.getCounterPartyFromRealm(bus, realm, currentSuggestResponse);
+        presenter.getCounterPartyFromRealm(realm, currentSuggestResponse);
         presenter.initMap(map != null);
         super.onResume();
     }

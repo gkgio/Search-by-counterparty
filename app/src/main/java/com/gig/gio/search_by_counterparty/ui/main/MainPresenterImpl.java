@@ -8,8 +8,11 @@ import com.gig.gio.search_by_counterparty.common.enums.SnackBarType;
 import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
+import com.gig.gio.search_by_counterparty.network.NetworkService;
+import com.google.gson.Gson;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -25,8 +28,16 @@ public class MainPresenterImpl implements MainPresenter {
 
     private MainView view;
 
-    private Bus bus;
-    private SharedPreferences preferences;
+    @Inject
+    public SharedPreferences preferences;
+
+    @Inject
+    public Bus bus;
+
+    @Inject
+    @Named("no_cached")
+    public NetworkService networkService;
+
     private CompositeDisposable disposables;
 
     @Inject
@@ -35,17 +46,11 @@ public class MainPresenterImpl implements MainPresenter {
     }
 
     @Override
-    public void logout(SharedPreferences preferences, Realm realm) {
+    public void logout(Realm realm) {
         //realm.executeTransaction(transaction -> transaction.deleteAll());
         preferences.edit()
                 .remove(Config.CURRENT_FRAGMENT_TAG)
                 .apply();
-    }
-
-    @Override
-    public void onCreateView(Bus bus, SharedPreferences preferences) {
-        this.bus = bus;
-        this.preferences = preferences;
     }
 
     @Override

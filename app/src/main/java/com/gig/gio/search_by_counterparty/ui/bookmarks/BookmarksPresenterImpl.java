@@ -31,8 +31,11 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
 
     private BookmarksView view;
 
-    private Gson gson;
-    private Bus bus;
+    @Inject
+    public Gson gson;
+
+    @Inject
+    public Bus bus;
 
     private CompositeDisposable disposables;
 
@@ -41,11 +44,6 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
         this.view = view;
     }
 
-    @Override
-    public void onCreateView(Bus bus, Gson gson) {
-        this.bus = bus;
-        this.gson = gson;
-    }
 
     @Override
     public void onAttachView() {
@@ -78,6 +76,12 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
                         view.showMessage(R.string.toast_error, SnackBarType.ERROR);
                     }
                 });
+    }
+
+
+    @Override
+    public void setBusInAdapter(){
+        view.setBus(bus);
     }
 
     @Override
