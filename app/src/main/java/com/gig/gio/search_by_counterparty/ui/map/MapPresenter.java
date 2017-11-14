@@ -14,9 +14,8 @@ import io.realm.Realm;
 
 
 public interface MapPresenter {
-    void onCreateView(Bus bus, NetworkService networkService);
     void onAttachView();
     void onDetachView();
     void initMap(boolean isReadyMap);
-    void getCounterPartyFromRealm(Bus bus, Realm realm, SuggestResponse currentSuggestResponse);
+    void getCounterPartyFromRealm(Realm realm, SuggestResponse currentSuggestResponse);
 }
