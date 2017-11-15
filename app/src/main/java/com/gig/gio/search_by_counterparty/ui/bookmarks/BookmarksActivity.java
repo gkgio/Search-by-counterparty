@@ -117,6 +117,12 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
+    }
+
+    @Override
     public void onResume() {
         realm = Realm.getDefaultInstance();
         presenter.onAttachView();
@@ -142,6 +148,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
             case android.R.id.home:
                 // при нажатии на кнопку Назад - закрываем  текущую активити
                 finish();
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 break;
             default:
                 break;
@@ -172,6 +179,7 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
         intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
 
     @Override

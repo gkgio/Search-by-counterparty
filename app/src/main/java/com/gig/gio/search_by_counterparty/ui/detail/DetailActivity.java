@@ -131,13 +131,18 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
 
         final Button btnDeleteFromLatest = findViewById(R.id.btnDeleteFromLatest);
         RxView.clicks(btnDeleteFromLatest).subscribe(aVoid -> presenter.deleteFromLatest(suggestResponse, realm));
-
     }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         toolbar.setTitle(getResources().getString(R.string.detail_activity_title));
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
     }
 
     @Override
@@ -240,6 +245,8 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         intent.putExtra(MapActivity.BUNDLE_SUGGEST_RESPONSE, jsonSuggestResponseString);
         intent.putExtra(MapActivity.BUNDLE_LOCATION, jsonLocationSting);
         startActivity(intent);
+
+        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
 
     @Override
@@ -256,7 +263,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
     }
 
     @Override
-    public void sendData(String messageBody){
+    public void sendData(String messageBody) {
         final Intent sendIntent = new Intent(android.content.Intent.ACTION_SEND);
         sendIntent.setType("text/plain");
         sendIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.sending_date_title));

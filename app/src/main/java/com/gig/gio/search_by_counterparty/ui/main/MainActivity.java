@@ -45,6 +45,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
 
     private Realm realm;
 
+    @CallSuper
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,18 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 Utils.hideKeyboard(drawerView.getContext());
                 super.onDrawerOpened(drawerView);
             }
+
+           /* @Override
+            public void onDrawerStateChanged(int newState) {
+                if (newState == DrawerLayout.STATE_SETTLING || newState == DrawerLayout.STATE_DRAGGING) {
+                    if (drawer.isDrawerOpen(GravityCompat.START)) {
+                        AnimationUtils.loadAnimation(MainActivity.this, R.anim.animation_toggle_in);
+                    } else {
+                        AnimationUtils.loadAnimation(MainActivity.this, R.anim.animation_toggle_out);
+                    }
+                    super.onDrawerStateChanged(newState);
+                }
+            }*/
         };
         drawer.addDrawerListener(toggle);
 
@@ -83,7 +96,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
             addSearchFragment();
             presenter.putCurrentPageTag(Config.SEARCH_FRAGMENT_TAG);
         }
-
     }
 
     @Override

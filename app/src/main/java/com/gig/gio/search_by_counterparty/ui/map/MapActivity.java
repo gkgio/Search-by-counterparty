@@ -92,6 +92,12 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
+    }
+
+    @Override
     public void onResume() {
         realm = Realm.getDefaultInstance();
         presenter.onAttachView();

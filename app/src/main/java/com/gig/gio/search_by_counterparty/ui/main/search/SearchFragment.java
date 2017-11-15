@@ -115,6 +115,10 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     private void openBookmarksActivity() {
         Intent intent = new Intent(getActivity(), BookmarksActivity.class);
         startActivity(intent);
+
+        final Activity activity = getActivity();
+        if (activity != null)
+            activity.overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
 
     //=======--------- SearchView implement method START ---------=========
@@ -149,6 +153,10 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
         startActivity(intent);
+
+        final Activity activity = getActivity();
+        if (activity != null)
+            activity.overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
     //=======--------- SearchView implement method END -----------=========
 
