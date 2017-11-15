@@ -115,6 +115,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 removeFragmentsStack();
                 addSearchFragment();
                 item.setChecked(true);
+                overridePendingTransition(R.anim.fragment_enter, R.anim.fragment_close);
                 break;
             case R.id.navigation_item_email:
                 Intent intent = Utils.buildEmailIntent(Config.AUTHOR_EMAIL);
@@ -126,6 +127,7 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 removeFragmentsStack();
                 addAboutFragment();
                 item.setChecked(true);
+                overridePendingTransition(R.anim.fragment_enter, R.anim.fragment_close);
                 break;
             case R.id.navigation_item_logout:
                 presenter.logout(realm);
