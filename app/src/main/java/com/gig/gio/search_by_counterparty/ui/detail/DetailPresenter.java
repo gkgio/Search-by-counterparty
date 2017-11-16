@@ -12,12 +12,13 @@ import io.realm.Realm;
  */
 
 public interface DetailPresenter {
-    void onCreateView(Bus bus, Gson gson);
+    void onCreateView(Bus bus);
     void onAttachView();
     void onDetachView();
     void provideLocationForMap(SuggestResponse suggestResponse);
     void saveChangedInRealm(SuggestResponse suggestResponse, Realm realm);
     void deleteFromLatest(SuggestResponse suggestResponse, Realm realm);
+    SuggestResponse getSuggestResponseFromRealm(long id);
     void prepareDateForSend(String nameManagement,
                             String postManagement,
                             String opfFull,

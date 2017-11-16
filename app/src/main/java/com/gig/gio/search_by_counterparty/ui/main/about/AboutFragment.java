@@ -7,10 +7,12 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 
 import com.gig.gio.search_by_counterparty.R;
 import com.gig.gio.search_by_counterparty.app.BaseFragment;
 import com.gig.gio.search_by_counterparty.di.components.MainComponent;
+import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
 
 import javax.inject.Inject;
 
@@ -19,7 +21,7 @@ import javax.inject.Inject;
  * Gig
  */
 
-public class AboutFragment extends BaseFragment implements AboutFragmentView {
+public class AboutFragment extends BaseFragment implements AboutFragmentView, MainActivity.OnBackPressedListener {
 
     @Inject
     AboutFragmentPresenter presenter;
@@ -33,7 +35,18 @@ public class AboutFragment extends BaseFragment implements AboutFragmentView {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        final MainActivity mainActivity = (MainActivity) getActivity();
+        if (mainActivity != null)
+            mainActivity.setOnBackPressedListener(this);
+    }
 
+    @Override
+    public void doBack() {
+        final MainActivity mainActivity = (MainActivity) getActivity();
+        if (mainActivity != null) {
+            mainActivity.finish();
+            AnimationUtils.loadAnimation(mainActivity, R.anim.fragment_close);
+        }
     }
 
     @Override

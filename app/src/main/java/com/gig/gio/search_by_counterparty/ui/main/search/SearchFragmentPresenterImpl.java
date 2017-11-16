@@ -167,10 +167,10 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
         }
 
         if (isInHistory)
-            realm.executeTransaction(transaction -> {
-                transaction.where(SuggestResponse.class).
-                        equalTo("value", suggestResponse.getValue()).findFirst().deleteFromRealm();
-            });
+            realm.executeTransaction(transaction ->
+                    transaction.where(SuggestResponse.class).
+                            equalTo("value", suggestResponse.getValue()).findFirst().deleteFromRealm()
+            );
 
         realm.executeTransaction(transaction -> {
             // increment index
@@ -197,9 +197,7 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
             transaction.copyToRealmOrUpdate(suggestResponse);
         });
 
-        Gson localGson = new Gson();
-        final String jsonSuggestResponse = localGson.toJson(suggestResponse, SuggestResponse.class);
-        view.startDetailActivity(jsonSuggestResponse);
+        view.startDetailActivity(suggestResponse.getId());
 
         view.hideProgress();
     }

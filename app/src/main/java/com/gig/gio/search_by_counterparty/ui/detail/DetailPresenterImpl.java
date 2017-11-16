@@ -27,10 +27,12 @@ import io.realm.Realm;
 
 public class DetailPresenterImpl implements DetailPresenter {
 
+    @Inject
+    public Gson gson;
+
     private DetailView view;
 
     private Bus bus;
-    private Gson gson;
 
     private CompositeDisposable disposables;
 
@@ -40,9 +42,8 @@ public class DetailPresenterImpl implements DetailPresenter {
     }
 
     @Override
-    public void onCreateView(Bus bus, Gson gson) {
+    public void onCreateView(Bus bus) {
         this.bus = bus;
-        this.gson = gson;
     }
 
     @Override
@@ -105,12 +106,39 @@ public class DetailPresenterImpl implements DetailPresenter {
                 equalTo("id", suggestResponse.getId()).findFirst();
 
         if (historySuggestResponse != null)
-            realm.executeTransaction(transaction -> {
-                transaction.where(SuggestResponse.class).
-                        equalTo("id", suggestResponse.getId()).findFirst().deleteFromRealm();
-            });
+            realm.executeTransaction(transaction ->
+                    transaction.where(SuggestResponse.class).
+                            equalTo("id", suggestResponse.getId()).findFirst().deleteFromRealm()
+            );
 
         bus.send(new SuggestDeleteBookmarkEvent());
+    }
+
+    @Override
+    public SuggestResponse getSuggestResponseFromRealm(long id) {
+
+        Realm realm = null;
+        try {
+            realm = Realm.getDefaultInstance();
+            realm.beginTransaction();
+            SuggestResponse suggestResponse = realm.where(SuggestResponse.class).
+                    equalTo("id", id).findFirst();
+            if (suggestResponse == null) {
+                realm.cancelTransaction();
+                return null;
+            }
+            realm.commitTransaction();
+            return realm.copyFromRealm(suggestResponse);
+        } catch (Throwable e) {
+            if (realm != null && realm.isInTransaction()) {
+                realm.cancelTransaction();
+            }
+            throw e;
+        } finally {
+            if (realm != null) {
+                realm.close();
+            }
+        }
     }
 
     @Override

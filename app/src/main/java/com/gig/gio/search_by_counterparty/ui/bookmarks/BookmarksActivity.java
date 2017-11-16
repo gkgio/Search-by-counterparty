@@ -174,9 +174,9 @@ public class BookmarksActivity extends BaseActivity implements HasComponent<Book
     }
 
     @Override
-    public void startDetailActivity(String jsonSuggestResponseString) {
+    public void startDetailActivity(long id) {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
+        intent.putExtra(DetailActivity.BUNDLE_SUGGEST, id);
         startActivity(intent);
         finish();
         overridePendingTransition(R.anim.activity_in, R.anim.activity_out);

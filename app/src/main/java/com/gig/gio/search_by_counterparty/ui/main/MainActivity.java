@@ -34,6 +34,12 @@ import io.realm.Realm;
 public class MainActivity extends BaseActivity implements HasComponent<MainComponent>, MainView,
         NavigationView.OnNavigationItemSelectedListener {
 
+    protected OnBackPressedListener onBackPressedListener;
+
+    public interface OnBackPressedListener {
+        void doBack();
+    }
+
     @Inject
     public MainPresenterImpl presenter;
 
@@ -102,6 +108,8 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (onBackPressedListener != null) {
+            onBackPressedListener.doBack();
         } else {
             super.onBackPressed();
         }
@@ -153,6 +161,16 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         super.onPause();
     }
 
+    @Override
+    protected void onDestroy() {
+        onBackPressedListener = null;
+        super.onDestroy();
+    }
+
+    public void setOnBackPressedListener(OnBackPressedListener onBackPressedListener) {
+        this.onBackPressedListener = onBackPressedListener;
+    }
+
     private void addSearchFragment() {
         // Добавляем фрагмент - search
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -179,16 +197,18 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
         }
     }
 
-    public String getLastActiveFragmentTag() {
+    private String getLastActiveFragmentTag() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             return null;
         }
-        return getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
-
+        return getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().
+                getBackStackEntryCount() - 1).getName();
     }
 
     private void removeFragmentsStack() {
-        if (!getLastActiveFragmentTag().equals(presenter.getCurrentPageTag()))
+        final String lastActiveFragmentTag = getLastActiveFragmentTag();
+
+        if (!(lastActiveFragmentTag != null && lastActiveFragmentTag.equals(presenter.getCurrentPageTag())))
             getSupportFragmentManager().popBackStack();
     }
 

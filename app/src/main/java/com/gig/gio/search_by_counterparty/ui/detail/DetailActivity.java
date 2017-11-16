@@ -31,7 +31,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.gson.Gson;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import javax.inject.Inject;
@@ -47,9 +46,6 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
 
     @Inject
     public DetailPresenterImpl presenter;
-
-    @Inject
-    public Gson gson;
 
     @Inject
     public Bus bus;
@@ -82,7 +78,8 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        suggestResponse = gson.fromJson(getIntent().getStringExtra(BUNDLE_SUGGEST), SuggestResponse.class);
+        final long id = getIntent().getLongExtra(BUNDLE_SUGGEST, -1);
+        if (id != -1) suggestResponse = presenter.getSuggestResponseFromRealm(id);
 
         // toolbar
         toolbar = findViewById(R.id.toolbar);
@@ -93,7 +90,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-        presenter.onCreateView(bus, gson);
+        presenter.onCreateView(bus);
 
         progressBar = findViewById(R.id.progressBar);
 
@@ -161,6 +158,7 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
             case android.R.id.home:
                 // при нажатии на кнопку Назад - закрываем  текущую активити
                 finish();
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 break;
             case R.id.action_unbookmark:
                 suggestResponse.setBookmark(false);

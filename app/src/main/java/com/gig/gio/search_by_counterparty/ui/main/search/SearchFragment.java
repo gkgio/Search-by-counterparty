@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -41,7 +42,7 @@ import io.realm.Realm;
  * Gig
  */
 
-public class SearchFragment extends BaseFragment implements SearchFragmentView {
+public class SearchFragment extends BaseFragment implements SearchFragmentView, MainActivity.OnBackPressedListener {
 
     @Inject
     SearchFragmentPresenter presenter;
@@ -64,8 +65,10 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         final MainActivity mainActivity = (MainActivity) getActivity();
-        if (mainActivity != null)
+        if (mainActivity != null) {
             progressBar = mainActivity.findViewById(R.id.progressBar);
+            mainActivity.setOnBackPressedListener(this);
+        }
 
         etSuggests = view.findViewById(R.id.etAutoComplete);
         adapter = new AutoCompleteAdapter<>(getActivity(), android.R.layout.simple_list_item_1, Config.EMPTY);
@@ -86,6 +89,15 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
 
         final Button btnOpenBookmarks = view.findViewById(R.id.btnOpenBookmarks);
         RxView.clicks(btnOpenBookmarks).subscribe(aVoid -> openBookmarksActivity());
+    }
+
+    @Override
+    public void doBack() {
+        final MainActivity mainActivity = (MainActivity) getActivity();
+        if (mainActivity != null) {
+            mainActivity.finish();
+            AnimationUtils.loadAnimation(mainActivity, R.anim.fragment_close);
+        }
     }
 
     @Override
@@ -121,6 +133,7 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
             activity.overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
     }
 
+
     //=======--------- SearchView implement method START ---------=========
 
     @Override
@@ -149,9 +162,9 @@ public class SearchFragment extends BaseFragment implements SearchFragmentView {
     }
 
     @Override
-    public void startDetailActivity(String jsonSuggestResponseString) {
+    public void startDetailActivity(long id) {
         Intent intent = new Intent(getActivity(), DetailActivity.class);
-        intent.putExtra(DetailActivity.BUNDLE_SUGGEST, jsonSuggestResponseString);
+        intent.putExtra(DetailActivity.BUNDLE_SUGGEST, id);
         startActivity(intent);
 
         final Activity activity = getActivity();

@@ -66,8 +66,7 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
                         view.setDataInAdapter(suggestResponseList);
                     } else if (event instanceof SuggestResponseAdapterEvent) {
                         final SuggestResponse suggestResponse = ((SuggestResponseAdapterEvent) event).getSuggestResponse();
-                        final String jsonSuggestResponseString = gson.toJson(suggestResponse, SuggestResponse.class);
-                        view.startDetailActivity(jsonSuggestResponseString);
+                        view.startDetailActivity(suggestResponse.getId());
                     } else if (event instanceof ListEmptyInfoEvent) {
                         view.showMessage(R.string.bookmarks_list_empty, SnackBarType.INFO);
                     } else if (event instanceof HttpErrorEvent) {
@@ -80,7 +79,7 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
 
 
     @Override
-    public void setBusInAdapter(){
+    public void setBusInAdapter() {
         view.setBus(bus);
     }
 
@@ -133,8 +132,7 @@ public class BookmarksPresenterImpl implements BookmarksPresenter {
                 break;
             }
         }
-
-        final String jsonSuggestResponse = gson.toJson(suggestResponse, SuggestResponse.class);
-        view.startDetailActivity(jsonSuggestResponse);
+        if (suggestResponse != null)
+            view.startDetailActivity(suggestResponse.getId());
     }
 }

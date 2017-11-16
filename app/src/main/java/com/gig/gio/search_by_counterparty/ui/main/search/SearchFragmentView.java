@@ -15,5 +15,5 @@ public interface SearchFragmentView {
     void hideProgress();
     void showMessage(int message, @SnackBarType int type);
     void onSuggestionsReady(List<String> suggestions, ResponseData responseData);
-    void startDetailActivity(String jsonSuggestResponseString);
+    void startDetailActivity(long id);
 }

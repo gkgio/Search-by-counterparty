@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
-import android.widget.ProgressBar;
 import android.support.v7.widget.Toolbar;
 
 import com.gig.gio.search_by_counterparty.R;
@@ -121,6 +120,7 @@ public class MapActivity extends BaseActivity implements HasComponent<MapCompone
             case android.R.id.home:
                 // при нажатии на кнопку Назад - закрываем  текущую активити
                 finish();
+                overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 break;
             default:
                 break;
