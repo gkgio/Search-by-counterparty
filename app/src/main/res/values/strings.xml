@@ -6,9 +6,6 @@
     <string name="dialog_button_ok">OK</string>
     <string name="dialog_button_cancel">Отмена</string>
 
-    //SplashActivity
-    <string name="image_splash">Splash image</string>
-
     //navigation menu
     <string name="drawer_menu_home">Главная</string>
     <string name="drawer_menu_email">Написать разработчику</string>
