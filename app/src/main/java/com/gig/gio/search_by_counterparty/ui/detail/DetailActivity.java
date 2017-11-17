@@ -70,6 +70,8 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
     private TextView tvStatus;
     private TextView tvAddress;
 
+    private boolean isDeleted = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,7 +129,10 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         RxView.clicks(btnOpenMap).subscribe(aVoid -> presenter.provideLocationForMap(suggestResponse));
 
         final Button btnDeleteFromLatest = findViewById(R.id.btnDeleteFromLatest);
-        RxView.clicks(btnDeleteFromLatest).subscribe(aVoid -> presenter.deleteFromLatest(suggestResponse, realm));
+        RxView.clicks(btnDeleteFromLatest).subscribe(aVoid -> {
+            presenter.deleteFromLatest(suggestResponse, realm);
+            isDeleted = true;
+        });
     }
 
     @Override
@@ -240,7 +245,8 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
     @Override
     public void startMapActivity(String jsonSuggestResponseString, String jsonLocationSting) {
         Intent intent = new Intent(this, MapActivity.class);
-        intent.putExtra(MapActivity.BUNDLE_SUGGEST_RESPONSE, jsonSuggestResponseString);
+        if (isDeleted)
+            intent.putExtra(MapActivity.BUNDLE_SUGGEST_RESPONSE, jsonSuggestResponseString);
         intent.putExtra(MapActivity.BUNDLE_LOCATION, jsonLocationSting);
         startActivity(intent);
 
