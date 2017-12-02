@@ -74,7 +74,8 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 super.onDrawerOpened(drawerView);
             }
 
-           /* @Override
+           /*
+           @Override
             public void onDrawerStateChanged(int newState) {
                 if (newState == DrawerLayout.STATE_SETTLING || newState == DrawerLayout.STATE_DRAGGING) {
                     if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -84,7 +85,8 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                     }
                     super.onDrawerStateChanged(newState);
                 }
-            }*/
+            }
+            */
         };
         drawer.addDrawerListener(toggle);
 

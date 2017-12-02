@@ -150,9 +150,14 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_detail, menu);
         if (suggestResponse.isBookmark()) {
-            inflater.inflate(R.menu.menu_star_selected, menu);
-        } else inflater.inflate(R.menu.menu_star_unselected, menu);
+            menu.findItem(R.id.action_bookmark).setVisible(true);
+            menu.findItem(R.id.action_unbookmark).setVisible(false);
+        } else {
+            menu.findItem(R.id.action_bookmark).setVisible(false);
+            menu.findItem(R.id.action_unbookmark).setVisible(true);
+        }
 
         return super.onPrepareOptionsMenu(menu);
     }
@@ -166,12 +171,12 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
                 overridePendingTransition(R.anim.activity_back_in, R.anim.activity_back_out);
                 break;
             case R.id.action_unbookmark:
-                suggestResponse.setBookmark(false);
+                suggestResponse.setBookmark(true);
                 invalidateOptionsMenu();
                 presenter.saveChangedInRealm(suggestResponse, realm);
                 break;
             case R.id.action_bookmark:
-                suggestResponse.setBookmark(true);
+                suggestResponse.setBookmark(false);
                 invalidateOptionsMenu();
                 presenter.saveChangedInRealm(suggestResponse, realm);
                 break;
