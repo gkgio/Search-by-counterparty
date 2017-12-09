@@ -92,33 +92,29 @@ public class SearchFragmentPresenterImpl implements SearchFragmentPresenter {
 
     @Override
     public void requestSuggestions(String query) {
-        String queryFromUser = query.replaceAll("\\s+", " ").trim();
+        view.showProgress();
 
-        if (!queryFromUser.isEmpty()) {
-            view.showProgress();
+        final RequestData requestData = new RequestData();
+        requestData.setCount(COUNT_RESPONSE_OBJECT);
+        requestData.setQuery(query);
 
-            final RequestData requestData = new RequestData();
-            requestData.setCount(COUNT_RESPONSE_OBJECT);
-            requestData.setQuery(queryFromUser);
-
-            Observable<Response<ResponseData>> responseObservable =
-                    networkService.getSuggestion("Token ".concat(BuildConfig.API_KEY), requestData);
-            responseObservable.compose(RxUtil.applySchedulersAndRetry())
-                    .subscribe(response -> {
-                        final int responseCode = response.code();
-                        switch (responseCode) {
-                            case HttpURLConnection.HTTP_OK:
-                                bus.send(new ResponseDataEvent(response.body()));
-                                break;
-                            default:
-                                bus.send(new HttpErrorEvent(responseCode));
-                                break;
-                        }
-                    }, throwable -> {
-                        throwable.printStackTrace();
-                        bus.send(new ThrowableEvent(throwable));
-                    });
-        }
+        Observable<Response<ResponseData>> responseObservable =
+                networkService.getSuggestion("Token ".concat(BuildConfig.API_KEY), requestData);
+        responseObservable.compose(RxUtil.applySchedulersAndRetry())
+                .subscribe(response -> {
+                    final int responseCode = response.code();
+                    switch (responseCode) {
+                        case HttpURLConnection.HTTP_OK:
+                            bus.send(new ResponseDataEvent(response.body()));
+                            break;
+                        default:
+                            bus.send(new HttpErrorEvent(responseCode));
+                            break;
+                    }
+                }, throwable -> {
+                    throwable.printStackTrace();
+                    bus.send(new ThrowableEvent(throwable));
+                });
     }
 
     private void prepareSuggestsList(ResponseData responseData) {
