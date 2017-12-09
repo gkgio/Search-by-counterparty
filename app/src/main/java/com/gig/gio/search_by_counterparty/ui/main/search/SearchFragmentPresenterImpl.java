@@ -13,7 +13,6 @@ import com.gig.gio.search_by_counterparty.model.RequestData;
 import com.gig.gio.search_by_counterparty.model.ResponseData;
 import com.gig.gio.search_by_counterparty.model.SuggestResponse;
 import com.gig.gio.search_by_counterparty.network.NetworkService;
-import com.google.gson.Gson;
 
 import java.net.HttpURLConnection;
 import java.util.ArrayList;

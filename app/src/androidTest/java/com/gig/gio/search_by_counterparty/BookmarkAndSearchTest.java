@@ -1,29 +1,17 @@
 package com.gig.gio.search_by_counterparty;
 
-
-import android.support.test.InstrumentationRegistry;
 import android.support.test.espresso.NoMatchingViewException;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.matcher.RootMatchers;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
-import android.test.suitebuilder.annotation.LargeTest;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-import com.gig.gio.search_by_counterparty.ui.main.MainActivity;
+import com.gig.gio.search_by_counterparty.common.TestUtil;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.junit.FixMethodOrder;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
-
-import android.support.test.uiautomator.UiDevice;
 
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
@@ -40,203 +28,17 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
 
+/**
+ * Created by georgy on 09.12.2017.
+ * GIG
+ */
 
-@LargeTest
-@RunWith(AndroidJUnit4.class)
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class AllApplicationTest {
-
-    @Rule
-    public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
-
-    @Test
-    public void a_sidebarTest() {
-
-        TestUtil.sleepWhileNotDisplayed(R.id.toolbar, 25, 500);
-
-        ViewInteraction appCompatImageButtonToolbar = onView(
-                allOf(childAtPosition(
-                        allOf(withId(R.id.toolbar),
-                                childAtPosition(
-                                        withClassName(is("android.widget.LinearLayout")),
-                                        0)),
-                        2),
-                        isDisplayed()));
-        appCompatImageButtonToolbar.perform(click());
-
-        onView(allOf(childAtPosition(
-                allOf(withId(R.id.design_navigation_view),
-                        childAtPosition(
-                                withId(R.id.nav_view),
-                                0)),
-                2),
-                isDisplayed())).perform(click());
-
-        //press back
-        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack();
-
-        TestUtil.sleepWhileNotDisplayed(R.id.toolbar, 25, 500);
-
-        appCompatImageButtonToolbar.check(matches(isDisplayed()));
-        appCompatImageButtonToolbar.perform(click());
-
-        onView(allOf(childAtPosition(
-                allOf(withId(R.id.design_navigation_view),
-                        childAtPosition(
-                                withId(R.id.nav_view),
-                                0)),
-                3),
-                isDisplayed())).perform(click());
-
-        TestUtil.sleepWhileNotDisplayed(R.id.toolbar, 25, 500);
-
-        appCompatImageButtonToolbar.check(matches(isDisplayed()));
-        appCompatImageButtonToolbar.perform(click());
-
-        onView(allOf(childAtPosition(
-                allOf(withId(R.id.design_navigation_view),
-                        childAtPosition(
-                                withId(R.id.nav_view),
-                                0)),
-                1),
-                isDisplayed())).perform(click());
+public class BookmarkAndSearchTest {
+    public BookmarkAndSearchTest() {
     }
 
-    @Test
-    public void b_allApplicationTest() {
-
-        ViewInteraction appCompatAutoCompleteTextView = onView(
-                allOf(withId(R.id.etAutoComplete),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.fragment_container),
-                                        0),
-                                1),
-                        isDisplayed()));
-        appCompatAutoCompleteTextView.perform(click());
-
-        appCompatAutoCompleteTextView.check(matches(isDisplayed()));
-        appCompatAutoCompleteTextView.perform(replaceText("e"), closeSoftKeyboard());
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        onData(equalTo("ОАО \"Е2\"")).inRoot(RootMatchers.isPlatformPopup()).perform(click());
-
-        TestUtil.sleepWhileNotDisplayed(R.id.toolbar, 25, 500);
-
-        try {
-            onView(allOf(withId(R.id.action_unbookmark), withContentDescription("Не избранная"),
-                    childAtPosition(
-                            childAtPosition(
-                                    withId(R.id.toolbar),
-                                    2),
-                            1))).perform(scrollTo(), click());
-        } catch (NoMatchingViewException e) {
-            onView(allOf(withId(R.id.action_bookmark), withContentDescription("Избранная"),
-                    childAtPosition(
-                            childAtPosition(
-                                    withId(R.id.toolbar),
-                                    2),
-                            1))).perform(scrollTo(), click());
-        }
-
-        try {
-            onView(allOf(withId(R.id.action_bookmark), withContentDescription("Избранная"),
-                    childAtPosition(
-                            childAtPosition(
-                                    withId(R.id.toolbar),
-                                    2),
-                            1))).perform(scrollTo(), click());
-        } catch (NoMatchingViewException e) {
-            onView(allOf(withId(R.id.action_unbookmark), withContentDescription("Не избранная"),
-                    childAtPosition(
-                            childAtPosition(
-                                    withId(R.id.toolbar),
-                                    2),
-                            1))).perform(scrollTo(), click());
-        }
-
-        ViewInteraction actionMenuItemViewShare = onView(
-                allOf(withId(R.id.action_share), withContentDescription("Share"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.toolbar),
-                                        2),
-                                0)));
-        actionMenuItemViewShare.perform(scrollTo(), click());
-
-        onView(allOf(withId(android.R.id.button2), withText("Отмена"))).perform(click());
-
-        actionMenuItemViewShare.check(matches(isDisplayed()));
-        actionMenuItemViewShare.perform(scrollTo(), click());
-
-        onView(allOf(withId(android.R.id.button1), withText("OK"))).perform(click());
-
-        //press back
-        UiDevice.getInstance(InstrumentationRegistry.getInstrumentation()).pressBack();
-
-        TestUtil.sleepWhileNotDisplayed(R.id.btnOpenMap, 25, 500);
-
-        ViewInteraction appCompatButtonMap = onView(
-                allOf(withId(R.id.btnOpenMap), withText("На карте"),
-                        childAtPosition(
-                                allOf(withId(R.id.btnLayout),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                10)),
-                                1)));
-        appCompatButtonMap.perform(scrollTo(), click());
-
-        TestUtil.sleepWhileNotDisplayed(R.id.toolbar, 25, 500);
-
-        ViewInteraction appCompatImageButtonToolbarBack = onView(
-                allOf(withContentDescription("Navigate up"),
-                        childAtPosition(
-                                allOf(withId(R.id.toolbar),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        appCompatImageButtonToolbarBack.perform(click());
-
-        TestUtil.sleepWhileNotDisplayed(R.id.btnDeleteFromLatest, 25, 500);
-
-        ViewInteraction appCompatButton4 = onView(
-                allOf(withId(R.id.btnDeleteFromLatest), withText("Удалить из недавних"),
-                        childAtPosition(
-                                allOf(withId(R.id.btnLayout),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                10)),
-                                0)));
-        appCompatButton4.perform(scrollTo(), click());
-
-        appCompatButtonMap.check(matches(isDisplayed()));
-        appCompatButtonMap.perform(scrollTo(), click());
-
-        TestUtil.sleepWhileNotDisplayed(R.id.toolbar, 25, 500);
-
-        appCompatImageButtonToolbarBack.check(matches(isDisplayed()));
-        appCompatImageButtonToolbarBack.perform(click());
-
-        TestUtil.sleepWhileNotDisplayed(R.id.toolbar, 25, 500);
-
-        ViewInteraction appCompatImageButton6 = onView(
-                allOf(withContentDescription("Navigate up"),
-                        childAtPosition(
-                                allOf(withId(R.id.toolbar),
-                                        childAtPosition(
-                                                withClassName(is("android.widget.LinearLayout")),
-                                                0)),
-                                1)));
-        appCompatImageButton6.perform(scrollTo(), click());
+    public void startBookmarkTest(){
 
         TestUtil.sleepWhileNotDisplayed(R.id.btnOpenBookmarks, 25, 500);
 
@@ -265,7 +67,14 @@ public class AllApplicationTest {
 
         TestUtil.sleepWhileNotDisplayed(R.id.etAutoComplete, 25, 500);
 
-        appCompatAutoCompleteTextView.check(matches(isDisplayed()));
+        ViewInteraction appCompatAutoCompleteTextView = onView(
+                allOf(withId(R.id.etAutoComplete),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(R.id.fragment_container),
+                                        0),
+                                1),
+                        isDisplayed()));
         appCompatAutoCompleteTextView.perform(replaceText("r"), closeSoftKeyboard());
 
         ViewInteraction appCompatAutoCompleteTextView7 = onView(
@@ -414,7 +223,6 @@ public class AllApplicationTest {
                                 1),
                         isDisplayed()));
         appCompatAutoCompleteTextView17.perform(replaceText("d"), closeSoftKeyboard());
-
     }
 
     private static Matcher<View> childAtPosition(

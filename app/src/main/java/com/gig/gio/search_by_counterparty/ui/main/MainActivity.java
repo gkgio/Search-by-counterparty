@@ -73,20 +73,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
                 Utils.hideKeyboard(drawerView.getContext());
                 super.onDrawerOpened(drawerView);
             }
-
-           /*
-           @Override
-            public void onDrawerStateChanged(int newState) {
-                if (newState == DrawerLayout.STATE_SETTLING || newState == DrawerLayout.STATE_DRAGGING) {
-                    if (drawer.isDrawerOpen(GravityCompat.START)) {
-                        AnimationUtils.loadAnimation(MainActivity.this, R.anim.animation_toggle_in);
-                    } else {
-                        AnimationUtils.loadAnimation(MainActivity.this, R.anim.animation_toggle_out);
-                    }
-                    super.onDrawerStateChanged(newState);
-                }
-            }
-            */
         };
         drawer.addDrawerListener(toggle);
 
@@ -130,7 +116,6 @@ public class MainActivity extends BaseActivity implements HasComponent<MainCompo
             case R.id.navigation_item_email:
                 Intent intent = Utils.buildEmailIntent(Config.AUTHOR_EMAIL);
                 startActivity(Intent.createChooser(intent, getResources().getString(R.string.send_email_chooser_title)));
-                //item.setChecked(true);
                 break;
             case R.id.navigation_item_info:
                 presenter.putCurrentPageTag(Config.ABOUT_FRAGMENT_TAG);

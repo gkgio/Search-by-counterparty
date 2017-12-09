@@ -1,4 +1,4 @@
-package com.gig.gio.search_by_counterparty;
+package com.gig.gio.search_by_counterparty.common;
 
 
 import android.support.test.espresso.AmbiguousViewMatcherException;
@@ -35,5 +35,14 @@ public class TestUtil {
             }
 
         } while (tmpStepCount != stepCount);
+    }
+
+    public static void sleep(int millisecond){
+        try {
+            Thread.sleep(millisecond);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 }
