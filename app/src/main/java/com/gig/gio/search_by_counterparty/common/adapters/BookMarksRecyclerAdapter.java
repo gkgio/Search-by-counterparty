@@ -75,10 +75,10 @@ public class BookMarksRecyclerAdapter extends RecyclerView.Adapter<BookMarksRecy
     // view holder class ======================
     class BookMarksItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvValue;
-        ImageView ivStar;
+        final TextView tvValue;
+        final ImageView ivStar;
 
-        BookMarksItemViewHolder(View itemView) {
+        public BookMarksItemViewHolder(View itemView) {
             super(itemView);
             tvValue = itemView.findViewById(R.id.tvValue);
             ivStar = itemView.findViewById((R.id.ivStar));

@@ -9,7 +9,6 @@ import com.gig.gio.search_by_counterparty.common.eventbus.Bus;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.HttpErrorEvent;
 import com.gig.gio.search_by_counterparty.common.eventbus.events.ThrowableEvent;
 import com.gig.gio.search_by_counterparty.network.NetworkService;
-import com.google.gson.Gson;
 
 import javax.inject.Inject;
 import javax.inject.Named;
