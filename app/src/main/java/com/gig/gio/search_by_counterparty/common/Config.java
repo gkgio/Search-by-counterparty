@@ -11,9 +11,6 @@ import java.util.List;
 public class Config {
     public static final String API_URL = "https://dadata.ru";
 
-    // задержка при показе сплэш экрана в миллисекундах
-    public static final int SHOW_SPLASH_DELAY_MILLIS = 1000;
-
     public static final float MAP_ZOOM = 13.0f; // величина зума камеры на экране с картой
 
     public static final String AUTHOR_EMAIL = "eeyyon@gmail.com";

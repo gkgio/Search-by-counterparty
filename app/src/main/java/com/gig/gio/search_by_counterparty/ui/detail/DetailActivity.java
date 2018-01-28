@@ -277,7 +277,10 @@ public class DetailActivity extends BaseActivity implements HasComponent<DetailC
         sendIntent.setType("text/plain");
         sendIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.sending_date_title));
         sendIntent.putExtra(android.content.Intent.EXTRA_TEXT, messageBody);
-        startActivity(Intent.createChooser(sendIntent, "Sending..."));
+        // Проверяем, что существует приложение, способное обработать этот intent
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(Intent.createChooser(sendIntent, "Sending..."));
+        }
     }
 
     //=======--------- DetailView implement method END ---------=========
